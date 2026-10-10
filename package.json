@@ -1,0 +1,38 @@
+{
+  "name": "cs602-study-guide",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "tsx --test tests/*.test.ts",
+    "validate": "tsx scripts/validate-lab.ts",
+    "predeploy": "npm test && npm run validate && npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "hyperformula": "~3.5.0",
+    "javascript-lp-solver": "^1.0.3",
+    "lucide-react": "^1.14.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.15.0",
+    "ssf": "^0.11.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.4",
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "gh-pages": "^6.3.0",
+    "playwright-core": "^1.62.1",
+    "tailwindcss": "^4.2.4",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.10"
+  },
+  "license": "GPL-3.0-or-later"
+}

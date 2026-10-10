@@ -1,0 +1,26 @@
+logs
+*.log
+npm-debug.log*
+node_modules
+dist
+dist-ssr
+offline-package/site
+*.local
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.ruff_cache
+screenshots
+
+# local caches and agent scratch files
+.vite
+.vite-*
+/tmp-*
+scripts/tmp-*
+scripts/.*.mjs

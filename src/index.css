@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Fonts ── */
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+
+  /* ── Surface Elevation (warm dark greys) ── */
+  --color-void: #0d0d0d;
+  --color-base: #141414;
+  --color-surface: #1a1a1a;
+  --color-raised: #222222;
+  --color-overlay: #2a2a2a;
+
+  /* ── Borders ── */
+  --color-edge: #2a2a2a;
+  --color-edge-bright: #3a3a3a;
+
+  /* ── Text ── */
+  --color-ink: #d4d4d4;
+  --color-ink-secondary: #a0a0a0;
+  /* muted text must still read at WCAG AA (4.5:1): 5.8 on void, 5.2 on surface, 4.7 on raised */
+  --color-ink-muted: #8c8c8c;
+  /* faint is for decoration and disabled states only, never for text that has to be read (about 2:1) */
+  --color-ink-faint: #4a4a4a;
+
+  /* ── Accent (vintage terminal green) ── */
+  --color-glow: #4ade80;
+  --color-glow-dim: #14532d;
+  --color-glow-hover: #86efac;
+
+  /* ── Semantic ── */
+  --color-correct: #4ade80;
+  --color-correct-dim: #14532d;
+  --color-wrong: #f87171;
+  --color-wrong-dim: #450a0a;
+
+  /* ── Session Tab Colors ── */
+  --color-s1: #4ade80;
+  --color-s2: #a78bfa;
+  --color-s3: #22d3ee;
+  --color-s4: #fbbf24;
+  --color-s5: #fb923c;
+  --color-s6: #ff6ec7;
+  --color-s9: #3b9eff;
+  --color-s10: #d0f020;
+
+  /* ── Animation ── */
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-down: slide-down 0.25s ease-out;
+  --animate-scale-in: scale-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 2000px; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+html {
+  color-scheme: dark;
+  /* keep elements that Tab scrolls into view clear of the fixed nav pill and the scroll-to-top button */
+  scroll-padding-bottom: 8rem;
+}
+
+/* one focus ring for every control: 2px accent (11:1 on the page). In the base layer, so components that draw their
+   own focus state with utilities (outline-none, ring-*) still win */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-glow);
+    outline-offset: 2px;
+  }
+
+  /* headings that receive focus from a script (route change, scroll to top) are not controls */
+  h1[tabindex="-1"]:focus {
+    outline: none;
+  }
+}
+
+/* the site footer (App.tsx) is set in ink-faint (2.2:1); its licence text and source link have to be readable */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* learners must see the characters they type: no JetBrains Mono ligatures for >= <= <> in the grid, editors and code */
+.font-mono,
+code,
+kbd,
+pre,
+samp,
+textarea {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+::selection {
+  background-color: var(--color-glow-dim);
+  color: var(--color-glow);
+}
+
+input::placeholder {
+  color: var(--color-ink-muted);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-edge-bright);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-muted);
+}
+
+.highlight-match {
+  background-color: var(--color-glow-dim);
+  color: var(--color-glow);
+  border-radius: 2px;
+  padding: 0 2px;
+}
