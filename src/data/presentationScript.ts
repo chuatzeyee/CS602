@@ -99,7 +99,7 @@ export const presentationScript: PresentationScript = {
         },
         {
           cue: "Pause on the whole slide",
-          text: "So the data enters the models in three ways: base values drive the cashflows, over half the parameters carry a documented low and high value for the sensitivity tests, and the Monte Carlo uses distributions. Every area was then re-checked in a second pass: sources re-downloaded and derived numbers recomputed.",
+          text: "We use the data in three ways: a best estimate for every input to build the main cashflows; a documented low and high value for over half the inputs, which we swap in to see which assumptions really matter; and probability distributions for random shocks like job loss, which drive the Monte Carlo. Every area was then re-checked in a second pass: sources re-downloaded and derived numbers recomputed.",
         },
         {
           cue: "Next slide",
@@ -240,7 +240,10 @@ export const scriptPoints: Readonly<Record<string, readonly string[]>> = {
     "Married, not wanting more children: 64% cost · 49% too stressful · 34% work–family balance"
   ],
   "Pause on the whole slide": [
-    "Data enters 3 ways: base values · low/high ranges (over half the parameters) · Monte Carlo distributions",
+    "Data used 3 ways:",
+    "Best estimate for every input → main cashflows",
+    "Documented low/high for over half the inputs → swapped in to see which assumptions matter",
+    "Distributions for random shocks (e.g. job loss) → Monte Carlo",
     "Second pass: re-downloaded and recomputed"
   ],
   "Next slide": [
