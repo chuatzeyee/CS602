@@ -14,7 +14,8 @@ progress is kept in the browser's local storage.
   Tables, Solver, Sort, AutoFilter, Advanced Filter, PivotTables and VBA) with Check, hints and Reveal, plus a sandbox.
 - **Exam Prep**: format, marking, a time plan and strategy for the final, the techniques past papers test, and timed
   mock exams marked cell by cell.
-- **Group Project**: deadlines, deliverables, the rubric, modelling conventions, drills and lessons from past projects.
+- **Group Project**: deadlines, deliverables, the rubric, modelling conventions, drills and lessons from past projects,
+  plus our team's script for the data portion of the proposal presentation.
 - **Course**: assessment weights, the week-by-week schedule and course policies.
 
 ## How checking works

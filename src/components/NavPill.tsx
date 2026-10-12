@@ -28,6 +28,11 @@ const navItems = [
   { to: '/course', label: 'Course', title: 'Course Map', icon: CalendarDays },
 ] as const
 
+// pages below a nav item with a heading of their own: they get their own tab title while the item's pill stays current
+const subPageTitles: ReadonlyMap<string, string> = new Map([
+  ['/project/data-script', 'Data script'],
+])
+
 const HEADING_WAIT_FRAMES = 120 // lazy pages (lab, exam, project) render their heading once the chunk arrives
 
 const isCurrent = (to: string, pathname: string) => (to === '/' ? pathname === '/' : pathname === to || pathname.startsWith(`${to}/`))
@@ -35,8 +40,9 @@ const isCurrent = (to: string, pathname: string) => (to === '/' ? pathname === '
 // every route gets its own tab title, so history, bookmarks and screen readers can tell the pages apart
 function useRouteTitle(pathname: string) {
   useEffect(() => {
-    const item = navItems.find(n => isCurrent(n.to, pathname))
-    document.title = item && item.title !== SITE ? `${item.title} · ${SITE}` : SITE
+    const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname // the router matches '/x/' as '/x'
+    const title = subPageTitles.get(path) ?? navItems.find(n => isCurrent(n.to, path))?.title
+    document.title = title && title !== SITE ? `${title} · ${SITE}` : SITE
   }, [pathname])
 }
 

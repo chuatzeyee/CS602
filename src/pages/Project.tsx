@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent, ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import {
-  BookOpen, CalendarDays, Check, ChevronDown, CircleQuestionMark, ClipboardList, Database, FileSpreadsheet, Info,
-  Lightbulb, RotateCcw, Scale, Shapes, Square, SquareCheck, Target, Users, X,
+  ArrowRight, BookOpen, CalendarDays, Check, ChevronDown, CircleQuestionMark, ClipboardList, Database, FileSpreadsheet,
+  Info, Lightbulb, Presentation, RotateCcw, Scale, Shapes, Square, SquareCheck, Target, Users, X,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { project } from '../data/project'
@@ -600,6 +601,17 @@ export default function Project() {
           quick drills, lessons from past projects and a guide to documenting data.
         </p>
       </div>
+      <Link
+        to="/project/data-script"
+        className="group flex items-center gap-3 bg-surface border border-edge rounded-lg px-4 py-3 mb-8 hover:border-glow/30 hover:bg-raised transition-colors"
+      >
+        <Presentation size={18} className="text-glow flex-shrink-0" aria-hidden="true" />
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-medium text-ink">Our proposal presentation: data portion script</span>
+          <span className="block text-xs text-ink-muted mt-0.5">What to say on slides 9 and 10, with stage cues and the sources behind each number</span>
+        </span>
+        <ArrowRight size={16} className="text-glow flex-shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+      </Link>
       <JumpNav />
       <Overview />
       <Deliverables />
