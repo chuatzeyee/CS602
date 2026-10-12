@@ -29,7 +29,7 @@ export interface PresentationScript {
 
 export const presentationScript: PresentationScript = {
   title: 'Proposal presentation: data portion script',
-  intro: 'About 3½ minutes for slide 10, the data slide; about 4¼ minutes with the optional slide 9 lead-in.',
+  intro: 'About 4 minutes for slide 10, the data slide; about 4¾ minutes with the optional slide 9 lead-in.',
   sections: [
     {
       slide: 9,
@@ -58,7 +58,7 @@ export const presentationScript: PresentationScript = {
     {
       slide: 10,
       title: 'Data behind the models',
-      timing: 'about 3½ minutes',
+      timing: 'about 4 minutes',
       optional: false,
       lines: [
         {
@@ -68,6 +68,10 @@ export const presentationScript: PresentationScript = {
         {
           cue: "Gesture at the cards",
           text: "Behind these six cards is one register of 555 parameters across eight areas, from support packages and childcare fees to job-loss risk. Each one is logged with its value, unit, date and publisher. Wherever official data exist we used them, mainly SingStat, MOM, MSF, NPTD, MOH and ECDA, all accessed on 9 October, and anything that is our own assumption is flagged as such.",
+        },
+        {
+          cue: "Still on the cards: how we collected it",
+          text: "On method: where an agency offers an API, we pulled the data directly, for example SingStat's TableBuilder and data.gov.sg for ECDA's centre and fee listings. Otherwise we downloaded the official tables and documents themselves, such as MOM's labour statistics, the 2023 Household Expenditure Survey and the NDR 2026 annexes. Every raw file was saved with its access date, about 950 files in all, and small Python scripts turned them into tidy tables. From there, each figure went into the register with a note on how it was derived: older prices re-priced to 2026 with the CPI, and low and high values taken from published percentiles or historical ranges.",
         },
         {
           cue: "Point to \"Government support\"",

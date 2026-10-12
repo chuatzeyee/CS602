@@ -12,7 +12,7 @@ const published = JSON.stringify(presentationScript)
 
 test('the page title and the one-line intro with both timings', () => {
   assert.equal(title, 'Proposal presentation: data portion script')
-  assert.equal(intro, 'About 3½ minutes for slide 10, the data slide; about 4¼ minutes with the optional slide 9 lead-in.')
+  assert.equal(intro, 'About 4 minutes for slide 10, the data slide; about 4¾ minutes with the optional slide 9 lead-in.')
 })
 
 test('slide 9 (optional, about 45 seconds) comes before slide 10 (about 80 seconds)', () => {
@@ -23,7 +23,7 @@ test('slide 9 (optional, about 45 seconds) comes before slide 10 (about 80 secon
   assert.equal(setUp.timing, 'about 45 seconds')
   assert.equal(data.title, 'Data behind the models')
   assert.equal(data.optional, false)
-  assert.equal(data.timing, 'about 3½ minutes')
+  assert.equal(data.timing, 'about 4 minutes')
 })
 
 test('every line is text to say; cues are plain stage directions without brackets or markdown', () => {
@@ -45,7 +45,7 @@ test('the cues and lines of both slides, in order', () => {
   const cues = sections.map(s => s.lines.map(l => l.cue ?? null))
   assert.deepEqual(cues, [
     ['Slide 9', 'Point to the persona box', 'Point to the 6-month and 3-month figures', 'Point to the assumptions box'],
-    ['Slide 10', 'Gesture at the cards', 'Point to "Government support"', 'Stay on government support', 'Point to "Income and spending"', 'Point to "Job loss and shocks"', 'Point to "CPF, tax and macro"', 'Point to "Fertility and childcare"', 'Pause on the whole slide', 'Next slide'],
+    ['Slide 10', 'Gesture at the cards', 'Still on the cards: how we collected it', 'Point to "Government support"', 'Stay on government support', 'Point to "Income and spending"', 'Point to "Job loss and shocks"', 'Point to "CPF, tax and macro"', 'Point to "Fertility and childcare"', 'Pause on the whole slide', 'Next slide'],
   ])
 })
 
