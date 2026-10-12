@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ALargeSmall, ArrowLeft, Database, Timer } from 'lucide-react'
-import { presentationScript } from '../data/presentationScript'
+import { presentationScript, scriptPoints } from '../data/presentationScript'
 import type { ScriptLine, ScriptSection, ScriptSource } from '../data/presentationScript'
 
 const LARGE_TEXT_KEY = 'cs602-script-large'
@@ -53,7 +53,8 @@ function Spoken({ text }: { text: string }) {
   )
 }
 
-function Line({ line, size }: { line: ScriptLine; size: TextSize }) {
+function Line({ line, size, points }: { line: ScriptLine; size: TextSize; points: boolean }) {
+  const bullets = points && line.cue ? scriptPoints[line.cue] : undefined
   return (
     <li>
       {line.cue && (
@@ -61,12 +62,18 @@ function Line({ line, size }: { line: ScriptLine; size: TextSize }) {
           <span className="sr-only">Cue: </span>{line.cue}
         </p>
       )}
-      <p className={`text-ink ${size.line}`}><Spoken text={line.text} /></p>
+      {bullets ? (
+        <ul className={`list-disc pl-5 space-y-1.5 text-ink marker:text-glow ${size.line}`}>
+          {bullets.map(b => <li key={b}><Spoken text={b} /></li>)}
+        </ul>
+      ) : (
+        <p className={`text-ink ${size.line}`}><Spoken text={line.text} /></p>
+      )}
     </li>
   )
 }
 
-function SlideCard({ section, size }: { section: ScriptSection; size: TextSize }) {
+function SlideCard({ section, size, points }: { section: ScriptSection; size: TextSize; points: boolean }) {
   const headingId = `slide-${section.slide}`
   return (
     <section aria-labelledby={headingId} className="bg-surface border border-edge rounded-lg mb-6">
@@ -89,7 +96,7 @@ function SlideCard({ section, size }: { section: ScriptSection; size: TextSize }
         </div>
       </div>
       <ol className={`px-5 sm:px-6 py-6 ${size.gap}`}>
-        {section.lines.map(line => <Line key={line.text} line={line} size={size} />)}
+        {section.lines.map(line => <Line key={line.text} line={line} size={size} points={points} />)}
       </ol>
     </section>
   )
@@ -129,10 +136,19 @@ function SourcesTable({ rows }: { rows: readonly ScriptSource[] }) {
   )
 }
 
-export default function ProjectScript() {
+const MODES = [
+  { to: '/project/data-script', label: 'Full script', points: false },
+  { to: '/project/data-points', label: 'Point form', points: true },
+] as const
+
+export default function ProjectScript({ points = false }: { points?: boolean }) {
   const [large, toggleLarge] = useStoredFlag(LARGE_TEXT_KEY)
   const size = large ? LARGE : NORMAL
-  const { title, intro, sections, sources } = presentationScript
+  const { sections, sources } = presentationScript
+  const title = points ? 'Proposal presentation: data portion in point form' : presentationScript.title
+  const intro = points
+    ? 'Key points to speak from, in the same order and with the same cues as the full script.'
+    : presentationScript.intro
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 [overflow-wrap:anywhere]">
       <Link to="/project" className="inline-flex items-center gap-1.5 text-xs text-ink-muted hover:text-ink mb-6">
@@ -142,18 +158,34 @@ export default function ProjectScript() {
         <h1 className="text-3xl font-bold text-ink mb-2">{title}</h1>
         <p className="text-ink-secondary leading-relaxed max-w-2xl">{intro}</p>
       </div>
+      <div className="flex flex-wrap items-center gap-3 mb-6">
+      <nav aria-label="Script format" className="inline-flex rounded-full border border-edge bg-surface p-0.5">
+        {MODES.map(m => (
+          <Link
+            key={m.to}
+            to={m.to}
+            aria-current={m.points === points ? 'page' : undefined}
+            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+              m.points === points ? 'bg-glow-dim text-glow' : 'text-ink-muted hover:text-ink'
+            }`}
+          >
+            {m.label}
+          </Link>
+        ))}
+      </nav>
       <button
         type="button"
         onClick={toggleLarge}
         aria-pressed={large}
-        className={`inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full text-xs font-medium border transition-colors ${
+        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
           large ? 'bg-glow-dim text-glow border-glow/20' : 'bg-surface text-ink-muted border-edge hover:text-ink hover:border-edge-bright'
         }`}
       >
         <ALargeSmall size={15} aria-hidden="true" /> Large text
       </button>
+      </div>
 
-      {sections.map(s => <SlideCard key={s.slide} section={s} size={size} />)}
+      {sections.map(s => <SlideCard key={s.slide} section={s} size={size} points={points} />)}
 
       <section aria-labelledby="sources" className="mt-12">
         <div className="flex items-center gap-2 mb-2">
