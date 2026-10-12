@@ -17,6 +17,7 @@ const Sandbox = lazy(() => import('./pages/Sandbox'))
 const MockExam = lazy(() => import('./pages/MockExam'))
 const Exam = lazy(() => import('./pages/Exam'))
 const Project = lazy(() => import('./pages/Project'))
+const ProjectScript = lazy(() => import('./pages/ProjectScript'))
 
 const loading = <div className="max-w-3xl mx-auto px-4 pt-12 text-ink-muted text-sm">Loading…</div>
 
@@ -41,6 +42,7 @@ export default function App() {
               <Route path="/exam" element={<Exam />} />
               <Route path="/exam/mock/:mockId" element={<MockExam />} />
               <Route path="/project" element={<Project />} />
+              <Route path="/project/data-script" element={<ProjectScript />} />
               <Route path="/course" element={<Course />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
