@@ -31,6 +31,7 @@ const navItems = [
 // pages below a nav item with a heading of their own: they get their own tab title while the item's pill stays current
 const subPageTitles: ReadonlyMap<string, string> = new Map([
   ['/project/data-script', 'Data script'],
+  ['/project/data-points', 'Data points'],
 ])
 
 const HEADING_WAIT_FRAMES = 120 // lazy pages (lab, exam, project) render their heading once the chunk arrives

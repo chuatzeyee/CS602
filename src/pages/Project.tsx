@@ -608,7 +608,7 @@ export default function Project() {
         <Presentation size={18} className="text-glow flex-shrink-0" aria-hidden="true" />
         <span className="min-w-0 flex-1">
           <span className="block text-sm font-medium text-ink">Our proposal presentation: data portion script</span>
-          <span className="block text-xs text-ink-muted mt-0.5">What to say on slides 9 and 10, with stage cues and the sources behind each number</span>
+          <span className="block text-xs text-ink-muted mt-0.5">What to say on slides 9 and 10, with stage cues and the sources behind each number; a point-form version is one click away</span>
         </span>
         <ArrowRight size={16} className="text-glow flex-shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
       </Link>

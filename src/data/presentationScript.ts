@@ -171,3 +171,79 @@ export const presentationScript: PresentationScript = {
     },
   ],
 }
+
+// point-form version of each line, keyed by its cue: shown at /project/data-points
+export const scriptPoints: Readonly<Record<string, readonly string[]>> = {
+  "Slide 9": [
+    "Each run = persona × scenario × policy (before or after NDR)"
+  ],
+  "Point to the persona box": [
+    "Personas calibrated to MOM 2025 income data",
+    "A ≈ $10,800/month gross: middle of working households",
+    "B ≈ $16,700 · C (sandwiched) ≈ $8,200"
+  ],
+  "Point to the 6-month and 3-month figures": [
+    "Start with 6 months of expenses saved (MAS guide: 3–6 months)",
+    "Financial stress = savings below 3 months in any year of 20"
+  ],
+  "Point to the assumptions box": [
+    "No single official figure → flagged as an assumption",
+    "Helper ≈ $1,117/month (derived from MOM levy and salary data)",
+    "Preschool fee cuts phased evenly 2028–2030 (NDR timeline)"
+  ],
+  "Slide 10": [
+    "Data behind all 5 models + how we checked it",
+    "A model is only as good as its inputs"
+  ],
+  "Gesture at the cards": [
+    "1 register: 555 parameters across 8 areas",
+    "Each logged with value, unit, date and publisher",
+    "Official data first: SingStat, MOM, MSF, NPTD, MOH, ECDA (accessed 9 Oct)",
+    "Own assumptions flagged"
+  ],
+  "How we collected it, with Python": [
+    "~95 Python scripts",
+    "Open APIs (SingStat TableBuilder, data.gov.sg for ECDA) → requests",
+    "MOM Excel tables → openpyxl · web pages → BeautifulSoup · browser-only pages (MOE fees) → Playwright",
+    "~950 raw files saved with their access date",
+    "pandas → tidy tables + derived numbers (CPI re-pricing to 2026; low/high from percentiles and history)",
+    "All scripted → the second pass re-runs every download"
+  ],
+  "Point to \"Government support\"": [
+    "SG Child Support Package: up to $62,000 per SC child",
+    "≈ $70,000 with the existing MediSave Grant + Edusave",
+    "Pre-NDR baseline too (Baby Bonus, CDA, Large Families) → like-for-like"
+  ],
+  "Stay on government support": [
+    "AOP full-day childcare ≈ $365/month after basic subsidy → $150 by 2030",
+    "Infant care ≈ $746 → $300",
+    "~4 in 10 centres outside the scheme (median ≈ $1,830/month) → priced separately"
+  ],
+  "Point to \"Income and spending\"": [
+    "Personas from MOM 2025 median incomes, checked against SingStat",
+    "A ≈ $10,800/month ≈ middle of working households",
+    "Child cost: HES 2023 re-priced to 2026 → ≈ $620/month (infant) to ≈ $1,070 (secondary), moderate tier"
+  ],
+  "Point to \"Job loss and shocks\"": [
+    "Monte Carlo shocks calibrated to history",
+    "Job loss ≈ 0.8%/year per earner (MOM); high case 1.4% (2009 peak)",
+    "Jobseeker Support up to $6,000 per spell",
+    "Medical bills net of MediShield Life + MediSave · inflation ≈ 2%/year"
+  ],
+  "Point to \"CPF, tax and macro\"": [
+    "CPF 2026: 20% employee / 17% employer",
+    "IRAS tax rates and reliefs",
+    "Income growth 3.7% · discount rate 2.5%, each with a range"
+  ],
+  "Point to \"Fertility and childcare\"": [
+    "AHP grounded in the Marriage & Parenthood Survey 2021",
+    "Married, not wanting more children: 64% cost · 49% too stressful · 34% work–family balance"
+  ],
+  "Pause on the whole slide": [
+    "Data enters 3 ways: base values · low/high ranges (over half the parameters) · Monte Carlo distributions",
+    "Second pass: re-downloaded and recomputed"
+  ],
+  "Next slide": [
+    "Hand over to [Name]: trade-offs and sensitivities"
+  ]
+}

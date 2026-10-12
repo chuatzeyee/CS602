@@ -43,6 +43,7 @@ export default function App() {
               <Route path="/exam/mock/:mockId" element={<MockExam />} />
               <Route path="/project" element={<Project />} />
               <Route path="/project/data-script" element={<ProjectScript />} />
+              <Route path="/project/data-points" element={<ProjectScript points />} />
               <Route path="/course" element={<Course />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
