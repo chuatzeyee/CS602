@@ -29,7 +29,7 @@ export interface PresentationScript {
 
 export const presentationScript: PresentationScript = {
   title: 'Proposal presentation: data portion script',
-  intro: 'About 4 minutes for slide 10, the data slide; about 4¾ minutes with the optional slide 9 lead-in.',
+  intro: 'About 4½ minutes for slide 10, the data slide; about 5¼ minutes with the optional slide 9 lead-in.',
   sections: [
     {
       slide: 9,
@@ -58,7 +58,7 @@ export const presentationScript: PresentationScript = {
     {
       slide: 10,
       title: 'Data behind the models',
-      timing: 'about 4 minutes',
+      timing: 'about 4½ minutes',
       optional: false,
       lines: [
         {
@@ -70,8 +70,8 @@ export const presentationScript: PresentationScript = {
           text: "Behind these six cards is one register of 555 parameters across eight areas, from support packages and childcare fees to job-loss risk. Each one is logged with its value, unit, date and publisher. Wherever official data exist we used them, mainly SingStat, MOM, MSF, NPTD, MOH and ECDA, all accessed on 9 October, and anything that is our own assumption is flagged as such.",
         },
         {
-          cue: "Still on the cards: how we collected it",
-          text: "On method: where an agency offers an API, we pulled the data directly, for example SingStat's TableBuilder and data.gov.sg for ECDA's centre and fee listings. Otherwise we downloaded the official tables and documents themselves, such as MOM's labour statistics, the 2023 Household Expenditure Survey and the NDR 2026 annexes. Every raw file was saved with its access date, about 950 files in all, and small Python scripts turned them into tidy tables. From there, each figure went into the register with a note on how it was derived: older prices re-priced to 2026 with the CPI, and low and high values taken from published percentiles or historical ranges.",
+          cue: "How we collected it, with Python",
+          text: "On method, almost all of this was pulled with Python, in about 95 small scripts. Where an agency offers an open API, like SingStat's TableBuilder or data.gov.sg for ECDA's centre and fee listings, the scripts call it directly with the requests library and save the raw response. MOM's statistics come as Excel tables, which we read with openpyxl; government web pages are parsed with BeautifulSoup; and for pages that only load in a browser, such as MOE's fee pages, Playwright renders them first. Every raw file is saved with its access date, about 950 in all. pandas then cleans and reshapes everything into tidy tables and computes the derived numbers, re-pricing older figures to 2026 with the CPI and taking low and high values from published percentiles or historical ranges. Because it's all scripted, the second-pass check could simply re-run every download and recompute every number.",
         },
         {
           cue: "Point to \"Government support\"",
