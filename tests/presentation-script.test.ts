@@ -12,7 +12,7 @@ const published = JSON.stringify(presentationScript)
 
 test('the page title and the one-line intro with both timings', () => {
   assert.equal(title, 'Proposal presentation: data portion script')
-  assert.equal(intro, 'About 2 minutes for slides 9 and 10, or 80 seconds for slide 10 only.')
+  assert.equal(intro, 'About 3½ minutes for slide 10, the data slide; about 4¼ minutes with the optional slide 9 lead-in.')
 })
 
 test('slide 9 (optional, about 45 seconds) comes before slide 10 (about 80 seconds)', () => {
@@ -23,7 +23,7 @@ test('slide 9 (optional, about 45 seconds) comes before slide 10 (about 80 secon
   assert.equal(setUp.timing, 'about 45 seconds')
   assert.equal(data.title, 'Data behind the models')
   assert.equal(data.optional, false)
-  assert.equal(data.timing, 'about 80 seconds')
+  assert.equal(data.timing, 'about 3½ minutes')
 })
 
 test('every line is text to say; cues are plain stage directions without brackets or markdown', () => {
@@ -45,7 +45,7 @@ test('the cues and lines of both slides, in order', () => {
   const cues = sections.map(s => s.lines.map(l => l.cue ?? null))
   assert.deepEqual(cues, [
     ['Slide 9', 'Point to the persona box', 'Point to the 6-month and 3-month figures', 'Point to the assumptions box'],
-    ['Slide 10', 'Gesture at the cards', 'Point to "Government support"', 'Point to "Job loss and shocks"', null, 'Next slide'],
+    ['Slide 10', 'Gesture at the cards', 'Point to "Government support"', 'Stay on government support', 'Point to "Income and spending"', 'Point to "Job loss and shocks"', 'Point to "CPF, tax and macro"', 'Point to "Fertility and childcare"', 'Pause on the whole slide', 'Next slide'],
   ])
 })
 
@@ -57,7 +57,7 @@ test('the hand-over keeps [Name] as a placeholder for the next speaker', () => {
 })
 
 test('sources: one row per number, each with a source', () => {
-  assert.equal(sources.length, 7)
+  assert.equal(sources.length, 15)
   for (const row of sources) {
     assert.ok(row.number.trim().length > 0 && row.source.trim().length > 0, 'number and source are filled in')
   }

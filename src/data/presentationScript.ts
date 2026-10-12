@@ -29,7 +29,7 @@ export interface PresentationScript {
 
 export const presentationScript: PresentationScript = {
   title: 'Proposal presentation: data portion script',
-  intro: 'About 2 minutes for slides 9 and 10, or 80 seconds for slide 10 only.',
+  intro: 'About 3½ minutes for slide 10, the data slide; about 4¼ minutes with the optional slide 9 lead-in.',
   sections: [
     {
       slide: 9,
@@ -58,30 +58,47 @@ export const presentationScript: PresentationScript = {
     {
       slide: 10,
       title: 'Data behind the models',
-      timing: 'about 80 seconds',
+      timing: 'about 3½ minutes',
       optional: false,
       lines: [
         {
-          cue: 'Slide 10',
-          text: "Here's the data behind all five models, and how we checked it.",
+          cue: "Slide 10",
+          text: "Here's the data behind all five models, and how we checked it. A model is only as good as its inputs, so this is where a lot of our time went.",
         },
         {
-          cue: 'Gesture at the cards',
-          text: 'Behind these six cards is one register of 555 parameters across eight areas, each logged with its source and date. Wherever official data exist we used them: LifeSG, ECDA, MOM, SingStat and MOH, all accessed on 9 October. Our own assumptions are flagged as such.',
+          cue: "Gesture at the cards",
+          text: "Behind these six cards is one register of 555 parameters across eight areas, from support packages and childcare fees to job-loss risk. Each one is logged with its value, unit, date and publisher. Wherever official data exist we used them, mainly SingStat, MOM, MSF, NPTD, MOH and ECDA, all accessed on 9 October, and anything that is our own assumption is flagged as such.",
         },
         {
-          cue: 'Point to "Government support"',
-          text: 'One example of why the detail matters. Full-day childcare at an Anchor Operator centre costs a working family about $365 a month after the basic subsidy. NDR cuts that to $150 by 2030, but nearly 4 in 10 childcare centres are outside the scheme, so we price those separately.',
+          cue: "Point to \"Government support\"",
+          text: "Start with government support. The new SG Child Support Package is worth up to $62,000 per Singapore Citizen child, or about $70,000 once you add the existing MediSave Grant and Edusave. We also captured the pre-NDR baseline, the Baby Bonus, CDA and Large Families Scheme, so every before-and-after comparison is like for like.",
         },
         {
-          cue: 'Point to "Job loss and shocks"',
-          text: 'The data enters the models in three ways. Base values drive the cashflows. Over half the parameters carry a documented low and high value for the sensitivity tests. And the Monte Carlo draws shocks calibrated to history, for example a 0.8% yearly chance of job loss per earner from MOM data, with the 2009 peak of 1.4% as our high case.',
+          cue: "Stay on government support",
+          text: "Childcare fees show why the detail matters. Full-day childcare at an Anchor Operator centre costs a working family about $365 a month after the basic subsidy. NDR cuts that to $150 by 2030, and infant care falls from about $746 to $300. But nearly 4 in 10 childcare centres are outside the scheme, where the median fee is about $1,830 a month, so we price those separately.",
         },
         {
-          text: 'Every area was then re-checked in a second pass: sources re-downloaded and derived numbers recomputed.',
+          cue: "Point to \"Income and spending\"",
+          text: "For income, each persona is built from MOM's 2025 median incomes, then checked against SingStat. Couple A, at about $10,800 a month, sits right around the middle of working households. For the cost of the child itself, we re-priced the 2023 Household Expenditure Survey to 2026: at the moderate tier, that is about $620 a month for an infant, rising to about $1,070 for a secondary-school child.",
         },
         {
-          cue: 'Next slide',
+          cue: "Point to \"Job loss and shocks\"",
+          text: "For risk, the Monte Carlo draws shocks calibrated to history. Job loss is about a 0.8% chance a year per earner, from MOM retrenchment data, with the 2009 peak of 1.4% as our high case, and SkillsFuture Jobseeker Support pays up to $6,000 per spell. Medical bills are drawn net of MediShield Life and MediSave, and spending inflation averages 2% a year.",
+        },
+        {
+          cue: "Point to \"CPF, tax and macro\"",
+          text: "The financial parameters use 2026 CPF rates, 20% from the employee and 17% from the employer, IRAS tax rates and reliefs, and base rates of 3.7% income growth and a 2.5% discount rate, each with a range for sensitivity testing.",
+        },
+        {
+          cue: "Point to \"Fertility and childcare\"",
+          text: "Our preference model is grounded in the Marriage and Parenthood Survey 2021: among married respondents who did not want more children, 64% cited financial cost, 49% said raising children here is too stressful, and 34% said work and family are hard to balance.",
+        },
+        {
+          cue: "Pause on the whole slide",
+          text: "So the data enters the models in three ways: base values drive the cashflows, over half the parameters carry a documented low and high value for the sensitivity tests, and the Monte Carlo uses distributions. Every area was then re-checked in a second pass: sources re-downloaded and derived numbers recomputed.",
+        },
+        {
+          cue: "Next slide",
           text: "With the inputs in place, [Name] will take you through the trade-offs and sensitivities we'll run.",
         },
       ],
@@ -115,6 +132,38 @@ export const presentationScript: PresentationScript = {
     {
       number: '0.8% job loss a year per earner; 1.4% high case (2009 peak)',
       source: 'MOM retrenchment incidence, 2007–2025 (about 8 per 1,000 prime-age resident employees a year; 13.8 per 1,000 at the 2009 peak)',
+    },
+    {
+      number: "Package up to $62,000; about $70,000 with the MediSave Grant and Edusave",
+      source: "LifeSG SG Child Support Package page; NPTD NDR 2026 release and annexes",
+    },
+    {
+      number: "Infant care about $746 a month at an AOP after Basic Subsidy; $300 NDR target",
+      source: "ECDA fee caps and subsidy tables; NPTD NDR 2026 release",
+    },
+    {
+      number: "Median fee about $1,830 a month at centres outside the scheme",
+      source: "ECDA childcare fee listings on data.gov.sg (as at 9 Oct 2026), median private/non-AOP/POP centre incl. GST",
+    },
+    {
+      number: "Child costs about $620 a month (infant) to $1,070 (secondary), moderate tier",
+      source: "SingStat Household Expenditure Survey 2023 (detailed spending, table 17967), re-priced to 2026 with SingStat CPI",
+    },
+    {
+      number: "Jobseeker Support up to $6,000 per spell",
+      source: "SkillsFuture Jobseeker Support scheme page (SSG/WSG), 2026",
+    },
+    {
+      number: "CPF 20% employee / 17% employer; tax rates and reliefs",
+      source: "CPF Board contribution rates from 1 Jan 2026; IRAS resident tax rates and parenthood reliefs",
+    },
+    {
+      number: "Income growth 3.7%; discount rate 2.5%; inflation 2% a year",
+      source: "MOM income growth 2015–2025; CPF, SGS and Savings Bond rates; SingStat CPI",
+    },
+    {
+      number: "64% cost, 49% stress, 34% work–family balance",
+      source: "NPTD Marriage and Parenthood Survey 2021 (married respondents not wanting more children)",
     },
   ],
 }
