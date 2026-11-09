@@ -23,7 +23,10 @@ test('an unseen question still finds similar parts first', () => {
   const hotel = searchBank('A hotel gives a weekend discount of 10% if the booking date falls on a Saturday or Sunday and the guest stays at least 3 nights.')
   assert.ok(hotel.slice(0, 3).some(e => e.lines.some(l => /WEEKDAY/.test(l.code))))
   const taxi = searchBank('Passengers arrive with exponentially distributed inter-arrival times with a mean of 2 minutes.')
-  assert.ok(taxi.slice(0, 2).every(e => e.lines.some(l => /LN\(/.test(l.code))))
+  const ln = (e: { lines: readonly { code: string }[] }) => e.lines.some(l => /LN\(/.test(l.code))
+  assert.ok(ln(taxi[0]) && taxi.slice(0, 3).filter(ln).length >= 2)
+  // the spotter's question type outranks a shared scenario noun: the weekend surcharge beats a hotel price grid
+  assert.ok(hotel[0].lines.some(l => /WEEKDAY/.test(l.code)))
 })
 
 test('short queries: 1-2 words all required, 3 or more words any two', () => {

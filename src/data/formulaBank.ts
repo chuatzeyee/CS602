@@ -3,11 +3,12 @@
 // question still finds the closest parts.
 import { pastPapers } from './pastPapers'
 import { worked, answerLines, cleanPrompt } from './worked'
-import { patterns } from './patterns'
+import { patterns, spot } from './patterns'
 import { formulas } from './formulas'
+import { anticipated } from './anticipated'
 
-export type BankSource = 'Past paper' | 'Mock exam' | 'Lab' | 'Reference'
-export const BANK_SOURCES: readonly BankSource[] = ['Past paper', 'Mock exam', 'Lab', 'Reference']
+export type BankSource = 'Past paper' | 'Likely question' | 'Mock exam' | 'Lab' | 'Reference'
+export const BANK_SOURCES: readonly BankSource[] = ['Past paper', 'Likely question', 'Mock exam', 'Lab', 'Reference']
 
 export interface BankLine { code: string; note?: string }
 export interface BankEntry {
@@ -21,7 +22,12 @@ export interface BankEntry {
   pitfalls: readonly string[]
   answer?: string             // the value the key reports
   to?: string                 // full worked question
+  topics: readonly string[]   // question-pattern ids, used to boost entries of the type the spotter detects
 }
+
+// pattern ids whose exam techniques overlap the given ones
+const topicsOf = (techniques: readonly string[] = []): string[] =>
+  patterns.filter(p => p.techniques.some(t => techniques.includes(t))).map(p => p.id)
 
 const marks = (m?: number) => (m ? `, ${m} mark${m === 1 ? '' : 's'}` : '')
 
@@ -38,8 +44,23 @@ function build(): BankEntry[] {
       steps: pt.steps,
       pitfalls: pt.pitfalls,
       answer: pt.answer || undefined,
+      topics: topicsOf(pt.techniques),
     })
   }
+  const titleOf = new Map(patterns.map(p => [p.id, p.title]))
+  for (const q of anticipated) out.push({
+    id: `likely-${q.id}`,
+    source: 'Likely question',
+    label: titleOf.get(q.topic) ?? q.topic,
+    context: q.layout,
+    task: q.question,
+    lines: [...q.formulas.map(f => ({ code: `${f.cell}: ${f.formula}`, note: f.note })), ...(q.tool ?? []).map(code => ({ code }))],
+    steps: q.steps,
+    pitfalls: q.pitfalls ?? [],
+    answer: q.answer,
+    to: `/bank?p=${q.topic}`,
+    topics: [q.topic],
+  })
   for (const w of worked) for (const t of w.ex.tasks) {
     if (t.kind === 'explain') continue
     const lines = answerLines(t)
@@ -56,6 +77,7 @@ function build(): BankEntry[] {
       pitfalls: [],
       answer: t.explain ? cleanPrompt(t.explain) : undefined,
       to: `/bank/q/${w.ex.id}`,
+      topics: topicsOf(w.ex.techniques),
     })
   }
   // reference: the question patterns' formula templates and the course workbooks' formulas
@@ -69,6 +91,7 @@ function build(): BankEntry[] {
     steps: p.steps,
     pitfalls: p.pitfalls,
     to: `/bank?p=${p.id}`,
+    topics: [p.id],
   })
   for (const f of formulas) out.push({
     id: `course-${f.week}-${f.name}`,
@@ -81,6 +104,7 @@ function build(): BankEntry[] {
     pitfalls: [],
     answer: f.note,
     to: `/functions?q=${encodeURIComponent(f.name)}`,
+    topics: [],
   })
   return out
 }
@@ -121,6 +145,7 @@ export function searchBank(q: string, list: readonly BankEntry[] = formulaBank, 
     const df = docs.reduce((n, d) => n + (d.all.includes(t) ? 1 : 0), 0)
     return [t, df ? Math.log(1 + docs.length / df) : 0]
   }))
+  const spotted = new Set(spot(q).slice(0, 2).map(h => h.pattern.id))   // the question types the wording points to
   const scored: { e: BankEntry; s: number }[] = []
   for (const d of docs) {
     let hit = 0
@@ -130,7 +155,10 @@ export function searchBank(q: string, list: readonly BankEntry[] = formulaBank, 
       if (w) { hit++; s += w * idf.get(t)! }
     }
     if (hit < need) continue
-    scored.push({ e: d.e, s: d.e.source === 'Past paper' ? s * 1.1 : s })
+    const coverage = (hit / ts.length) ** 2   // entries sharing more of the query's words win over one rare-word match
+    // lab and mock topics come from the whole exercise, so they get a smaller boost than precisely tagged entries
+    const typeMatch = !d.e.topics.some(t => spotted.has(t)) ? 1 : d.e.source === 'Lab' || d.e.source === 'Mock exam' ? 1.25 : 1.8
+    scored.push({ e: d.e, s: s * (1 + 4 * coverage) * typeMatch * (d.e.source === 'Past paper' ? 1.1 : 1) })
   }
   return scored.sort((a, b) => b.s - a.s).map(x => x.e)
 }

@@ -5,6 +5,7 @@ import { BANK_SOURCES, formulaBank, queryTerms, searchBank } from '../data/formu
 import type { BankEntry, BankSource } from '../data/formulaBank'
 import Marked from '../components/Marked'
 import { routeAvailable } from '../offline'
+import { spot } from '../data/patterns'
 
 const PAGE = 30
 
@@ -50,6 +51,7 @@ export default function Formulas() {
 
   const ts = useMemo(() => queryTerms(query), [query])
   const results = useMemo(() => searchBank(query, formulaBank, source || undefined), [query, source])
+  const spotted = useMemo(() => spot(query).slice(0, 2), [query])
   const onChange = (v: string) => {
     setQuery(v)
     setLimit(PAGE)
@@ -60,8 +62,7 @@ export default function Formulas() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 [overflow-wrap:anywhere]">
       <h1 className="text-3xl font-bold text-ink mb-2">Formula Bank</h1>
       <p className="text-ink-secondary text-sm mb-5">
-        {formulaBank.length} question parts with their answer formulas: every past-paper part (in our own words), the mock exams and the lab.
-        Type key words or paste the whole question: the closest parts come first, ranked by how many (and how rare) of your words they share.
+        {formulaBank.length} question parts with their answer formulas: every past-paper part (in our own words), likely exam questions for every pattern, the mock exams, the lab and the course's reference formulas. Type key words or paste the whole question: the closest parts come first, ranked by how many (and how rare) of your words they share.
       </p>
       <div className="relative mb-3">
         <SearchIcon size={16} className="absolute left-3.5 top-3.5 text-ink-muted" />
@@ -89,6 +90,15 @@ export default function Formulas() {
         ))}
         <span className="text-xs text-ink-muted self-center ml-1">{results.length} match{results.length === 1 ? '' : 'es'}{query.trim() ? ', best first' : ''}</span>
       </div>
+      {spotted.length > 0 && (
+        <p className="mb-4 text-sm text-ink-secondary">
+          Looks like:{' '}
+          {spotted.map((h, i) => (
+            <span key={h.pattern.id}>{i > 0 && ' or '}<Link to={`/bank?p=${h.pattern.id}`} className="text-glow hover:text-glow-hover">{h.pattern.title}</Link></span>
+          ))}
+          <span className="text-ink-muted"> (steps and pitfalls in the Q Bank)</span>
+        </p>
+      )}
       {results.length === 0 && <p className="text-sm text-ink-muted">No match. Try fewer, more specific words (function names, "per hour", "at least").</p>}
       <ul className="space-y-3">
         {results.slice(0, limit).map(e => <Entry key={e.id} e={e} ts={ts} />)}

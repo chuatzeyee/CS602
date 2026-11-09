@@ -8,6 +8,7 @@ import { exam } from './exam'
 import { worked, answerLines, cleanPrompt } from './worked'
 import { patterns } from './patterns'
 import { pastPapers } from './pastPapers'
+import { anticipated } from './anticipated'
 import { studyPlan } from './studyPlan'
 
 export type DocKind = 'Pattern' | 'Past paper' | 'Question' | 'Notes' | 'Glossary' | 'Function' | 'Model' | 'Quiz' | 'Exam' | 'Recall'
@@ -51,6 +52,13 @@ function build(): SearchDoc[] {
       title: `${p.title} ${q.id.toUpperCase()}(${pt.label}), ${pt.marks} mark${pt.marks === 1 ? '' : 's'}: ${pt.task}`,
       code: pt.formulas.map(f => (f.cell ? `${f.cell}: ${f.formula}` : f.formula)).join('\n') || undefined,
       body: [...pt.steps, pt.answer ? `Answer: ${pt.answer}` : '', ...pt.pitfalls.map(x => `Pitfall: ${x}`), `Question: ${q.title}. ${q.scenario}`].filter(Boolean).join('\n'),
+    })
+  for (const q of anticipated)
+    docs.push({
+      kind: 'Question', week: '', to: `/formulas?q=${encodeURIComponent(q.question)}`,
+      title: `Likely question: ${q.question}`,
+      code: [...q.formulas.map(f => `${f.cell}: ${f.formula}`), ...(q.tool ?? [])].join('\n') || undefined,
+      body: [`Layout: ${q.layout}`, ...q.steps.map((x, i) => `Step ${i + 1}: ${x}`), q.answer ? `Answer: ${q.answer}` : '', ...(q.pitfalls ?? []).map(x => `Pitfall: ${x}`)].filter(Boolean).join('\n'),
     })
   for (const w of worked) for (const t of w.ex.tasks) {
     const ans = answerLines(t)
