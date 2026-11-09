@@ -1,6 +1,6 @@
 # CS602 SheetSmith
 
-An unofficial study guide for SMU CS602/IS602 *Spreadsheets Modeling for Decision Making* (MITB). It is a static
+A study guide for SMU CS602/IS602 *Spreadsheets Modeling for Decision Making* (MITB). It is a static
 React site for GitHub Pages: everything runs in the browser, including a working spreadsheet for the Excel Lab, and
 progress is kept in the browser's local storage.
 

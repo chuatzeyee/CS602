@@ -124,7 +124,7 @@ export default function Home() {
       <div className="text-center mb-12 animate-fade-in">
         <div className="inline-block mb-4">
           <span className="text-xs font-mono text-glow bg-glow-dim px-3 py-1 rounded-full border border-glow/20">
-            Unofficial · SMU MITB
+            SMU MITB
           </span>
         </div>
         <h1 className="text-4xl font-bold text-ink mb-2 tracking-tight">

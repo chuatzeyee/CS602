@@ -85,7 +85,7 @@ export default function App() {
         </LabErrorBoundary>
         {!OFFLINE && (
         <footer className="max-w-5xl mx-auto px-4 pt-16 text-[11px] leading-relaxed text-ink-muted">
-          Unofficial study guide for SMU IS602/CS602, not affiliated with or endorsed by SMU. Notes, exercises and mock exams are
+          Study guide for SMU IS602/CS602, not affiliated with or endorsed by SMU. Notes, exercises and mock exams are
           original; course materials belong to their owners. Code licensed{' '}
           <a href={`${import.meta.env.BASE_URL}LICENSE.txt`} className="underline hover:text-ink-secondary">GPL-3.0-or-later</a> ·
           Spreadsheet engine: HyperFormula (GPLv3) ·{' '}
