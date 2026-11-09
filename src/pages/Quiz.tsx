@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Check, X, RotateCcw, ListFilter } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 import { questions } from '../data/quiz'
 import { weekDot, weekOrder, weekSpan, weekText } from '../data/weeks'
 
@@ -16,7 +17,8 @@ const topics = ['All', ...weekOrder(questions.map(q => q.topic))]
 const coverage = weekSpan(questions.map(q => q.topic))
 
 export default function Quiz() {
-  const [topic, setTopic] = useState('All')
+  const [params] = useSearchParams()
+  const [topic, setTopic] = useState(() => topics.includes(params.get('topic') ?? '') ? params.get('topic')! : 'All')
   const [seed, setSeed] = useState(0)
   const pool = useMemo(
     () => shuffled(questions.filter(q => topic === 'All' || q.topic === topic)),

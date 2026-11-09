@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  BookOpen, ClipboardCheck, Sigma, FlaskConical, Table2, GraduationCap, Users, CalendarDays, ArrowRight,
+  BookOpen, ClipboardCheck, Sigma, FlaskConical, Table2, GraduationCap, Users, CalendarDays, ArrowRight, ListTodo, Search,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { sessions } from '../data/topics'
@@ -140,6 +140,17 @@ export default function Home() {
           final with exam technique and timed mock exams, and plan the group project with deliverable checklists and
           drills.
         </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <Link to="/study" className="flex items-center gap-3 p-5 rounded-lg border border-glow/40 bg-glow-dim/40 hover:bg-glow-dim transition-colors">
+          <ListTodo size={22} className="text-glow shrink-0" />
+          <div><div className="font-semibold text-ink">Exam Study Plan</div><div className="text-xs text-ink-secondary">Step-by-step wizard to Tue 10 Nov, 19:00</div></div>
+        </Link>
+        <Link to="/search" className="flex items-center gap-3 p-5 rounded-lg border border-glow/40 bg-glow-dim/40 hover:bg-glow-dim transition-colors">
+          <Search size={22} className="text-glow shrink-0" />
+          <div><div className="font-semibold text-ink">Search everything</div><div className="text-xs text-ink-secondary">Open-book lookup · Ctrl K or / from any page</div></div>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

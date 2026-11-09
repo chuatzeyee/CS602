@@ -10,6 +10,7 @@ import { exam } from '../data/exam'
 import type { PaperSummary, QuestionSummary, TechniqueCount } from '../data/exam'
 import { exercises, mocks } from '../data/lab'
 import { getMockBest } from '../lab/progress'
+import { OFFLINE } from '../offline'
 
 const CHECKLIST_KEY = 'cs602-exam-checklist'
 const TOP_TECHNIQUES = 12
@@ -24,7 +25,7 @@ const sections = [
   ['papers', 'Past papers'],
   ['quizzes', 'Quiz patterns'],
   ['mocks', 'Mock exams'],
-] as const
+].filter(([id]) => !OFFLINE || id !== 'mocks')
 
 // lab exercises per exam technique (exact names, see src/data/lab/techniques.ts)
 const drillCounts = new Map(
@@ -280,7 +281,7 @@ function TechniqueRow({ t, max }: { t: TechniqueCount; max: number }) {
     <li className="py-3 border-t border-edge first:border-t-0" title={`${plural(count, 'sub-part')} across ${papers} of ${PAPER_COUNT} papers`}>
       <div className="flex items-start justify-between gap-3">
         <span className="text-sm text-ink leading-snug">{technique}</span>
-        {drills > 0 ? (
+        {OFFLINE ? null : drills > 0 ? (
           <Link
             to={`/lab?technique=${encodeURIComponent(technique)}`}
             className="flex items-center gap-1 text-xs font-medium text-glow hover:text-glow-hover whitespace-nowrap flex-shrink-0"
@@ -513,10 +514,10 @@ export default function Exam() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 [overflow-wrap:anywhere]">
       <div className="mb-6 animate-fade-in">
         <h1 className="text-3xl font-bold text-ink mb-2">Final Exam Prep</h1>
-        <p className="text-ink-secondary leading-relaxed max-w-2xl">
+        {!OFFLINE && <p className="text-ink-secondary leading-relaxed max-w-2xl">
           Format, marking, timing and strategy for the two-hour open-book exam, built from the course outline and
           three past papers, with links from the techniques they tested into the matching Excel Lab drills.
-        </p>
+        </p>}
       </div>
       <JumpNav />
       <Glance />
@@ -526,7 +527,7 @@ export default function Exam() {
       <Techniques />
       <Papers />
       <Quizzes />
-      <Mocks />
+      {!OFFLINE && <Mocks />}
     </div>
   )
 }

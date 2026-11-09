@@ -38,6 +38,7 @@ npm run dev        # dev server: http://localhost:5173/CS602/
 npm test           # unit tests (node:test via tsx)
 npm run validate   # every exercise and mock exam: schema, syllabus, reference passes, wrong answers fail
 npm run build      # type-check and production build into dist/
+npm run offline    # one self-contained offline/CS602-SheetSmith.html (open from disk, no server/internet), then QA it
 npm run deploy     # publish dist/ to the gh-pages branch; predeploy runs test, validate and build first
 ```
 

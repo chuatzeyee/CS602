@@ -80,7 +80,7 @@ export default function Topics() {
   const [params, setParams] = useSearchParams()
   const view = params.get('view') === 'glossary' ? 'glossary' : 'topics'
   const [query, setQuery] = useState('')
-  const [week, setWeek] = useState('All')
+  const [week, setWeek] = useState(() => weeks.includes(params.get('week') ?? '') ? params.get('week')! : 'All')   // /topics?week=W5 from the study plan and search
 
   const filteredDefs = useMemo(() => {
     const q = query.trim().toLowerCase()

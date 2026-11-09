@@ -11,21 +11,27 @@ import {
   GraduationCap,
   Users,
   CalendarDays,
+  ListTodo,
+  Search,
 } from 'lucide-react'
 
-const SITE = 'CS602 SheetSmith'
+import { OFFLINE, routeAvailable } from '../offline'
+
+const SITE = OFFLINE ? 'CS602 Reference' : 'CS602 SheetSmith'
 
 // title = the page's own heading, used for the browser tab
 const navItems = [
   { to: '/', label: 'Home', title: SITE, icon: Home },
+  { to: '/study', label: 'Plan', title: 'Exam Study Plan', icon: ListTodo },
+  { to: '/search', label: 'Search', title: 'Search', icon: Search },
   { to: '/topics', label: 'Topics', title: 'Topics & Glossary', icon: BookOpen },
   { to: '/quiz', label: 'Quiz', title: 'Practice Quiz', icon: ClipboardCheck },
   { to: '/functions', label: 'Functions', title: 'Function Bank', icon: Sigma },
   { to: '/models', label: 'Models', title: 'Model Walkthroughs', icon: FlaskConical },
   { to: '/lab', label: 'Excel Lab', title: 'Excel Lab', icon: Table2 },
   { to: '/exam', label: 'Exam', title: 'Exam Prep', icon: GraduationCap },
-  { to: '/project', label: 'Project', title: 'Group Project', icon: Users },
-  { to: '/course', label: 'Course', title: 'Course Map', icon: CalendarDays },
+  { to: '/project', label: 'Project', title: 'Group Project', icon: Users, narrowHidden: true },
+  { to: '/course', label: 'Course', title: 'Course Map', icon: CalendarDays, narrowHidden: true },
 ] as const
 
 // pages below a nav item with a heading of their own: they get their own tab title while the item's pill stays current
@@ -43,7 +49,7 @@ function useRouteTitle(pathname: string) {
   useEffect(() => {
     const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname // the router matches '/x/' as '/x'
     const title = subPageTitles.get(path) ?? navItems.find(n => isCurrent(n.to, path))?.title
-    document.title = title && title !== SITE ? `${title} · ${SITE}` : SITE
+    document.title = OFFLINE ? title ?? SITE : title && title !== SITE ? `${title} · ${SITE}` : SITE
   }, [pathname])
 }
 
@@ -83,7 +89,7 @@ export default function NavPill() {
     <nav aria-label="Main" className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
       {/* below 360px the gaps and padding tighten so all nine items still fit (282px at 320px) */}
       <div className="flex items-center gap-0.5 min-[360px]:gap-1 px-1.5 min-[360px]:px-2 py-2 bg-base/95 backdrop-blur-md border border-edge-bright rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-        {navItems.map(({ to, label, icon: Icon }) => (
+        {navItems.filter(n => n.to !== '/' ? routeAvailable(n.to) : !OFFLINE).map(({ to, label, icon: Icon, ...rest }) => (
           <NavLink
             key={to}
             to={to}
@@ -92,7 +98,7 @@ export default function NavPill() {
             title={label}
             onClick={e => onNavigate(e, to)}
             className={({ isActive }) =>
-              `flex items-center gap-2 px-1.5 min-[360px]:px-2 lg:px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 ${
+              `${'narrowHidden' in rest ? 'max-sm:hidden ' : ''}flex items-center gap-2 px-1.5 min-[360px]:px-2 lg:px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 ${
                 isActive
                   ? 'bg-glow-dim text-glow shadow-[0_0_12px_rgba(74,222,128,0.12)]'
                   : 'text-ink-muted hover:text-ink hover:bg-raised'

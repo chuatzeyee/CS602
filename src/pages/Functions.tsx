@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Search } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 import { formulas } from '../data/formulas'
 import { weekDot, weekOrder, weekSpan, weekText } from '../data/weeks'
 
@@ -7,7 +8,8 @@ const weeks = ['All', ...weekOrder(formulas.map(f => f.week))]
 const coverage = weekSpan(formulas.map(f => f.week))
 
 export default function Functions() {
-  const [query, setQuery] = useState('')
+  const [params] = useSearchParams()
+  const [query, setQuery] = useState(() => params.get('q') ?? '')
   const [week, setWeek] = useState('All')
 
   const filtered = useMemo(() => {
