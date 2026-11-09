@@ -11,7 +11,8 @@
     "validate": "tsx scripts/validate-lab.ts",
     "predeploy": "npm test && npm run validate && npm run build",
     "deploy": "gh-pages -d dist",
-    "offline": "node scripts/build-offline.mjs && node scripts/qa-offline.mjs"
+    "offline": "node scripts/build-offline.mjs && node scripts/qa-offline.mjs",
+    "kit": "npm run offline && tsx scripts/build-kit.ts"
   },
   "dependencies": {
     "hyperformula": "~3.5.0",

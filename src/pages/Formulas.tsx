@@ -27,9 +27,9 @@ function Entry({ e, ts }: { e: BankEntry; ts: readonly string[] }) {
           {e.steps.length > 0 && <ol className="list-decimal pl-5 space-y-1">{e.steps.map((s, i) => <li key={i}><Marked text={s} ts={ts} /></li>)}</ol>}
           {e.answer && <p><span className="text-ink-muted">Answer / why: </span><Marked text={e.answer} ts={ts} /></p>}
           {e.pitfalls.length > 0 && <ul className="list-disc pl-5 space-y-1">{e.pitfalls.map((s, i) => <li key={i}><Marked text={s} ts={ts} /></li>)}</ul>}
-          <p className="text-xs text-ink-muted"><span>Question context: </span><Marked text={e.context} ts={ts} /></p>
+          {e.context && <p className="text-xs text-ink-muted"><span>Context: </span><Marked text={e.context} ts={ts} /></p>}
           {e.to && routeAvailable(e.to) && (
-            <Link to={e.to} className="inline-flex items-center gap-1 text-xs text-glow hover:text-glow-hover">Full worked question <ArrowRight size={12} /></Link>
+            <Link to={e.to} className="inline-flex items-center gap-1 text-xs text-glow hover:text-glow-hover">{e.source === 'Reference' ? 'Open' : 'Full worked question'} <ArrowRight size={12} /></Link>
           )}
         </div>
       </details>

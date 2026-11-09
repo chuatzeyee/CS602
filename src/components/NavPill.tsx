@@ -14,6 +14,7 @@ import {
   ListTodo,
   FileQuestion,
   Braces,
+  Briefcase,
   Search,
 } from 'lucide-react'
 
@@ -28,6 +29,7 @@ const navItems = [
   { to: '/search', label: 'Search', title: 'Search', icon: Search },
   { to: '/bank', label: 'Q Bank', title: 'Question Bank', icon: FileQuestion },
   { to: '/formulas', label: 'Formulas', title: 'Formula Bank', icon: Braces },
+  { to: '/kit', label: 'Kit', title: 'Exam Kit', icon: Briefcase },
   { to: '/topics', label: 'Topics', title: 'Topics & Glossary', icon: BookOpen },
   { to: '/quiz', label: 'Quiz', title: 'Practice Quiz', icon: ClipboardCheck },
   { to: '/functions', label: 'Functions', title: 'Function Bank', icon: Sigma },
@@ -90,7 +92,7 @@ export default function NavPill() {
   const onNavigate = useFocusHeadingAfterKeyboardNav(pathname)
 
   return (
-    <nav aria-label="Main" className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
+    <nav aria-label="Main" className="print:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
       {/* below 360px the gaps and padding tighten so all nine items still fit (282px at 320px) */}
       <div className="flex items-center gap-0.5 min-[360px]:gap-1 px-1.5 min-[360px]:px-2 py-2 bg-base/95 backdrop-blur-md border border-edge-bright rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
         {navItems.filter(n => n.to !== '/' ? routeAvailable(n.to) : !OFFLINE).map(({ to, label, icon: Icon, ...rest }) => (

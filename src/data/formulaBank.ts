@@ -3,9 +3,11 @@
 // question still finds the closest parts.
 import { pastPapers } from './pastPapers'
 import { worked, answerLines, cleanPrompt } from './worked'
+import { patterns } from './patterns'
+import { formulas } from './formulas'
 
-export type BankSource = 'Past paper' | 'Mock exam' | 'Lab'
-export const BANK_SOURCES: readonly BankSource[] = ['Past paper', 'Mock exam', 'Lab']
+export type BankSource = 'Past paper' | 'Mock exam' | 'Lab' | 'Reference'
+export const BANK_SOURCES: readonly BankSource[] = ['Past paper', 'Mock exam', 'Lab', 'Reference']
 
 export interface BankLine { code: string; note?: string }
 export interface BankEntry {
@@ -56,6 +58,30 @@ function build(): BankEntry[] {
       to: `/bank/q/${w.ex.id}`,
     })
   }
+  // reference: the question patterns' formula templates and the course workbooks' formulas
+  for (const p of patterns) for (const f of p.formulas) out.push({
+    id: `pattern-${p.id}-${f.label}`,
+    source: 'Reference',
+    label: `Pattern: ${p.title}`,
+    context: p.spot,
+    task: f.label,
+    lines: [{ code: f.f, note: f.where }],
+    steps: p.steps,
+    pitfalls: p.pitfalls,
+    to: `/bank?p=${p.id}`,
+  })
+  for (const f of formulas) out.push({
+    id: `course-${f.week}-${f.name}`,
+    source: 'Reference',
+    label: `${f.week} course formula`,
+    context: '',
+    task: f.name,
+    lines: [{ code: f.formula }],
+    steps: [],
+    pitfalls: [],
+    answer: f.note,
+    to: `/functions?q=${encodeURIComponent(f.name)}`,
+  })
   return out
 }
 

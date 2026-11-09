@@ -23,6 +23,7 @@ const Study = lazy(() => import('./pages/Study'))
 const Search = lazy(() => import('./pages/Search'))
 const Bank = lazy(() => import('./pages/Bank'))
 const Formulas = lazy(() => import('./pages/Formulas'))
+const Kit = lazy(() => import('./pages/Kit'))
 const BankQuestion = lazy(() => import('./pages/Bank').then(m => ({ default: m.BankQuestion })))
 
 // Ctrl/Cmd+K anywhere, or '/' outside a text field, opens Search
@@ -59,6 +60,7 @@ export default function App() {
                 <Route path="/search" element={<Search />} />
                 <Route path="/bank" element={<Bank />} />
                 <Route path="/formulas" element={<Formulas />} />
+                <Route path="/kit" element={<Kit />} />
                 <Route path="/bank/q/:id" element={<BankQuestion />} />
                 <Route path="/topics" element={<Topics />} />
                 <Route path="/functions" element={<Functions />} />
@@ -73,6 +75,7 @@ export default function App() {
                 <Route path="/search" element={<Search />} />
                 <Route path="/bank" element={<Bank />} />
                 <Route path="/formulas" element={<Formulas />} />
+                <Route path="/kit" element={<Kit />} />
                 <Route path="/bank/q/:id" element={<BankQuestion />} />
                 <Route path="/topics" element={<Topics />} />
                 <Route path="/quiz" element={<Quiz />} />
