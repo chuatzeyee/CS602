@@ -5,11 +5,12 @@ import { formulas } from './formulas'
 import { walkthroughs } from './walkthroughs'
 import { questions } from './quiz'
 import { exam } from './exam'
-import { exercises } from './lab'
+import { worked, answerLines, cleanPrompt } from './worked'
+import { patterns } from './patterns'
 import { studyPlan } from './studyPlan'
 
-export type DocKind = 'Notes' | 'Glossary' | 'Function' | 'Model' | 'Quiz' | 'Exam' | 'Lab' | 'Recall'
-export const DOC_KINDS: readonly DocKind[] = ['Function', 'Notes', 'Glossary', 'Lab', 'Model', 'Exam', 'Quiz', 'Recall']
+export type DocKind = 'Pattern' | 'Question' | 'Notes' | 'Glossary' | 'Function' | 'Model' | 'Quiz' | 'Exam' | 'Recall'
+export const DOC_KINDS: readonly DocKind[] = ['Pattern', 'Question', 'Function', 'Notes', 'Glossary', 'Model', 'Exam', 'Quiz', 'Recall']
 
 export interface SearchDoc {
   kind: DocKind
@@ -37,10 +38,22 @@ function build(): SearchDoc[] {
   }
   for (const q of questions)
     docs.push({ kind: 'Quiz', week: q.topic, title: q.question, body: `Answer: ${q.options[q.answerIndex]}\n${q.explanation}`, to: `/quiz?topic=${q.topic}` })
-  for (const e of exercises) for (const t of e.tasks) {
-    const code = t.solution ?? (t.solutions ? Object.entries(t.solutions).map(([c, f]) => `${c}: ${f}`).join('\n') : undefined)
-    if (!code && !t.explain) continue
-    docs.push({ kind: 'Lab', week: e.week, title: `${e.title} > ${t.prompt.replace(/`/g, '').slice(0, 120)}`, body: [t.prompt.replace(/`/g, ''), t.explain ?? ''].filter(Boolean).join('\n'), code, to: `/lab/${e.id}` })
+  for (const p of patterns)
+    docs.push({
+      kind: 'Pattern', week: '', title: p.title, to: `/bank?p=${p.id}`,
+      code: p.formulas.map(f => `${f.label}: ${f.f}`).join('\n') || undefined,
+      body: [p.spot, `Cue words: ${p.cues.join(', ')}`, 'Steps:', ...p.steps.map((x, i) => `${i + 1}. ${x}`), ...(p.tool ? ['Dialog:', ...p.tool] : []), 'Pitfalls:', ...p.pitfalls].join('\n'),
+    })
+  for (const w of worked) for (const t of w.ex.tasks) {
+    const ans = answerLines(t)
+    if (ans.length === 0 && !t.explain) continue
+    const steps = (t.hints ?? []).map((h, i) => `Step ${i + 1}: ${cleanPrompt(h)}`)
+    docs.push({
+      kind: 'Question', week: w.ex.week === 'EXAM' ? '' : w.ex.week, to: `/bank/q/${w.ex.id}`,
+      title: `${w.source}: ${w.ex.title} > ${cleanPrompt(t.prompt).slice(0, 120)}`,
+      code: t.kind === 'explain' ? undefined : ans.join('\n') || undefined,
+      body: [cleanPrompt(t.prompt), ...steps, t.kind === 'explain' ? `Model answer: ${ans[0] ?? ''}` : '', t.explain ? `Why: ${cleanPrompt(t.explain)}` : ''].filter(Boolean).join('\n'),
+    })
   }
   const examNotes = [
     ...exam.marking, ...exam.strategy, ...exam.mockConventions,
@@ -73,6 +86,7 @@ export function search(q: string, docs: readonly SearchDoc[] = searchDocs, kind?
     let s = ts.reduce((n, t) => n + (title.includes(t) ? 3 : 1) + ((d.code ?? '').toLowerCase().includes(t) ? 2 : 0), 0)
     if (all.includes(phrase)) s += 4
     if (title.includes(phrase)) s += 6
+    if (d.kind === 'Pattern') s += 3
     if (d.kind === 'Function' || d.kind === 'Recall') s += 1
     scored.push({ d, s })
   }

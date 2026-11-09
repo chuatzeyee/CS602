@@ -12,6 +12,7 @@ import {
   Users,
   CalendarDays,
   ListTodo,
+  FileQuestion,
   Search,
 } from 'lucide-react'
 
@@ -24,6 +25,7 @@ const navItems = [
   { to: '/', label: 'Home', title: SITE, icon: Home },
   { to: '/study', label: 'Plan', title: 'Exam Study Plan', icon: ListTodo },
   { to: '/search', label: 'Search', title: 'Search', icon: Search },
+  { to: '/bank', label: 'Q Bank', title: 'Question Bank', icon: FileQuestion },
   { to: '/topics', label: 'Topics', title: 'Topics & Glossary', icon: BookOpen },
   { to: '/quiz', label: 'Quiz', title: 'Practice Quiz', icon: ClipboardCheck },
   { to: '/functions', label: 'Functions', title: 'Function Bank', icon: Sigma },

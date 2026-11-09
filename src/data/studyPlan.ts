@@ -382,9 +382,10 @@ export const studyPlan: readonly StudyStep[] = [
     why: 'In an open-book exam, how fast you can find something matters as much as what you remember. Practise looking things up quickly.',
     tasks: [
       'Press Ctrl+K (or /) from any page to open Search. Find each of these in under 10 seconds: CRITBINOM, NPV timing, LARGE multi-server, hh:mm:ss format, Advanced Filter OR, Solver integer, PMT type, NORMINV floor, COUNTIF ">"&, data table blank input.',
+      'Q Bank: paste three parts of a past paper or a mock into "Spot the question" and check it names the right pattern. Open the pattern and follow its steps and formulas.',
       'Note which slide PDFs and workbooks you would open for each topic, and in which folder they are.',
     ],
-    links: [search('CRITBINOM'), search('NPV'), search('LARGE'), search('hh:mm:ss'), search('Advanced Filter')],
+    links: [{ label: 'Question Bank', to: '/bank' }, search('CRITBINOM'), search('NPV'), search('LARGE'), search('hh:mm:ss'), search('Advanced Filter')],
     recall: [],
   },
   {
@@ -396,7 +397,7 @@ export const studyPlan: readonly StudyStep[] = [
     tasks: [
       'Eat and take a proper break before 18:00. No new topics.',
       '18:00: charge the laptop, plug in power, set sleep to Never, close other apps.',
-      '18:15: open the offline file (Wi-Fi off check), the exam-kit folder, a blank Excel workbook with Solver visible.',
+      '18:15: open the offline file (Wi-Fi off check) on the Q Bank tab, the exam-kit folder, a blank Excel workbook with Solver visible.',
       '18:30: join Examena per instructions; keep the offline file reachable in the browser.',
       'In the exam: 5 min tagging, ~55/55, last 5 min check formats, $ anchors, every part answered, save.',
     ],

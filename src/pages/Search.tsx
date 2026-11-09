@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Search as SearchIcon, ArrowRight } from 'lucide-react'
 import { DOC_KINDS, search, searchDocs, terms } from '../data/searchIndex'
+import { spot } from '../data/patterns'
 import type { DocKind, SearchDoc } from '../data/searchIndex'
 import { weekText } from '../data/weeks'
 import { OFFLINE, routeAvailable } from '../offline'
@@ -61,6 +62,7 @@ export default function Search() {
     return c
   }, [all])
   const shown = kind ? all.filter(d => d.kind === kind) : all
+  const spotted = useMemo(() => spot(query).slice(0, 3), [query])
 
   const onChange = (v: string) => {
     setQuery(v)
@@ -104,6 +106,19 @@ export default function Search() {
               {k || 'All'} {k ? counts.get(k) ?? 0 : all.length}
             </button>
           ))}
+        </div>
+      )}
+      {spotted.length > 0 && (
+        <div className="mb-4 bg-glow-dim/30 border border-glow/30 rounded-lg px-4 py-3">
+          <p className="text-[11px] font-mono uppercase tracking-wide text-ink-muted mb-1.5">Looks like this type of question</p>
+          <ul className="space-y-1">
+            {spotted.map(h => (
+              <li key={h.pattern.id} className="text-sm">
+                <Link to={`/bank?p=${h.pattern.id}`} className="text-glow hover:text-glow-hover">{h.pattern.title}</Link>
+                <span className="text-xs text-ink-muted"> (matched: {h.matched.join(', ')})</span>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
       {query && shown.length === 0 && <p className="text-sm text-ink-muted">No matches. Try fewer or shorter words; every word must appear.</p>}

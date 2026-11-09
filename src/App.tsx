@@ -21,6 +21,8 @@ const Project = lazy(() => import('./pages/Project'))
 const ProjectScript = lazy(() => import('./pages/ProjectScript'))
 const Study = lazy(() => import('./pages/Study'))
 const Search = lazy(() => import('./pages/Search'))
+const Bank = lazy(() => import('./pages/Bank'))
+const BankQuestion = lazy(() => import('./pages/Bank').then(m => ({ default: m.BankQuestion })))
 
 // Ctrl/Cmd+K anywhere, or '/' outside a text field, opens Search
 function useSearchShortcut() {
@@ -54,6 +56,8 @@ export default function App() {
             {OFFLINE ? (
               <Routes>
                 <Route path="/search" element={<Search />} />
+                <Route path="/bank" element={<Bank />} />
+                <Route path="/bank/q/:id" element={<BankQuestion />} />
                 <Route path="/topics" element={<Topics />} />
                 <Route path="/functions" element={<Functions />} />
                 <Route path="/models" element={<Models />} />
@@ -65,6 +69,8 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/study" element={<Study />} />
                 <Route path="/search" element={<Search />} />
+                <Route path="/bank" element={<Bank />} />
+                <Route path="/bank/q/:id" element={<BankQuestion />} />
                 <Route path="/topics" element={<Topics />} />
                 <Route path="/quiz" element={<Quiz />} />
                 <Route path="/functions" element={<Functions />} />
