@@ -1,4 +1,4 @@
-# CS602 SheetSmith
+# CS602 Guide
 
 A study guide for SMU CS602/IS602 *Spreadsheets Modeling for Decision Making* (MITB). It is a static
 React site for GitHub Pages: everything runs in the browser, including a working spreadsheet for the Excel Lab, and
@@ -38,7 +38,7 @@ npm run dev        # dev server: http://localhost:5173/CS602/
 npm test           # unit tests (node:test via tsx)
 npm run validate   # every exercise and mock exam: schema, syllabus, reference passes, wrong answers fail
 npm run build      # type-check and production build into dist/
-npm run offline    # one self-contained offline/CS602-SheetSmith.html (open from disk, no server/internet), then QA it
+npm run offline    # one self-contained offline/CS602-Guide.html (open from disk, no server/internet), then QA it
 npm run deploy     # publish dist/ to the gh-pages branch; predeploy runs test, validate and build first
 ```
 

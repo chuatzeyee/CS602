@@ -22,7 +22,7 @@ const text = () => page.textContent('body')
 
 await check('home', async () => {
   await go('/')
-  if (!(await page.textContent('h1')).includes('SheetSmith')) throw new Error('no title')
+  if (!(await page.textContent('h1')).includes('CS602 Guide')) throw new Error('no title')
 })
 for (const [path, want] of [['/topics', 'Week 10'], ['/quiz', 'Quiz'], ['/functions', 'Function'], ['/models', 'Model'],
   ['/course', 'Week'], ['/exam', 'Mock Exam A'], ['/project', 'Project'], ['/lab', 'Excel Lab']]) {

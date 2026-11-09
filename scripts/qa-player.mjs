@@ -237,7 +237,7 @@ async function goalSeek(setup, { viaCard } = {}) {
   if (viaCard) await viaCard.getByRole('button', { name: 'Open Goal Seek' }).click()
   else {
     await toolbar().getByRole('button', { name: 'What-If Analysis' }).click()
-    await page.getByRole('menuitem', { name: 'Goal Seek…' }).click()
+    await page.getByRole('menuitem', { name: 'Goal Seek...' }).click()
   }
   const dlg = dialog('Goal Seek')
   await dlg.waitFor()
@@ -256,7 +256,7 @@ async function goalSeek(setup, { viaCard } = {}) {
 async function dataTable(setup) {
   await select(setup.range)
   await toolbar().getByRole('button', { name: 'What-If Analysis' }).click()
-  await page.getByRole('menuitem', { name: 'Data Table…' }).click()
+  await page.getByRole('menuitem', { name: 'Data Table...' }).click()
   const dlg = dialog('Data Table')
   await dlg.waitFor()
   const range = await dlg.getByLabel('Table range (the selection):', { exact: true }).inputValue()
@@ -439,7 +439,7 @@ await check('goal seek cancel restores the changing cell', async () => {
   const s = t.toolSetup
   const before = await formulaOf(s.changingCell)
   await toolbar().getByRole('button', { name: 'What-If Analysis' }).click()
-  await page.getByRole('menuitem', { name: 'Goal Seek…' }).click()
+  await page.getByRole('menuitem', { name: 'Goal Seek...' }).click()
   const dlg = dialog('Goal Seek')
   await fillField(dlg, 'Set cell:', s.setCell)
   await fillField(dlg, 'To value:', s.toValue)
@@ -797,7 +797,7 @@ await check('phone 390px: player, dialog, catalogue, sandbox and mock', async ()
     await harness(`id=${encodeURIComponent(goalEx.id)}`)
     await page.locator('section[aria-label="Spreadsheet"]').scrollIntoViewIfNeeded()
     await toolbar().getByRole('button', { name: 'What-If Analysis' }).click()
-    await page.getByRole('menuitem', { name: 'Goal Seek…' }).click()
+    await page.getByRole('menuitem', { name: 'Goal Seek...' }).click()
     const dlg = dialog('Goal Seek')
     await dlg.waitFor()
     await page.waitForTimeout(350)   // scale-in animation

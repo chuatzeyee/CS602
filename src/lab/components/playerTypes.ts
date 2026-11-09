@@ -5,13 +5,13 @@ import type { ToolKey } from './Toolbar'
 export type PlayerMode = 'practice' | 'sandbox' | 'exam' | 'review'
 
 export const TOOL_INFO: Record<ToolName, { label: string; path: string }> = {
-  goalseek: { label: 'Goal Seek', path: 'What-If Analysis › Goal Seek' },
-  datatable: { label: 'Data Table', path: 'What-If Analysis › Data Table' },
-  solver: { label: 'Solver', path: 'Data › Solver' },
-  pivot: { label: 'PivotTable', path: 'Insert › PivotTable' },
-  advfilter: { label: 'Advanced Filter', path: 'Data › Advanced' },
-  autofilter: { label: 'AutoFilter', path: 'Data › Filter' },
-  sort: { label: 'Sort', path: 'Data › Sort' },
+  goalseek: { label: 'Goal Seek', path: 'What-If Analysis > Goal Seek' },
+  datatable: { label: 'Data Table', path: 'What-If Analysis > Data Table' },
+  solver: { label: 'Solver', path: 'Data > Solver' },
+  pivot: { label: 'PivotTable', path: 'Insert > PivotTable' },
+  advfilter: { label: 'Advanced Filter', path: 'Data > Advanced' },
+  autofilter: { label: 'AutoFilter', path: 'Data > Filter' },
+  sort: { label: 'Sort', path: 'Data > Sort' },
 }
 
 export const ALL_TOOLS: ToolKey[] = ['goalseek', 'datatable', 'solver', 'sort', 'autofilter', 'advfilter', 'pivot']

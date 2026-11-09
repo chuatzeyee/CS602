@@ -144,7 +144,7 @@ const autofilter: Exercise = {
   tasks: [
     {
       id: 'top5', kind: 'value', cells: 'N1',
-      prompt: 'Select any cell in A8:K68 and turn on Data › Filter. On Revenue use Number Filters › Top 10, set Top 5 Items, and type into N1 how many orders stay visible.',
+      prompt: 'Select any cell in A8:K68 and turn on Data > Filter. On Revenue use Number Filters > Top 10, set Top 5 Items, and type into N1 how many orders stay visible.',
       answer: 6,
       wrong: ['5', '10'],
       hints: ['The status line under the grid counts the visible records ("x of 60 records found").', 'Look at the smallest revenue still visible: does more than one order have it?'],
@@ -152,7 +152,7 @@ const autofilter: Exercise = {
     },
     {
       id: 'outside', kind: 'value', cells: 'N2',
-      prompt: 'Clear the Revenue filter. On Qty use Number Filters › Custom Filter: is less than 10, Or, is greater than 30. Type into N2 how many orders are visible.',
+      prompt: 'Clear the Revenue filter. On Qty use Number Filters > Custom Filter: is less than 10, Or, is greater than 30. Type into N2 how many orders are visible.',
       answer: 23,
       wrong: ['13', '10', '0', '25'],
       hints: ['Custom AutoFilter takes up to two conditions on one column, joined by And or Or.', 'With And, no Qty can be under 10 and over 30 at the same time.'],
@@ -160,7 +160,7 @@ const autofilter: Exercise = {
     },
     {
       id: 'codes', kind: 'value', cells: 'N3',
-      prompt: 'Clear the Qty filter. Marketing wants the orders that used a NEW code (NEW10 or NEW15) or the VIP5 code, but not VIP10. On PromoCode use Text Filters › Custom Filter: two equals conditions joined by Or, each written with the ? wildcard. Type into N3 how many orders are visible.',
+      prompt: 'Clear the Qty filter. Marketing wants the orders that used a NEW code (NEW10 or NEW15) or the VIP5 code, but not VIP10. On PromoCode use Text Filters > Custom Filter: two equals conditions joined by Or, each written with the ? wildcard. Type into N3 how many orders are visible.',
       answer: 9,
       wrong: ['15', '6', '3', '0'],
       hints: [
@@ -172,7 +172,7 @@ const autofilter: Exercise = {
     },
     {
       id: 'office', kind: 'tool', tool: 'autofilter', cells: 'E8',
-      prompt: 'Clear the PromoCode filter. Then leave the list filtered to Office orders (Channel checklist: Office only) whose Revenue is between 500 and 800 (Number Filters › Between). The check reads which rows your filter hides.',
+      prompt: 'Clear the PromoCode filter. Then leave the list filtered to Office orders (Channel checklist: Office only) whose Revenue is between 500 and 800 (Number Filters > Between). The check reads which rows your filter hides.',
       toolSetup: {
         range: LIST,
         columns: [
@@ -185,7 +185,7 @@ const autofilter: Exercise = {
       explain: '6 orders remain: HC-1007, HC-1021, HC-1035, HC-1041, HC-1055 and HC-1058. AutoFilter always ANDs its columns; an OR across two columns (Office orders, or any order above 800) needs Advanced Filter with two criteria rows.',
     },
   ],
-  skills: ['AutoFilter', 'Top 10 filter and ties', 'Custom AutoFilter with Or', 'Wildcards ? and * in a Custom Filter', 'Number Filters › Between', 'Filters on two columns (AND)'],
+  skills: ['AutoFilter', 'Top 10 filter and ties', 'Custom AutoFilter with Or', 'Wildcards ? and * in a Custom Filter', 'Number Filters > Between', 'Filters on two columns (AND)'],
 }
 
 const sortCustom: Exercise = {
@@ -200,7 +200,7 @@ const sortCustom: Exercise = {
       prompt: 'Sort the order list (A8:K68, with headers) by Status in the custom order Overdue, Pending, Paid, then by Revenue from largest to smallest.',
       toolSetup: { range: LIST, headers: true, levels: [{ column: 'Status', order: 'custom', list: 'Overdue,Pending,Paid' }, { column: 'Revenue', order: 'desc' }] },
       answer: { A9: 'HC-1049', A10: 'HC-1032', A11: 'HC-1050', A16: 'HC-1031', K16: 'Overdue', A17: 'HC-1053', K17: 'Pending', A23: 'HC-1054', A24: 'HC-1002', K24: 'Paid', A68: 'HC-1059' },
-      hints: ['A to Z would give Overdue, Paid, Pending: use Order › Custom List and type Overdue, Pending, Paid.', 'Add Level: Then by Revenue, Largest to Smallest.'],
+      hints: ['A to Z would give Overdue, Paid, Pending: use Order > Custom List and type Overdue, Pending, Paid.', 'Add Level: Then by Revenue, Largest to Smallest.'],
       explain: 'A custom list sorts by your own order instead of the alphabet; Excel ships lists for weekdays and months too. Equal keys keep their original order, so HC-1032 stays before HC-1050 (both 1,197.00). In Excel, Sort On can also be Cell Color, Font Color or a Conditional Formatting Icon, which groups highlighted rows such as due dates coloured by alert level (the lab sorts on cell values only).',
     },
   ],
@@ -347,7 +347,7 @@ const andOr: Exercise = {
   tasks: [
     {
       id: 'af1', kind: 'criteria', cells: 'A1:B2',
-      prompt: 'Criteria range A1:B2: Hotel-channel orders of at least 24 bags. Then run Data › Advanced in place to see them.',
+      prompt: 'Criteria range A1:B2: Hotel-channel orders of at least 24 bags. Then run Data > Advanced in place to see them.',
       // B2 first: the validator types each wrong entry into the first cell listed here (two hotel orders have exactly 24 bags)
       solutions: { B2: '>=24', A2: '="=Hotel"' },
       criteria: { list: LIST, expectedRows: [9, 19, 24, 40, 45, 52, 53, 58] },
@@ -450,7 +450,7 @@ const computedUnique: Exercise = {
     },
     {
       id: 'unique', kind: 'tool', tool: 'advfilter', cells: 'N9:N19',
-      prompt: 'N8 holds the field name Customer. Use Data › Advanced with Copy to another location: List range A8:K68, Criteria range D1:D2, Copy to N8, and tick Unique records only.',
+      prompt: 'N8 holds the field name Customer. Use Data > Advanced with Copy to another location: List range A8:K68, Criteria range D1:D2, Copy to N8, and tick Unique records only.',
       toolSetup: { list: LIST, criteria: 'D1:D2', copyTo: 'N8', unique: true },
       answer: {
         N9: 'Hougang Heartland Hotel', N10: 'BeanBox Online', N11: 'Woodlands Brew Bar', N12: 'Sengkang Social', N13: 'Yishun Yard Cafe',
@@ -898,7 +898,7 @@ const fleetAlerts: Exercise = {
     },
     {
       id: 'extract', kind: 'tool', tool: 'advfilter', cells: `F13:H${12 + EXTRACT.length}`,
-      prompt: '(d) With the inputs as given (as at 20 Jul 2026, level 2), run Data › Advanced: Copy to another location, List range A12:D48, Criteria range A9:C10, Copy to F12:H12 (the headers Van, Route and Due Date are already there).',
+      prompt: '(d) With the inputs as given (as at 20 Jul 2026, level 2), run Data > Advanced: Copy to another location, List range A12:D48, Criteria range A9:C10, Copy to F12:H12 (the headers Van, Route and Due Date are already there).',
       toolSetup: { list: 'A12:D48', criteria: 'A9:C10', copyTo: 'F12:H12' },
       answer: {
         ...Object.fromEntries(EXTRACT.flatMap(([van, route, due], i) => [[`F${13 + i}`, van], [`G${13 + i}`, route], [`H${13 + i}`, serial(due)]])),
@@ -913,7 +913,7 @@ const fleetAlerts: Exercise = {
     {
       id: 'rerun', kind: 'explain', cells: '',
       prompt: '(e) The manager changes B3 to 27 Jul 2026. B5:B7 and A10:B10 update at once, but the list under F12 does not. Explain why, and how the course\'s milestone tracker keeps its filtered view current. (If you try it, set B3 back to 20 Jul 2026 and run the filter again: part (d) is checked for the given inputs.)',
-      answer: 'Advanced Filter is a one-off command: it copies the matching rows as values and does not recalculate when its criteria change, so it must be run again (Data › Advanced) after every change. The tracker automates this: the filter is recorded as a macro, and the sheet\'s Worksheet_Change event calls the macro whenever a watched input such as the alert level changes (tested with Intersect), so the view refreshes by itself. B7 is a formula, so a mismatch between B7 and the list shows that the list is out of date.',
+      answer: 'Advanced Filter is a one-off command: it copies the matching rows as values and does not recalculate when its criteria change, so it must be run again (Data > Advanced) after every change. The tracker automates this: the filter is recorded as a macro, and the sheet\'s Worksheet_Change event calls the macro whenever a watched input such as the alert level changes (tested with Intersect), so the view refreshes by itself. B7 is a formula, so a mismatch between B7 and the list shows that the list is out of date.',
       hints: ['Which of these cells hold formulas, and which hold values written by a command?', 'How could a macro be started automatically when B3 or B4 changes?'],
     },
   ],

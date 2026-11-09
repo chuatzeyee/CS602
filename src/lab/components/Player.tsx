@@ -486,7 +486,7 @@ export default function Player(props: PlayerProps) {
             </div>
           ) : (
             <div className="flex-1 flex items-center justify-center gap-2 text-sm text-ink-muted">
-              <LoaderCircle size={16} className="animate-spin" /> Loading the sheet…
+              <LoaderCircle size={16} className="animate-spin" /> Loading the sheet...
             </div>
           )}
         </section>

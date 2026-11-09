@@ -9,7 +9,7 @@ export default function Course() {
         <h1 className="text-3xl font-bold text-ink mb-2">Course Map</h1>
         <p className="text-ink-secondary">
           {course.courseTitle}
-          {course.instructor ? ` · ${course.instructor}` : ''}
+          {course.instructor ? `, ${course.instructor}` : ''}
         </p>
       </div>
 

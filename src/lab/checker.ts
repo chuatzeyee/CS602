@@ -576,8 +576,8 @@ function tableIssue(ctx: Ctx, task: Task): string | undefined {
   const mine = learnerTablesFor(ctx, task)
   const exact = mine.find((d) => d.range === want.range)
   if (!exact) {
-    if (mine.length) return `Your data table covers ${mine[0].range}: select the whole block ${want.range} (input values plus the formula row or column) before What-If Analysis › Data Table`
-    return `There is no data table in ${want.range} yet: select ${want.range}, then What-If Analysis › Data Table`
+    if (mine.length) return `Your data table covers ${mine[0].range}: select the whole block ${want.range} (input values plus the formula row or column) before What-If Analysis > Data Table`
+    return `There is no data table in ${want.range} yet: select ${want.range}, then What-If Analysis > Data Table`
   }
   const needRow = Boolean(want.rowInput)
   const needCol = Boolean(want.colInput)

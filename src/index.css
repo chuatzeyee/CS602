@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Fonts ── */
+  /* Fonts */
   --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
 
-  /* ── Surface Elevation (warm dark greys) ── */
+  /* Surface Elevation (warm dark greys) */
   --color-void: #0d0d0d;
   --color-base: #141414;
   --color-surface: #1a1a1a;
   --color-raised: #222222;
   --color-overlay: #2a2a2a;
 
-  /* ── Borders ── */
+  /* Borders */
   --color-edge: #2a2a2a;
   --color-edge-bright: #3a3a3a;
 
-  /* ── Text ── */
+  /* Text */
   --color-ink: #d4d4d4;
   --color-ink-secondary: #a0a0a0;
   /* muted text must still read at WCAG AA (4.5:1): 5.8 on void, 5.2 on surface, 4.7 on raised */
@@ -24,18 +24,18 @@
   /* faint is for decoration and disabled states only, never for text that has to be read (about 2:1) */
   --color-ink-faint: #4a4a4a;
 
-  /* ── Accent (vintage terminal green) ── */
+  /* Accent (vintage terminal green) */
   --color-glow: #4ade80;
   --color-glow-dim: #14532d;
   --color-glow-hover: #86efac;
 
-  /* ── Semantic ── */
+  /* Semantic */
   --color-correct: #4ade80;
   --color-correct-dim: #14532d;
   --color-wrong: #f87171;
   --color-wrong-dim: #450a0a;
 
-  /* ── Session Tab Colors ── */
+  /* Session Tab Colors */
   --color-s1: #4ade80;
   --color-s2: #a78bfa;
   --color-s3: #22d3ee;
@@ -45,7 +45,7 @@
   --color-s9: #3b9eff;
   --color-s10: #d0f020;
 
-  /* ── Animation ── */
+  /* Animation */
   --animate-fade-in: fade-in 0.3s ease-out;
   --animate-slide-down: slide-down 0.25s ease-out;
   --animate-scale-in: scale-in 0.2s ease-out;

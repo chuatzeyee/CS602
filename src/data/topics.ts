@@ -3,7 +3,7 @@ import type { Session } from './types'
 export const sessions: readonly Session[] = [
   {
     "id": "w1",
-    "title": "Week 1 — Introduction to Spreadsheet Modelling",
+    "title": "Week 1: Introduction to Spreadsheet Modelling",
     "subtitle": "IS602-AY2026-27-S1.pdf",
     "topics": [
       {
@@ -29,8 +29,8 @@ export const sessions: readonly Session[] = [
             "heading": "Blackbox view",
             "points": [
               "The blackbox view sorts every variable into four roles: Decisions and Parameters flow INTO the blackbox; Performance Measures and Consequence Variables come OUT.",
-              "Community Water Tank mapping — Decision: Tank Height; Parameters: Required volume of H2O (30 cbm), Tank Width (2 m), Cost per sqm of base ($10) and of wall ($5); Consequences: Tank Length, Base Area, Wall Area; Performance Measure: Cost of Tank.",
-              "Data Centre Assets mapping — Decisions: New Business Volume and New Headcount; Parameters: Past Business Volume, Past Headcount, Past IT Assets #; Performance Measure: New IT Assets #; Consequences: Past IT Performance Ratio, New IT Performance Ratio, Business Growth Rate."
+              "Community Water Tank mapping: Decision: Tank Height; Parameters: Required volume of H2O (30 cbm), Tank Width (2 m), Cost per sqm of base ($10) and of wall ($5); Consequences: Tank Length, Base Area, Wall Area; Performance Measure: Cost of Tank.",
+              "Data Centre Assets mapping: Decisions: New Business Volume and New Headcount; Parameters: Past Business Volume, Past Headcount, Past IT Assets #; Performance Measure: New IT Assets #; Consequences: Past IT Performance Ratio, New IT Performance Ratio, Business Growth Rate."
             ]
           }
         ]
@@ -42,7 +42,7 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Three cell content types",
             "points": [
-              "The slides name three main kinds of cell content: Text, Values, and Formulas — and a formula always begins with '='.",
+              "The slides name three main kinds of cell content: Text, Values, and Formulas: and a formula always begins with '='.",
               "Formatting changes display, not the stored value: the Assignment 0 solution notes that 'figures formatted as percentages are actually stored as fractions', so they must NOT be divided by 100 again when used in calculations."
             ]
           },
@@ -50,7 +50,7 @@ export const sessions: readonly Session[] = [
             "heading": "Operator precedence",
             "points": [
               "Excel evaluates parentheses first; then negation, percent (%), exponentiation (^), multiplication or division (* /), and finally addition or subtraction (+ -); operators of equal rank evaluate left to right.",
-              "Worked example: =3+2^2*2 returns 11, because 2^2=4 evaluates first, then 4*2=8, then 3+8=11 — not 50 (which would need (3+2)^2*2) and not 19 (which would need 2^(2*2))."
+              "Worked example: =3+2^2*2 returns 11, because 2^2=4 evaluates first, then 4*2=8, then 3+8=11: not 50 (which would need (3+2)^2*2) and not 19 (which would need 2^(2*2))."
             ]
           }
         ]
@@ -71,12 +71,12 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Drag rules",
             "points": [
-              "Dragging (filling) to the right changes column letters only; dragging down changes row numbers only — a $ in front of a letter or number freezes exactly that part.",
+              "Dragging (filling) to the right changes column letters only; dragging down changes row numbers only: a $ in front of a letter or number freezes exactly that part.",
               "Choose anchors by asking, for each direction you will fill, which part of the reference must NOT move."
             ]
           },
           {
-            "heading": "Worked example — performance ratios",
+            "heading": "Worked example: performance ratios",
             "points": [
               "In DataCenterAssets Model!E27 the ratio is =$C9/E9: the $ before C pins the Customer Deposit column, so filling right gives =$C9/F9, =$C9/G9, ... across all seven asset classes, while filling down gives =$C10/E10 for the next year.",
               "One correctly anchored formula therefore covers the whole 7-column by 10-row performance-ratio block."
@@ -99,7 +99,7 @@ export const sessions: readonly Session[] = [
             "heading": "Auto-Fill Function",
             "points": [
               "Auto-Fill produces VALUES, not formulas: it fits a least-squares straight line through the selected numbers and extrapolates it, assuming the points are equally spaced on the x-axis.",
-              "RetailGasoline demonstrates it: US prices 1.16, 1.15, 1.51 (1990/1995/2000) auto-fill forward to about 1.62, 1.80, 1.97 for 2005/2010/2015, while Brazil's 3.82, 2.16, 2.93 extrapolates down to 1.19 by 2015 — the straight line is followed even when the trend is doubtful.",
+              "RetailGasoline demonstrates it: US prices 1.16, 1.15, 1.51 (1990/1995/2000) auto-fill forward to about 1.62, 1.80, 1.97 for 2005/2010/2015, while Brazil's 3.82, 2.16, 2.93 extrapolates down to 1.19 by 2015: the straight line is followed even when the trend is doubtful.",
               "Auto-filled cells do not recalculate when the source data changes, because no formula was written."
             ]
           },
@@ -128,7 +128,7 @@ export const sessions: readonly Session[] = [
             "heading": "Anchoring TREND for filling",
             "points": [
               "The naive formula =TREND(E26:E35, C26:C35, C36) is correct in one cell but breaks when filled, because the known ranges slide.",
-              "Method 1 fixes it with seven $ signs: =TREND(E$26:E$35,$C$26:$C$35,$C36) — rows of known_y locked (fill down keeps the 10-year history), known_x fully locked (fill right stays on the deposits column), and new_x column-locked so it advances down each projected year."
+              "Method 1 fixes it with seven $ signs: =TREND(E$26:E$35,$C$26:$C$35,$C36): rows of known_y locked (fill down keeps the 10-year history), known_x fully locked (fill right stays on the deposits column), and new_x column-locked so it advances down each projected year."
             ]
           },
           {
@@ -162,7 +162,7 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Findings",
             "points": [
-              "Cost falls steeply across the low heights, then climbs slowly as the tank gets taller — a U-shaped cost curve.",
+              "Cost falls steeply across the low heights, then climbs slowly as the tank gets taller: a U-shaped cost curve.",
               "With the width fixed at 2 m and a 30 cbm volume, the cheapest tank costs $305, at a height of 3.87 metres."
             ]
           }
@@ -175,7 +175,7 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Problem framing",
             "points": [
-              "SAM Bank's CEO wants a SIMPLE model of IT asset capacity: 10 years of actuals — customer deposits growing $3.91b to $23.92b, headcount 743 to 2,320 — across seven asset classes (low/mid/high-end servers, data storage, network switches, racks, floor space).",
+              "SAM Bank's CEO wants a SIMPLE model of IT asset capacity: 10 years of actuals (customer deposits growing $3.91b to $23.92b, headcount 743 to 2,320) across seven asset classes (low/mid/high-end servers, data storage, network switches, racks, floor space).",
               "Five projected years follow: deposits to $45.2b and headcount to 3,800, for which the asset requirements must be derived."
             ]
           },
@@ -183,7 +183,7 @@ export const sessions: readonly Session[] = [
             "heading": "The three-step method",
             "points": [
               "Step 1: compute the historical performance ratio for each asset class as Business Volume / # Equipment, e.g. Model!E27 =$C9/E9 = 3.91/20 = 0.1955 $b per BIPS of low-end servers.",
-              "Step 2: project the ratio forward with TREND — the ratio may be modelled as a function of time (=TREND(E$27:E$36,$B$27:$B$36,$B37)), of business volume (=TREND(E$27:E$36,$C$27:$C$36,$C37)), or of organisation size (=TREND(E$27:E$36,$D$27:$D$36,$D37)).",
+              "Step 2: project the ratio forward with TREND: the ratio may be modelled as a function of time (=TREND(E$27:E$36,$B$27:$B$36,$B37)), of business volume (=TREND(E$27:E$36,$C$27:$C$36,$C37)), or of organisation size (=TREND(E$27:E$36,$D$27:$D$36,$D37)).",
               "Step 3: compute the future requirement as projected volume divided by the planned ratio, e.g. Model!E19 =$C19/E37."
             ]
           },
@@ -191,7 +191,7 @@ export const sessions: readonly Session[] = [
             "heading": "Negotiated performance targets",
             "points": [
               "The raw TREND outputs (rows 45-49) are not used directly: they are copied into E37:K41 as inputs and then adjusted: management negotiates the TREND values and records the agreed figures as planned performance targets.",
-              "The workbook itself warns that ratios projected this way may not be acceptable, and asks whether the measures of capacity used are even correct — model outputs are a starting point for judgement, not a substitute for it."
+              "The workbook itself warns that ratios projected this way may not be acceptable, and asks whether the measures of capacity used are even correct: model outputs are a starting point for judgement, not a substitute for it."
             ]
           }
         ]
@@ -228,7 +228,7 @@ export const sessions: readonly Session[] = [
   },
   {
     "id": "w2",
-    "title": "Week 2 — Spreadsheet Engineering",
+    "title": "Week 2: Spreadsheet Engineering",
     "subtitle": "IS602-AY2026-27-S2.pdf",
     "topics": [
       {
@@ -246,9 +246,9 @@ export const sessions: readonly Session[] = [
           {
             "heading": "The three basic steps",
             "points": [
-              "Step 1 — Formulate the Relationships: draw an Influence Diagram to picture how variables connect.",
-              "Step 2 — Frame What You Understand: use a Black Box View to classify inputs and outputs.",
-              "Step 3 — Construct the Model: build the spreadsheet model itself, then test it with trial values."
+              "Step 1: Formulate the Relationships: draw an Influence Diagram to picture how variables connect.",
+              "Step 2: Frame What You Understand: use a Black Box View to classify inputs and outputs.",
+              "Step 3: Construct the Model: build the spreadsheet model itself, then test it with trial values."
             ]
           },
           {
@@ -276,7 +276,7 @@ export const sessions: readonly Session[] = [
           {
             "heading": "How to build one",
             "points": [
-              "Start with the performance measure — the output you ultimately care about.",
+              "Start with the performance measure: the output you ultimately care about.",
               "Decompose it into two or more intermediate variables that combine mathematically to produce it.",
               "Keep decomposing each intermediate variable until an input decision variable is defined at the leaves."
             ]
@@ -329,8 +329,8 @@ export const sessions: readonly Session[] = [
           {
             "heading": "The Bait & Hook strategy",
             "points": [
-              "The business model sells the printer at a very low price — possibly below cost — and profits from highly marked-up proprietary cartridges.",
-              "Real market data in the workbook shows a Lexmark Z617 printer at $59 while its 12A1980 cartridge costs $65.50, a cartridge-to-printer ratio of 1.11 — the cartridge is dearer than the printer.",
+              "The business model sells the printer at a very low price (possibly below cost) and profits from highly marked-up proprietary cartridges.",
+              "Real market data in the workbook shows a Lexmark Z617 printer at $59 while its 12A1980 cartridge costs $65.50, a cartridge-to-printer ratio of 1.11: the cartridge is dearer than the printer.",
               "At trial prices of $60 (printer) and $20 (cartridge), the printer margin is only (60-55)/55 = 9.1% while the cartridge margin is (20-12)/12 = 66.7%."
             ]
           },
@@ -338,16 +338,16 @@ export const sessions: readonly Session[] = [
             "heading": "The linear price-demand function",
             "points": [
               "The stated assumptions: demand is 10,000 printers at a price of $0, drops by 600 units for every $10 price increase, and is 0 at $250. Note that the 600-per-$10 straight line on its own already hits 0 near $167, so the $250 end point only fits the tapering tabulated data.",
-              "The Demand sheet tabulates the observed data — 10, 9.4, 8.8, ... 0.7 (at $200), 0 (at $250) in thousands — alongside the linear model C10 = 10 - 0.6*(B10-$B$9)/10 that approximates it.",
+              "The Demand sheet tabulates the observed data (10, 9.4, 8.8, ... 0.7 (at $200), 0 (at $250) in thousands) alongside the linear model C10 = 10 - 0.6*(B10-$B$9)/10 that approximates it.",
               "As a straight line this is y = -0.06x + 10, where y is demand in thousands and x is the printer price."
             ]
           },
           {
             "heading": "Refinements in the final model",
             "points": [
-              "Printer demand is guarded by an IF: if the cartridge price exceeds 2/3 of the printer price, printer demand drops to 0 — customers see through the hook.",
+              "Printer demand is guarded by an IF: if the cartridge price exceeds 2/3 of the printer price, printer demand drops to 0: customers see through the hook.",
               "Cartridge demand is driven by printer sales: each printer sold consumes 6 cartridges, so cartridge demand = 6 x printer demand.",
-              "The rough model without a price-demand relationship gives an absurd answer — Solver reports the optimal printer price is infinity, proving the model must link demand to price."
+              "The rough model without a price-demand relationship gives an absurd answer: Solver reports the optimal printer price is infinity, proving the model must link demand to price."
             ]
           }
         ]
@@ -359,7 +359,7 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Goal Seek",
             "points": [
-              "Goal Seek is part of Excel's what-if analysis tools: it finds the input value in one cell that makes another cell reach a desired result — it calculates backward.",
+              "Goal Seek is part of Excel's what-if analysis tools: it finds the input value in one cell that makes another cell reach a desired result: it calculates backward.",
               "Use it when you know the answer one formula should produce but not the input value that gets it there.",
               "Goal Seek CANNOT maximize or minimize, and it can only change ONE input cell to hit a target value."
             ]
@@ -376,7 +376,7 @@ export const sessions: readonly Session[] = [
             "heading": "Breakeven and optimum in the printer model",
             "points": [
               "Breakeven by Goal Seek: Set cell = Profit, To value = 0, By changing cell = C5 (Printer price). The slides give Profit as C27, its address on the Proto sheet; on the final Model sheet Profit is C32 (C27 there is Printer cost), so set C32.",
-              "Breakeven by Solver: objective = the same Profit cell, Value Of = 0, changing C5 — same answer, different tool.",
+              "Breakeven by Solver: objective = the same Profit cell, Value Of = 0, changing C5: same answer, different tool.",
               "The Model sheet stores the analytic results in its trade-off row: lower breakeven price $26.96, Solver optimum $95.98, upper breakeven $165.00."
             ]
           }
@@ -419,7 +419,7 @@ export const sessions: readonly Session[] = [
           {
             "heading": "The business setting",
             "points": [
-              "A social enterprise lets contributors sponsor students; contributors expect returns — it is an investment, not a donation.",
+              "A social enterprise lets contributors sponsor students; contributors expect returns: it is an investment, not a donation.",
               "The return is a percentage of the future salary of the sponsored person, discounted by the probability the sponsored student defaults.",
               "The model must compute the investment amount, expected return and expected return margin for each of 10 education levels, from Lower primary to Technical degree."
             ]
@@ -446,7 +446,7 @@ export const sessions: readonly Session[] = [
   },
   {
     "id": "w3",
-    "title": "Week 3 — Lookup Functions & Optimization with Solver",
+    "title": "Week 3: Lookup Functions & Optimization with Solver",
     "subtitle": "IS602-AY2026-27-S3.pdf",
     "topics": [
       {
@@ -627,7 +627,7 @@ export const sessions: readonly Session[] = [
   },
   {
     "id": "w4",
-    "title": "Week 4 — Financial Functions & Modeling",
+    "title": "Week 4: Financial Functions & Modeling",
     "subtitle": "IS602-AY2026-27-S4.pdf",
     "topics": [
       {
@@ -637,7 +637,7 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Two groups of financial functions",
             "points": [
-              "Week 4 covers seven Excel financial functions in two groups: Group 1 handles constant periodic cash flows — PMT(), PV(), FV(), RATE(), NPER() — while Group 2 handles uneven cash flows — NPV() and IRR().",
+              "Week 4 covers seven Excel financial functions in two groups: Group 1 handles constant periodic cash flows (PMT(), PV(), FV(), RATE(), NPER()) while Group 2 handles uneven cash flows: NPV() and IRR().",
               "All Group 1 functions share the same five quantities (rate, nper, pmt, pv, fv): each function computes one of them given the others, so they are essentially five views of a single time-value-of-money equation.",
               "Money has time value: a dollar today is worth more than a dollar in the future because it can earn interest, which is why cash flows at different times cannot be compared without discounting or compounding."
             ]
@@ -646,7 +646,7 @@ export const sessions: readonly Session[] = [
             "heading": "Sign convention and point of reference",
             "points": [
               "Excel's sign convention: a NEGATIVE amount is money taken away from the point of reference, and a POSITIVE amount is money added to the point of reference (e.g., from the borrower's view a loan received is positive and repayments are negative).",
-              "Today is the END of Period 0, which is the same instant as the BEGINNING of Period 1 — getting this timeline convention right is essential before applying any financial function.",
+              "Today is the END of Period 0, which is the same instant as the BEGINNING of Period 1: getting this timeline convention right is essential before applying any financial function.",
               "The [type] argument controls timing within a period: type 0 (the default) means payments occur at the END of each period; type 1 means payments occur at the BEGINNING of each period."
             ]
           },
@@ -665,40 +665,40 @@ export const sessions: readonly Session[] = [
         "title": "PMT, PV and FV with Worked Examples",
         "sections": [
           {
-            "heading": "PMT — equal periodic payments",
+            "heading": "PMT: equal periodic payments",
             "points": [
               "PMT(rate, nper, pv, [fv], [type]) returns the constant payment per period; PMT(8%/12, 10, 10000) = -$1,037.03 is the monthly payment to clear a $10,000 loan at 8% p.a. over 10 months.",
-              "PMT exercise: borrow $140,000 for a car over 5 years at 5% p.a. (monthly rest) with 60 monthly payments plus a $10,000 balloon payment with the last payment — the answer is =PMT(5%/12, 60, 140000, -10000) ≈ -$2,494.93 per month.",
-              "The same answer is verified WITHOUT financial functions by a 60-row residue-loan schedule where each month's residue = previous residue × (1 + 5%/12) − payment, and Goal Seek (or trial and error) drives the last residue to the $10,000 target."
+              "PMT exercise: borrow $140,000 for a car over 5 years at 5% p.a. (monthly rest) with 60 monthly payments plus a $10,000 balloon payment with the last payment: the answer is =PMT(5%/12, 60, 140000, -10000) ≈ -$2,494.93 per month.",
+              "The same answer is verified WITHOUT financial functions by a 60-row residue-loan schedule where each month's residue = previous residue × (1 + 5%/12) - payment, and Goal Seek (or trial and error) drives the last residue to the $10,000 target."
             ]
           },
           {
-            "heading": "PV — present value",
+            "heading": "PV: present value",
             "points": [
               "PV(rate, nper, pmt, [fv], [type]) converts future constant cash flows to today's value; PV(8%/12, 10, -1037.03) = $10,000 confirms the PMT example in reverse.",
               "PV(8%, 5, , 10000) = -$6,805.83 shows how much to deposit today to reach $10,000 in 5 years at 8% p.a.; PV(8%/12, 5*12, 500) = -$24,659.22 prices a 5-year stream of $500 monthly receipts.",
-              "PV exercise: nine months overseas needing $3,500 at the BEGINNING of each month plus an extra $600 in the last month, at 3% p.a. interest — the answer is =PV(3%/12, 9, -3500, -600, 1) ≈ $31,774.27, cross-checked by a balance schedule where balance = (previous balance − withdrawal) × (1 + 3%/12)."
+              "PV exercise: nine months overseas needing $3,500 at the BEGINNING of each month plus an extra $600 in the last month, at 3% p.a. interest: the answer is =PV(3%/12, 9, -3500, -600, 1) ≈ $31,774.27, cross-checked by a balance schedule where balance = (previous balance - withdrawal) × (1 + 3%/12)."
             ]
           },
           {
-            "heading": "FV — future value",
+            "heading": "FV: future value",
             "points": [
               "FV(rate, nper, pmt, [pv], [type]) compounds deposits forward: FV(8%/12, 10, -100) = $1,030.54 for ten $100 monthly deposits, and FV(8%/12, 10, -100, -300) = $1,351.15 when starting with $300 already in the account.",
-              "FV exercise: invest $50,000 now and add $8,000 each year for 10 years at 6.5% p.a. — the answer is =FV(6.5%, 10, -8000, -50000), verified by a schedule where each year's investment = previous × (1 + 6.5%) + $8,000 injection."
+              "FV exercise: invest $50,000 now and add $8,000 each year for 10 years at 6.5% p.a.: the answer is =FV(6.5%, 10, -8000, -50000), verified by a schedule where each year's investment = previous × (1 + 6.5%) + $8,000 injection."
             ]
           }
         ]
       },
       {
         "id": "rate-nper",
-        "title": "RATE and NPER — Iterative Solutions",
+        "title": "RATE and NPER: Iterative Solutions",
         "sections": [
           {
             "heading": "RATE is solved by iteration",
             "points": [
               "RATE(nper, pmt, pv, [fv], [type], [guess]) is computed by iteration starting from the guess (default 10%) and returns #NUM! if successive answers do not converge to within 0.0000001 after 20 iterations.",
               "RATE(12, -100, 1000) ≈ 2.92% per month is the rate on a $1,000 loan repaid by twelve $100 payments; RATE(12, , -1000, 2000) ≈ 5.95% per month doubles $1,000 to $2,000 in 12 periods with no intermediate payments (the slides round these to 3% and 6%).",
-              "RATE exercise: =RATE(10, -8000, -50000, 250000) ≈ 9.59% p.a. is the return needed for $50,000 now plus $8,000 yearly injections to grow to $250,000 in 10 years — TimeValue.xlsm confirms 0.09592693 by Goal Seek on the schedule."
+              "RATE exercise: =RATE(10, -8000, -50000, 250000) ≈ 9.59% p.a. is the return needed for $50,000 now plus $8,000 yearly injections to grow to $250,000 in 10 years: TimeValue.xlsm confirms 0.09592693 by Goal Seek on the schedule."
             ]
           },
           {
@@ -718,9 +718,9 @@ export const sessions: readonly Session[] = [
           {
             "heading": "NPV rules",
             "points": [
-              "NPV(rate, value1, value2, …) discounts a series of UNEVEN cash flows assumed to occur at the END of each period, with value1 at the end of period 1; Excel 2003 allows up to 29 values and Excel 2007+ up to 254.",
+              "NPV(rate, value1, value2, ...) discounts a series of UNEVEN cash flows assumed to occur at the END of each period, with value1 at the end of period 1; Excel 2003 allows up to 29 values and Excel 2007+ up to 254.",
               "A first investment made TODAY (beginning of period 1 / end of period 0) must be EXCLUDED from the NPV() arguments and ADDED to the NPV result, as in TimeValue.xlsm cell C10: =NPV(B10, C15:C24) + C14 where C14 = -200000.",
-              "NPV(10%, -10000, 3000, 4200, 6800) = $1,188.44 — the individual present values are -$9,090.91 (the slide shows -$9,090.90), $2,479.34, $3,155.52 and $4,644.49, each computed manually as CashFlow/(1+rate)^n.",
+              "NPV(10%, -10000, 3000, 4200, 6800) = $1,188.44: the individual present values are -$9,090.91 (the slide shows -$9,090.90), $2,479.34, $3,155.52 and $4,644.49, each computed manually as CashFlow/(1+rate)^n.",
               "NPV differs from PV: PV requires constant cash flows but allows begin- or end-of-period timing, while NPV allows varying cash flows but fixes them at end of period."
             ]
           },
@@ -728,8 +728,8 @@ export const sessions: readonly Session[] = [
             "heading": "IRR rules",
             "points": [
               "IRR(values, [guess]) needs at least ONE positive and ONE negative value, assumes cash flows are equally spaced at the end of each period, and iterates from the guess until accurate within 0.00001%, returning #NUM! if 20 tries do not converge.",
-              "IRR is the interest rate at which NPV equals zero — the project in TimeValue.xlsm ($200,000 out, ten yearly inflows) has =IRR(C14:C24) ≈ 24.05%, confirmed by Goal Seek driving =SUM(N14:N24) of manual present values to zero.",
-              "Unlike NPV, the initial investment IS included in the IRR() value range — the IRR exercise stresses that ALL values, including the year-0 outflow, go into the argument."
+              "IRR is the interest rate at which NPV equals zero: the project in TimeValue.xlsm ($200,000 out, ten yearly inflows) has =IRR(C14:C24) ≈ 24.05%, confirmed by Goal Seek driving =SUM(N14:N24) of manual present values to zero.",
+              "Unlike NPV, the initial investment IS included in the IRR() value range: the IRR exercise stresses that ALL values, including the year-0 outflow, go into the argument."
             ]
           }
         ]
@@ -742,7 +742,7 @@ export const sessions: readonly Session[] = [
             "heading": "Goal Seek",
             "points": [
               "Goal Seek (Data / What-If Analysis / Goal Seek) automates trial-and-error: you specify a formula cell to SET, the target VALUE, and the input cell to CHANGE, and Excel iterates the input until the formula hits the target.",
-              "In TimeValue.xlsm every function sheet also has a 'Without Excel financial function' schedule. Where the unknown is an input (PMT, PV, RATE, IRR) the sheet says to solve it 'by trial and error, or use Goal Seek' — e.g. on the PMT sheet, Goal Seek changes the monthly payment until the last residue N74 equals the $10,000 balloon target; the FV, NPER and NPV schedules just compute forward and need no search."
+              "In TimeValue.xlsm every function sheet also has a 'Without Excel financial function' schedule. Where the unknown is an input (PMT, PV, RATE, IRR) the sheet says to solve it 'by trial and error, or use Goal Seek': e.g. on the PMT sheet, Goal Seek changes the monthly payment until the last residue N74 equals the $10,000 balloon target; the FV, NPER and NPV schedules just compute forward and need no search."
             ]
           },
           {
@@ -750,7 +750,7 @@ export const sessions: readonly Session[] = [
             "points": [
               "A one-variable (column-oriented) data table lists input values down a column, puts the formula one row above and one column to the right, selects the block, then Data / What-If Analysis / Data Table with the Column input cell set to the model's input.",
               "A two-variable data table places the formula in the TOP-LEFT intersection cell, one input's values across the top row and the other input's values down the left column, then supplies both the Row input cell and Column input cell.",
-              "TimeValue.xlsm's Model sheet builds the same table manually with =$C$5*(1+D$8)^$C9 (mixed absolute/relative references) across rates 5%–12% and years 1–20, then rebuilds it as a real Excel Data Table in the exercise columns — the table cells appear as {=TABLE(...)} array formulas."
+              "TimeValue.xlsm's Model sheet builds the same table manually with =$C$5*(1+D$8)^$C9 (mixed absolute/relative references) across rates 5%-12% and years 1-20, then rebuilds it as a real Excel Data Table in the exercise columns: the table cells appear as {=TABLE(...)} array formulas."
             ]
           }
         ]
@@ -763,22 +763,22 @@ export const sessions: readonly Session[] = [
             "heading": "What a circular reference is",
             "points": [
               "A circular reference occurs when a formula refers back to its own cell, directly or through a chain of other cells; Excel cannot evaluate it normally and needs ITERATION to resolve it.",
-              "Iterative calculation may CONVERGE (successive values settle to a stable answer) or DIVERGE (values grow without bound) — only converging circular models are useful.",
+              "Iterative calculation may CONVERGE (successive values settle to a stable answer) or DIVERGE (values grow without bound): only converging circular models are useful.",
               "To resolve one, enable File / Options / Formulas / 'Enable iterative calculation' and reduce the Maximum change parameter to 0.0001, as documented in CharityDonation.xlsx's Model sheet notes."
             ]
           },
           {
             "heading": "The Charity Donation circular model",
             "points": [
-              "Sam's firm expects $180,000 revenue and $108,500 costs; he will donate 10% of AFTER-TAX profit to charity, but the charity donation is itself deductible before the 25% tax — so Charity = 10% × [(Revenue − Cost − Charity) × (1 − 25%)], a circular definition.",
-              "The model formulas are D12 =MAX(0,C11*D15) for charity, D14 =D5-D6-D12 for profit before tax, D9 =MAX(0,C8*D14) for tax, and D15 =(1-C8)*D14 for profit after tax — the MAX(0,…) guards handle the no-profit case.",
-              "With iteration enabled the donation converges to about $4,988 (≈$5,000): algebraically C = 0.075 × (71,500 − C) gives C = $4,988.37, so charity is exactly 7.5% (= 10% × 75%) of profit before tax (cell D18 =D12/D14 = 0.075)."
+              "Sam's firm expects $180,000 revenue and $108,500 costs; he will donate 10% of AFTER-TAX profit to charity, but the charity donation is itself deductible before the 25% tax: so Charity = 10% × [(Revenue - Cost - Charity) × (1 - 25%)], a circular definition.",
+              "The model formulas are D12 =MAX(0,C11*D15) for charity, D14 =D5-D6-D12 for profit before tax, D9 =MAX(0,C8*D14) for tax, and D15 =(1-C8)*D14 for profit after tax: the MAX(0,...) guards handle the no-profit case.",
+              "With iteration enabled the donation converges to about $4,988 (≈$5,000): algebraically C = 0.075 × (71,500 - C) gives C = $4,988.37, so charity is exactly 7.5% (= 10% × 75%) of profit before tax (cell D18 =D12/D14 = 0.075)."
             ]
           },
           {
             "heading": "Showing the iterations (extra)",
             "points": [
-              "Model(2) replays 25 iterations explicitly in rows numbered #0–#25: E9 =MAX(0,D$5*H8) takes 10% of the previous row's after-tax profit, F9 =MAX(0,C$8-D$8-E9) recomputes profit before tax, and each row's donation moves closer to the fixed point.",
+              "Model(2) replays 25 iterations explicitly in rows numbered #0-#25: E9 =MAX(0,D$5*H8) takes 10% of the previous row's after-tax profit, F9 =MAX(0,C$8-D$8-E9) recomputes profit before tax, and each row's donation moves closer to the fixed point.",
               "A converging 'spider web' chart plots Donation against Profit-after-tax using step formulas T9 =IF(ISODD($S9),T8,INDEX($E$8:$E$33,INT($S9/2)+1)) and U9 =IF(ISEVEN($S9),U8,INDEX($H$8:$H$33,INT($S9/2)+1)) so the path staircases into the convergence point."
             ]
           }
@@ -791,18 +791,18 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Options and the Black-Scholes formulas",
             "points": [
-              "A CALL option gives the holder the right to BUY an asset at a pre-agreed exercise price in the future; a PUT option gives the right to SELL — the formulas were derived in 1973 by Fischer Black and Myron Scholes.",
-              "Call price = S·N(d1) − X·exp(−rf·t)·N(d2) and Put price = −S·N(−d1) + X·exp(−rf·t)·N(−d2), where S is the share price now, X the exercise price, rf the risk-free rate, σ the volatility per year and t the time to maturity in years.",
-              "The intermediates are d1 = [LN(S/X) + (rf + σ²/2)·t] / [σ·√t] and d2 = [LN(S/X) + (rf − σ²/2)·t] / [σ·√t]; N( ) is the cumulative standard Normal distribution.",
+              "A CALL option gives the holder the right to BUY an asset at a pre-agreed exercise price in the future; a PUT option gives the right to SELL: the formulas were derived in 1973 by Fischer Black and Myron Scholes.",
+              "Call price = S*N(d1) - X*exp(-rf*t)*N(d2) and Put price = -S*N(-d1) + X*exp(-rf*t)*N(-d2), where S is the share price now, X the exercise price, rf the risk-free rate, σ the volatility per year and t the time to maturity in years.",
+              "The intermediates are d1 = [LN(S/X) + (rf + σ²/2)*t] / [σ*√t] and d2 = [LN(S/X) + (rf - σ²/2)*t] / [σ*√t]; N( ) is the cumulative standard Normal distribution.",
               "In BlackScholes.xlsm with S=102.5, X=100, rf=7%, σ=0.8607, t=0.3556 years, cell D15 =D4*D13-D5*EXP(-D6*D8)*D14 prices the call and D21 =-D4*D19+D5*EXP(-D6*D8)*D20 prices the put."
             ]
           },
           {
             "heading": "New Excel functions: LN, EXP, NORMSDIST, NORMDIST",
             "points": [
-              "LN(number) returns the natural logarithm and EXP(number) returns e raised to the power — EXP is the inverse of LN.",
+              "LN(number) returns the natural logarithm and EXP(number) returns e raised to the power: EXP is the inverse of LN.",
               "NORMSDIST(z) returns the cumulative standard Normal probability (mean 0, standard deviation 1); NORMSDIST(0) = 0.5 because half the distribution lies below the mean.",
-              "NORMDIST(x, mean, standard_dev, cumulative) handles a general Normal; standardize with z = (x − mean) / sd so that NORMDIST(x, m, s, TRUE) = NORMSDIST((x−m)/s)."
+              "NORMDIST(x, mean, standard_dev, cumulative) handles a general Normal; standardize with z = (x - mean) / sd so that NORMDIST(x, m, s, TRUE) = NORMSDIST((x-m)/s)."
             ]
           }
         ]
@@ -811,7 +811,7 @@ export const sessions: readonly Session[] = [
   },
   {
     "id": "w5",
-    "title": "Week 5 — Monte Carlo Simulation",
+    "title": "Week 5: Monte Carlo Simulation",
     "subtitle": "IS602-AY2026-27-S5.pdf",
     "topics": [
       {
@@ -823,7 +823,7 @@ export const sessions: readonly Session[] = [
             "points": [
               "Monte Carlo simulation estimates the distribution of an outcome variable by repeated random sampling from the probability functions of the input variables.",
               "It follows 3 steps: (1) specify the probability distributions of the inputs, (2) perform one trial by drawing a random number and equating it to the cumulative probability to get a sampled input value, (3) repeat for many trials to build a distribution of answers.",
-              "The output of a simulation is a distribution of answers, NOT one single answer — you then summarise it with statistics such as the mean or a probability.",
+              "The output of a simulation is a distribution of answers, NOT one single answer: you then summarise it with statistics such as the mean or a probability.",
               "A random draw can be equated to the cumulative probability because cumulative probability always lies between 0 and 1.0, exactly the range RAND() generates in."
             ]
           },
@@ -833,7 +833,7 @@ export const sessions: readonly Session[] = [
               "RAND() returns a continuous uniform random real number in [0, 1.0), i.e. it can equal 0 but never 1; it is used as a cumulative probability number.",
               "RANDBETWEEN(bottom, top) returns a discrete uniform random integer between bottom and top inclusive; it is used as a position number (e.g. picking which data point to resample).",
               "RANDBETWEEN historically required the Analysis Toolpak add-in; INT(RAND()*(top-bottom+1))+bottom is the equivalent built from RAND() alone.",
-              "Pressing F9 recalculates the worksheet, generating a fresh set of random numbers — this is how you 'run' the simulation repeatedly in Excel."
+              "Pressing F9 recalculates the worksheet, generating a fresh set of random numbers: this is how you 'run' the simulation repeatedly in Excel."
             ]
           },
           {
@@ -855,15 +855,15 @@ export const sessions: readonly Session[] = [
             "points": [
               "Resampling, also called boot-strapping, generates additional representative data from a small sample so that simulation models have enough realistic input data.",
               "Method 1 (M1): build frequency bins and a cumulative relative frequency (CRF) table, then look up a RAND() value in the CRF column.",
-              "Method 2 (M2): resample directly from the sample data — M2a for discrete data using SMALL + RANDBETWEEN, M2b for continuous data using PERCENTILE + RAND with interpolation.",
-              "Method 3 (M3): use inverse distribution functions — M3a for continuous distributions (Uniform, Normal, Exponential, ...), M3b for discrete distributions (Uniform, Binomial, Poisson)."
+              "Method 2 (M2): resample directly from the sample data: M2a for discrete data using SMALL + RANDBETWEEN, M2b for continuous data using PERCENTILE + RAND with interpolation.",
+              "Method 3 (M3): use inverse distribution functions: M3a for continuous distributions (Uniform, Normal, Exponential, ...), M3b for discrete distributions (Uniform, Binomial, Poisson)."
             ]
           }
         ]
       },
       {
         "id": "m1-frequency-bins",
-        "title": "M1 — Frequency Bins and the CRF Table",
+        "title": "M1: Frequency Bins and the CRF Table",
         "sections": [
           {
             "heading": "Building and using a CRF table",
@@ -878,7 +878,7 @@ export const sessions: readonly Session[] = [
             "heading": "The LOOKUP down-shift gotcha",
             "points": [
               "LOOKUP finds the LARGEST lookup value that is LESS THAN OR EQUAL TO the target, so the CRF column must be shifted DOWN one row relative to the values column (each value is matched with the cumulative probability of all values below it).",
-              "In DataSim's Discrete sheet this is coded as =LOOKUP(RAND(),M$12:M$32,L$13:L$33) — note the value range L$13:L$33 starts one row lower than the CRF range M$12:M$32.",
+              "In DataSim's Discrete sheet this is coded as =LOOKUP(RAND(),M$12:M$32,L$13:L$33): note the value range L$13:L$33 starts one row lower than the CRF range M$12:M$32.",
               "With VLOOKUP the CRF must be the LEFTMOST column of the table, e.g. VLOOKUP(0.556, H9:I13, 2) returns the value from column 2 for the largest CRF ≤ 0.556."
             ]
           }
@@ -886,12 +886,12 @@ export const sessions: readonly Session[] = [
       },
       {
         "id": "m2-resampling-from-sample",
-        "title": "M2 — Resampling Directly from Sample Data",
+        "title": "M2: Resampling Directly from Sample Data",
         "sections": [
           {
             "heading": "M2a: discrete data with SMALL + RANDBETWEEN",
             "points": [
-              "X' = SMALL(raw data range, RANDBETWEEN(1, N)) picks the k-th smallest value where k is a random position between 1 and the sample size N — every original data point is equally likely to be drawn.",
+              "X' = SMALL(raw data range, RANDBETWEEN(1, N)) picks the k-th smallest value where k is a random position between 1 and the sample size N: every original data point is equally likely to be drawn.",
               "Worked example: sample of N=25 with frequencies 1→3, 2→10, 3→10, 4→2; if RANDBETWEEN(1,25) returns 8, then SMALL returns the 8th smallest value, which is 2.",
               "DataSim Discrete sheet formula: =SMALL($C$12:$C$997,RANDBETWEEN(1,$C$8)) where $C$8 holds =COUNT(C12:C997)."
             ]
@@ -900,7 +900,7 @@ export const sessions: readonly Session[] = [
             "heading": "M2b: continuous data with PERCENTILE + RAND",
             "points": [
               "X' = PERCENTILE(raw data range, RAND()) implicitly sorts the data, assigns percentile positions (k-1)/(N-1), and linearly interpolates between the two data points that bracket the drawn percentile.",
-              "Worked example: sorted data 1.0, 3.0, 5.0, 7.0 sit at percentiles 0, 1/3, 2/3 and 1 (the slide rounds the middle two to 0.33 and 0.66); RAND()=0.5 interpolates via (0.5−1/3)/(2/3−1/3) = (X'−3.0)/(5.0−3.0), giving X' = 4.0, which is what PERCENTILE returns (the rounded 0.33/0.66 would give about 4.03).",
+              "Worked example: sorted data 1.0, 3.0, 5.0, 7.0 sit at percentiles 0, 1/3, 2/3 and 1 (the slide rounds the middle two to 0.33 and 0.66); RAND()=0.5 interpolates via (0.5-1/3)/(2/3-1/3) = (X'-3.0)/(5.0-3.0), giving X' = 4.0, which is what PERCENTILE returns (the rounded 0.33/0.66 would give about 4.03).",
               "DataSim's Explain sheet verifies this consistency: =SMALL($C$6:$C$30,B6) sorts the data, =(B6-1)/24 computes each point's percentile, =PERCENTILE($C$6:$C$30,F6) recovers the X value, and =PERCENTRANK($C$6:$C$30,E6) recovers the Y value.",
               "For discrete data you can also round the continuous resample: =ROUND(PERCENTILE($C$12:$C$997,RAND()),0)."
             ]
@@ -914,10 +914,10 @@ export const sessions: readonly Session[] = [
           {
             "heading": "The four workhorse functions",
             "points": [
-              "BINOMDIST(number_s, trials, probability_s, cumulative) — Binomial: probability of a number of successes in n independent trials each with success probability p; P(X=k) = nCk p^k (1−p)^(n−k).",
-              "POISSON(x, mean, cumulative) — Poisson: probability of x events in a fixed interval given average rate λ; P(X=k) = e^−λ λ^k / k!.",
-              "EXPONDIST(x, lambda, cumulative) — Exponential: models inter-arrival times; lambda is the arrival RATE (1/mean), and f(x) = λe^−λx.",
-              "NORMDIST(x, mean, standard_dev, cumulative) — Normal; NORMSDIST(z) gives the STANDARD normal CDF only, with z = (x − µ)/σ."
+              "BINOMDIST(number_s, trials, probability_s, cumulative): Binomial: probability of a number of successes in n independent trials each with success probability p; P(X=k) = nCk p^k (1-p)^(n-k).",
+              "POISSON(x, mean, cumulative): Poisson: probability of x events in a fixed interval given average rate λ; P(X=k) = e^-λ λ^k / k!.",
+              "EXPONDIST(x, lambda, cumulative): Exponential: models inter-arrival times; lambda is the arrival RATE (1/mean), and f(x) = λe^-λx.",
+              "NORMDIST(x, mean, standard_dev, cumulative): Normal; NORMSDIST(z) gives the STANDARD normal CDF only, with z = (x - µ)/σ."
             ]
           },
           {
@@ -932,22 +932,22 @@ export const sessions: readonly Session[] = [
       },
       {
         "id": "m3-inverse-distributions",
-        "title": "M3 — Inversion of Distribution Functions",
+        "title": "M3: Inversion of Distribution Functions",
         "sections": [
           {
             "heading": "M3a: inverting continuous distributions",
             "points": [
-              "Continuous Uniform: X' = min + RAND()*(max − min).",
+              "Continuous Uniform: X' = min + RAND()*(max - min).",
               "Normal: X' = NORMINV(RAND(), mean, SD); Standard normal: X' = NORMSINV(RAND()).",
-              "Exponential: X' = −mean*LN(1−RAND()), derived by setting Y = F(x) = 1 − e^−λx and solving for x = (−1/λ)ln(1−Y); since 1−RAND() is itself uniform on (0,1], X' = −mean*LN(RAND()) is equivalent.",
-              "EXTRA distributions: Triangular uses P=(mode−min)/(max−min) and one stored draw U=RAND(): X' = min + (max−min)*SQRT(P*U) if U ≤ P, else X' = max − (max−min)*SQRT((1−P)*(1−U)) — DataSim's Triangular column computes exactly this, whereas the slide's second branch starts from min + instead of max −, a typo that would put large draws near min; Lognormal X' = EXP(NORMINV(RAND(), Mean(LN(X)), SD(LN(X)))) = LOGINV(RAND(), mean, SD); Gamma X' = GAMMAINV(RAND(), alpha, beta) with Erlang as the special case of waiting time to the h-th Poisson arrival; Weibull X' = beta*(−LN(RAND()))^(1/alpha); Beta X' = BETAINV(RAND(), alpha, beta, A, B) where A and B bound x."
+              "Exponential: X' = -mean*LN(1-RAND()), derived by setting Y = F(x) = 1 - e^-λx and solving for x = (-1/λ)ln(1-Y); since 1-RAND() is itself uniform on (0,1], X' = -mean*LN(RAND()) is equivalent.",
+              "EXTRA distributions: Triangular uses P=(mode-min)/(max-min) and one stored draw U=RAND(): X' = min + (max-min)*SQRT(P*U) if U ≤ P, else X' = max - (max-min)*SQRT((1-P)*(1-U)): DataSim's Triangular column computes exactly this, whereas the slide's second branch starts from min + instead of max -, a typo that would put large draws near min; Lognormal X' = EXP(NORMINV(RAND(), Mean(LN(X)), SD(LN(X)))) = LOGINV(RAND(), mean, SD); Gamma X' = GAMMAINV(RAND(), alpha, beta) with Erlang as the special case of waiting time to the h-th Poisson arrival; Weibull X' = beta*(-LN(RAND()))^(1/alpha); Beta X' = BETAINV(RAND(), alpha, beta, A, B) where A and B bound x."
             ]
           },
           {
             "heading": "M3b: inverting discrete distributions",
             "points": [
               "Discrete Uniform: X' = RANDBETWEEN(min, max).",
-              "Binomial: X' = CRITBINOM(trials, probability_s, RAND()) — the modern name is BINOM.INV; it returns the smallest value whose cumulative binomial probability is ≥ the RAND() draw.",
+              "Binomial: X' = CRITBINOM(trials, probability_s, RAND()): the modern name is BINOM.INV; it returns the smallest value whose cumulative binomial probability is ≥ the RAND() draw.",
               "Poisson: there is no direct inverse, so use the Binomial approximation with very large n and small p: X' = CRITBINOM(n, mean/n, RAND()) with n large (e.g. 1000), because Poisson is the limit of Binomial with λ = np."
             ]
           }
@@ -970,7 +970,7 @@ export const sessions: readonly Session[] = [
             "heading": "The three simulation steps",
             "points": [
               "Step 1: randomly generate the prize door and the selected door with RANDBETWEEN(1,3), then determine the door to reveal using the Reveal Door Options Matrix: Revealed door = INDEX(array, prize door, selected door), where the diagonal cells hold RANDBETWEEN(2,3), IF(RAND()>0.5,1,3) and RANDBETWEEN(1,2) because the host has two doors to choose from when prize = selected.",
-              "Step 2: determine the final door if the contestant stays (= selected door), if the contestant changes — via the Change Door Options Matrix or the shortcut Change door = 6 − (revealed door + selected door) — and add a 'random door' second contestant with no prior knowledge who picks between the 2 remaining doors with IF(RAND()<0.5, selected, changed).",
+              "Step 2: determine the final door if the contestant stays (= selected door), if the contestant changes (via the Change Door Options Matrix or the shortcut Change door = 6 - (revealed door + selected door)) and add a 'random door' second contestant with no prior knowledge who picks between the 2 remaining doors with IF(RAND()<0.5, selected, changed).",
               "Step 3: evaluate a win as 1 and a loss as 0 using formulas such as IF(door choice = prize door, 1, 0) or (door choice = prize door)*1 (TRUE*1=1, FALSE*1=0), so probabilities can be computed with AVERAGE().",
               "Analytical result: probability of winning if the contestant changes door = 2/3 (of the 3 equally likely initial picks, 2 lead to a win after switching); staying wins 1/3, and the no-knowledge second contestant wins 1/2."
             ]
@@ -993,16 +993,16 @@ export const sessions: readonly Session[] = [
             "heading": "Village tank size",
             "points": [
               "Compute monthly Cumulative Supply from expected average rainfall, catchment area and loss coefficient for 12 months, and monthly Cumulative Demand from population and per-person demand.",
-              "Tank size = MAX(0, Cumulative Supply − Cumulative Demand) over all months − MAX(0, Cumulative Supply − Cumulative Demand) in Dec.",
+              "Tank size = MAX(0, Cumulative Supply - Cumulative Demand) over all months - MAX(0, Cumulative Supply - Cumulative Demand) in Dec.",
               "May has the maximum supply-demand gap, so the tank must cater for it; the December term is subtracted so leftover year-end water is removed, otherwise the tank would need to grow every year."
             ]
           },
           {
             "heading": "Household tank size and adding uncertainty",
             "points": [
-              "Household hourly Cumulative Demand uses the sinusoidal consumption pattern (1 − SIN(i/24 * 2π)) for the i-th hour, while hourly Cumulative Supply is the household's constant-flow share (5 members out of 1000).",
-              "Household tank size = MAX(0, Cum Supply − Cum Demand) over 24 hours − MAX(0, Cum Supply − Cum Demand) at Hour 24; hours 11-12 show the maximum difference.",
-              "To model unreliable rainfall, replace fixed average rainfall with MAX(0, average rainfall − variation) where variation = NORMINV(RAND(), 0, CV*MEAN) and CV = SD/MEAN; simulation then gives the probability that Supply > Demand, which advises a safety factor for the tank size."
+              "Household hourly Cumulative Demand uses the sinusoidal consumption pattern (1 - SIN(i/24 * 2π)) for the i-th hour, while hourly Cumulative Supply is the household's constant-flow share (5 members out of 1000).",
+              "Household tank size = MAX(0, Cum Supply - Cum Demand) over 24 hours - MAX(0, Cum Supply - Cum Demand) at Hour 24; hours 11-12 show the maximum difference.",
+              "To model unreliable rainfall, replace fixed average rainfall with MAX(0, average rainfall - variation) where variation = NORMINV(RAND(), 0, CV*MEAN) and CV = SD/MEAN; simulation then gives the probability that Supply > Demand, which advises a safety factor for the tank size."
             ]
           }
         ]
@@ -1011,7 +1011,7 @@ export const sessions: readonly Session[] = [
   },
   {
     "id": "w6",
-    "title": "Week 6 — Queuing Model, Date & Time, and Macro Recording (VBA)",
+    "title": "Week 6: Queuing Model, Date & Time, and Macro Recording (VBA)",
     "subtitle": "IS602-AY2026-27-S6.pdf",
     "topics": [
       {
@@ -1063,7 +1063,7 @@ export const sessions: readonly Session[] = [
             "points": [
               "Wrong: YEAR(14-Jan-05). A date typed bare inside a formula is not read as a date.",
               "Valid alternatives: quoted date text, YEAR(\"14-Jan-05\"); a cell that holds the date, YEAR(B15); or the serial number itself, YEAR(39014) = 2006.",
-              "Subtraction follows the same rule. Typed bare, 14-Jan-05 – 23-Sep-04 is wrong, but \"14-Jan-05\" – \"23-Sep-04\" and DATE(2005,1,14) – DATE(2004,9,23) both return 113 days.",
+              "Subtraction follows the same rule. Typed bare, 14-Jan-05 - 23-Sep-04 is wrong, but \"14-Jan-05\" - \"23-Sep-04\" and DATE(2005,1,14) - DATE(2004,9,23) both return 113 days.",
               "DATE(y,m,d) builds the date from plain numbers, so you never have to type date text inside a formula."
             ]
           },
@@ -1085,8 +1085,8 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Day, month and year codes",
             "points": [
-              "d shows the day as 1–31 and dd as 01–31, but ddd shows the weekday as Sun–Sat and dddd as Sunday–Saturday.",
-              "m shows the month as 1–12 and mm as 01–12, while mmm shows Jan–Dec and mmmm January–December.",
+              "d shows the day as 1-31 and dd as 01-31, but ddd shows the weekday as Sun-Sat and dddd as Sunday-Saturday.",
+              "m shows the month as 1-12 and mm as 01-12, while mmm shows Jan-Dec and mmmm January-December.",
               "The slides point out an inconsistency: three or four d's switch from day-of-month to day-of-week, but three or four m's still mean the month.",
               "yy shows a 2-digit year (08) and yyyy a 4-digit year (2008). The record-management sheet uses dd/mm/yyyy for date of birth."
             ]
@@ -1094,8 +1094,8 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Time codes",
             "points": [
-              "h shows hours as 0–23 and hh as 00–23. m/mm show minutes (0–59) and s/ss show seconds (0–59). The letter m means minutes when it sits in a time pattern such as h:mm or mm:ss.",
-              "[h] keeps counting past 23 (…, 23, 24, 25, …), so it is the code for elapsed time that can exceed one day.",
+              "h shows hours as 0-23 and hh as 00-23. m/mm show minutes (0-59) and s/ss show seconds (0-59). The letter m means minutes when it sits in a time pattern such as h:mm or mm:ss.",
+              "[h] keeps counting past 23 (..., 23, 24, 25, ...), so it is the code for elapsed time that can exceed one day.",
               "AM/PM or am/pm switches the display to a 12-hour clock."
             ]
           },
@@ -1148,7 +1148,7 @@ export const sessions: readonly Session[] = [
             "points": [
               "A inter-arrival time and B service time are simulated with -mean*LN(RAND()).",
               "C arrival = previous arrival + A; D service start = MAX(previous customer's service end, C); E service end = D + B.",
-              "F wait = D − C; G system time = E − C = F + B; H system queue length = COUNTIF of all previous customers whose service end time is later than C.",
+              "F wait = D - C; G system time = E - C = F + B; H system queue length = COUNTIF of all previous customers whose service end time is later than C.",
               "MAX encodes the single-server rule: service starts at whichever is later, the customer's arrival or the moment the server finishes the previous customer."
             ]
           },
@@ -1235,8 +1235,8 @@ export const sessions: readonly Session[] = [
           {
             "heading": "Summary measures",
             "points": [
-              "Balk proportion = (total arrivals − total who joined) / total arrivals: F8 =(COUNT(E15:E99)-COUNT(F15:F99))/COUNT(E15:E99).",
-              "Renege proportion = (total who joined − total who actually started service) / total who joined: G8 =(COUNT(F15:F99)-COUNT(H15:H99))/COUNT(F15:F99).",
+              "Balk proportion = (total arrivals - total who joined) / total arrivals: F8 =(COUNT(E15:E99)-COUNT(F15:F99))/COUNT(E15:E99).",
+              "Renege proportion = (total who joined - total who actually started service) / total who joined: G8 =(COUNT(F15:F99)-COUNT(H15:H99))/COUNT(F15:F99).",
               "J8 =AVERAGE(J15:J99) and K8 =AVERAGE(K15:K99) give the average wait and system time, and L8 =SUMPRODUCT((L16:L98+1+L17:L99)/2,C17:C99)/(I8-H15) the average number in the system.",
               "Sanity check: the stored utilisation D8 =(SUM(I15:I99)-SUM(H15:H99))/(I4*(I8-I14)) reads 12.63 in 'c-Server (BR)', which is impossible for a utilisation. Every reneged customer adds an end clock time in I with no start time in H to subtract. Summing only the service times of customers who actually started gives about 0.72 for the same run."
             ]
@@ -1317,7 +1317,7 @@ export const sessions: readonly Session[] = [
   },
   {
     "id": "w9",
-    "title": "Week 9 — Macros & VBA",
+    "title": "Week 9: Macros & VBA",
     "subtitle": "IS602-AY2026-S7-S9.pdf",
     "topics": [
       {
@@ -1631,7 +1631,7 @@ export const sessions: readonly Session[] = [
   },
   {
     "id": "w10",
-    "title": "Week 10 — Decision Support: AutoFilter, Advanced Filter & PivotTables",
+    "title": "Week 10: Decision Support: AutoFilter, Advanced Filter & PivotTables",
     "subtitle": "IS602-AY2026-27-S10.pdf",
     "topics": [
       {

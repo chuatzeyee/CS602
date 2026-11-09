@@ -20,16 +20,16 @@ type Choice =
 const MENUS: Record<Kind, { title: string; items: [Choice, string][] }> = {
   number: {
     title: 'Number Filters',
-    items: [['eq', 'Equals…'], ['ne', 'Does Not Equal…'], ['gt', 'Greater Than…'], ['ge', 'Greater Than Or Equal To…'], ['lt', 'Less Than…'],
-      ['le', 'Less Than Or Equal To…'], ['between', 'Between…'], ['top10', 'Top 10…'], ['above', 'Above Average'], ['below', 'Below Average'], ['custom', 'Custom Filter…']],
+    items: [['eq', 'Equals...'], ['ne', 'Does Not Equal...'], ['gt', 'Greater Than...'], ['ge', 'Greater Than Or Equal To...'], ['lt', 'Less Than...'],
+      ['le', 'Less Than Or Equal To...'], ['between', 'Between...'], ['top10', 'Top 10...'], ['above', 'Above Average'], ['below', 'Below Average'], ['custom', 'Custom Filter...']],
   },
   date: {
     title: 'Date Filters',
-    items: [['eq', 'Equals…'], ['lt', 'Before…'], ['gt', 'After…'], ['between', 'Between…'], ['custom', 'Custom Filter…']],
+    items: [['eq', 'Equals...'], ['lt', 'Before...'], ['gt', 'After...'], ['between', 'Between...'], ['custom', 'Custom Filter...']],
   },
   text: {
     title: 'Text Filters',
-    items: [['eq', 'Equals…'], ['ne', 'Does Not Equal…'], ['begins', 'Begins With…'], ['ends', 'Ends With…'], ['contains', 'Contains…'], ['notContains', 'Does Not Contain…'], ['custom', 'Custom Filter…']],
+    items: [['eq', 'Equals...'], ['ne', 'Does Not Equal...'], ['begins', 'Begins With...'], ['ends', 'Ends With...'], ['contains', 'Contains...'], ['notContains', 'Does Not Contain...'], ['custom', 'Custom Filter...']],
   },
 }
 const DATE_FMT = /[dy]|m{3,}/i

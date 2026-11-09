@@ -39,7 +39,7 @@ function useSearchShortcut() {
   }, [navigate])
 }
 
-const loading = <div className="max-w-3xl mx-auto px-4 pt-12 text-ink-muted text-sm">Loading…</div>
+const loading = <div className="max-w-3xl mx-auto px-4 pt-12 text-ink-muted text-sm">Loading...</div>
 
 export default function App() {
   const { pathname } = useLocation()
@@ -84,13 +84,10 @@ export default function App() {
           </Suspense>
         </LabErrorBoundary>
         {!OFFLINE && (
-        <footer className="max-w-5xl mx-auto px-4 pt-16 text-[11px] leading-relaxed text-ink-muted">
-          Study guide for SMU IS602/CS602, not affiliated with or endorsed by SMU. Notes, exercises and mock exams are
-          original; course materials belong to their owners. Code licensed{' '}
-          <a href={`${import.meta.env.BASE_URL}LICENSE.txt`} className="underline hover:text-ink-secondary">GPL-3.0-or-later</a> ·
-          Spreadsheet engine: HyperFormula (GPLv3) ·{' '}
-          <a href={`${import.meta.env.BASE_URL}THIRD_PARTY_LICENSES.txt`} className="underline hover:text-ink-secondary">third-party licences</a> ·{' '}
-          <a href="https://github.com/chuatzeyee/CS602" className="underline hover:text-ink-secondary">Source on GitHub</a>
+        <footer className="max-w-5xl mx-auto px-4 pt-16 text-[11px] leading-relaxed text-ink-muted flex flex-wrap gap-x-4 gap-y-1">
+          <a href={`${import.meta.env.BASE_URL}LICENSE.txt`} className="underline hover:text-ink-secondary">Code licence: GPL-3.0-or-later</a>
+          <span>Spreadsheet engine: HyperFormula (GPLv3)</span>
+          <a href={`${import.meta.env.BASE_URL}THIRD_PARTY_LICENSES.txt`} className="underline hover:text-ink-secondary">Third-party licences</a>
         </footer>
         )}
       </main>

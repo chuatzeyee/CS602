@@ -169,7 +169,7 @@ try {
     await enter(page, 'A1', '5')
     await enter(page, 'B1', '=A1*2')
     await toolBtn(page, 'What-If Analysis').click()
-    await page.getByRole('menuitem', { name: 'Goal Seek…' }).click()
+    await page.getByRole('menuitem', { name: 'Goal Seek...' }).click()
     const dlg = page.getByRole('dialog', { name: 'Goal Seek', exact: true })
     await dlg.getByRole('textbox', { name: 'Set cell:' }).fill('B1')
     await dlg.getByRole('textbox', { name: 'To value:' }).fill('20')

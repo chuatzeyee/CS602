@@ -7,7 +7,7 @@ export const walkthroughs: readonly Lab[] = [
     "title": "CommunityWaterTank.xlsx: minimising the cost of a 30 cbm village water tank",
     "overview": "Sammy must build an open-top rectangular concrete tank holding 30 cubic metres of water. Site constraints fix the width at 2 m; the base costs $10/sqm and the sides $5/sqm. The workbook enumerates candidate heights, derives length from the fixed volume, computes areas and cost per row, and reveals a U-shaped cost curve with its minimum of $305 at height 3.87 m. It is the week's signature example of separating parameters, decisions and outputs.",
     "takeaways": [
-      "Separate the worksheet into parameters, decision column, derived columns and documentation — never hardcode a number inside a formula.",
+      "Separate the worksheet into parameters, decision column, derived columns and documentation: never hardcode a number inside a formula.",
       "Enter each parameter once (width in C6) and reference it absolutely (=$C$6) so a single edit updates the entire model.",
       "Anchor deliberately: $C$3 for the constant volume, relative B6/C6 for row-specific values, and SUMPRODUCT with absolute unit costs for a fill-safe cost line.",
       "Enumerating a decision over a sensible grid exposes the U-shaped cost curve and brackets the minimum without any advanced tools: the best grid row is $305 at H = 4 m, and the workbook's note puts the true optimum at about H = 3.87 m (still ≈ $305).",
@@ -25,7 +25,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Enumerate the decision variable down column B",
-        "explanation": "Candidate heights run from 0.25 m to 7 m in B6:B18 (0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, then 3 to 7). Trying a spread of values — fine steps where the action is, coarse steps beyond — is the Week 1 way to 'optimise' before any solver is taught."
+        "explanation": "Candidate heights run from 0.25 m to 7 m in B6:B18 (0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, then 3 to 7). Trying a spread of values (fine steps where the action is, coarse steps beyond) is the Week 1 way to 'optimise' before any solver is taught."
       },
       {
         "title": "Enter the width once, reference it everywhere",
@@ -39,7 +39,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Compute the two areas",
-        "explanation": "Base area is width times length. The open-top tank has four walls — two of W x H and two of L x H — giving 2(W+L)H. Both formulas are fully relative and fill straight down.",
+        "explanation": "Base area is width times length. The open-top tank has four walls (two of W x H and two of L x H) giving 2(W+L)H. Both formulas are fully relative and fill straight down.",
         "code": "E6: =C6*D6\nF6: =2*(C6+D6)*B6"
       },
       {
@@ -53,7 +53,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Document the model",
-        "explanation": "Rows 20-29 hold the Documentation block: every labelled quantity, its cell, and either '<Input>' or its one representative formula — exactly the convention Assignment 0 grades against.",
+        "explanation": "Rows 20-29 hold the Documentation block: every labelled quantity, its cell, and either '<Input>' or its one representative formula: exactly the convention Assignment 0 grades against.",
         "code": "Tank volume   C3     <Input>\nTank height   B6     <Input>, 0.25, 0.5, ...\nTank width    C6,C7  <Input>, =$C$6\nTank length   D6     =$C$3/(B6*C6)\nBase area     E6     =C6*D6\nSide area     F6     =2*(C6+D6)*B6\nTank cost     G6     =SUMPRODUCT($E$3:$F$3,E6:F6)"
       }
     ]
@@ -62,13 +62,13 @@ export const walkthroughs: readonly Lab[] = [
     "id": "datacenterassets-capacity-plan",
     "week": "W1",
     "title": "DataCenterAssets.xlsx: projecting SAM Bank's IT asset requirements with performance ratios and TREND",
-    "overview": "SAM Bank's CEO wants a simple model to project IT capacity for the next five years from ten years of actuals: customer deposits ($3.91b to $23.92b), headcount (743 to 2,320) and seven asset classes. Auto-filling the asset columns directly would be wrong — requirements are driven by business volume through performance ratios. The model computes historical ratios, projects them with anchored TREND formulas, lets management negotiate the targets, and divides projected volume by the planned ratio.",
+    "overview": "SAM Bank's CEO wants a simple model to project IT capacity for the next five years from ten years of actuals: customer deposits ($3.91b to $23.92b), headcount (743 to 2,320) and seven asset classes. Auto-filling the asset columns directly would be wrong: requirements are driven by business volume through performance ratios. The model computes historical ratios, projects them with anchored TREND formulas, lets management negotiate the targets, and divides projected volume by the planned ratio.",
     "takeaways": [
       "Model the DRIVER, not the symptom: project performance ratios (volume per asset) and derive asset counts, instead of extrapolating asset counts directly.",
-      "The three-step pattern — historical ratio =$C9/E9, TREND projection, requirement =$C19/E37 — turns one careful formula per step into a full 7-asset, 5-year capacity plan.",
+      "The three-step pattern (historical ratio =$C9/E9, TREND projection, requirement =$C19/E37) turns one careful formula per step into a full 7-asset, 5-year capacity plan.",
       "Method 1's seven $ signs (=TREND(E$27:E$36,$C$27:$C$36,$C37)) are the fewest that keep the 10-year history window fixed while the formula fills in both directions.",
       "TREND output is a starting point: real plans copy the projections into input cells and adjust them in a negotiated process into performance targets.",
-      "The choice of x-variable (time, volume, or headcount) changes the projection — document the assumption and question whether the capacity measures are even the right ones."
+      "The choice of x-variable (time, volume, or headcount) changes the projection: document the assumption and question whether the capacity measures are even the right ones."
     ],
     "steps": [
       {
@@ -85,38 +85,38 @@ export const walkthroughs: readonly Lab[] = [
         "explanation": "Auto-filling E19:K23 straight from the asset history would extrapolate a least-squares line through quantities that have no direct straight-line relationship with time. The case advice warns that with growth slowing, such rough planning risks buying equipment too early, paying for far more than is needed, or being left with obsolete technology."
       },
       {
-        "title": "Step 1 — compute historical performance ratios",
+        "title": "Step 1: compute historical performance ratios",
         "explanation": "Performance = Business Volume / # Equipment. One mixed-reference formula covers the whole block: $C locks the deposits column so the formula fills right across all seven asset classes, and the free row number lets it fill down ten years. Year 1 low-end servers: 3.91/20 = 0.1955 $b per BIPS.",
         "code": "E27: =$C9/E9   (fills right to =$C9/F9 ... =$C9/K9, and down to =$C18/E18)"
       },
       {
-        "title": "Step 2 — project the ratios with anchored TREND",
-        "explanation": "The Trends block (rows 45-49) predicts each ratio at the projected deposit levels. Method 1 anchoring — 'seven $ signs' — locks the rows of known_y (fill down keeps the 10-year history), locks known_x completely (fill right stays on deposits), and column-locks new_x so it advances down the projected years.",
+        "title": "Step 2: project the ratios with anchored TREND",
+        "explanation": "The Trends block (rows 45-49) predicts each ratio at the projected deposit levels. Method 1 anchoring: 'seven $ signs': locks the rows of known_y (fill down keeps the 10-year history), locks known_x completely (fill right stays on deposits), and column-locks new_x so it advances down the projected years.",
         "code": "E45: =TREND(E$27:E$36,$C$27:$C$36,$C37)\n(time-based alternative:  =TREND(E$27:E$36,$B$27:$B$36,$B37);\n size-based alternative:  =TREND(E$27:E$36,$D$27:$D$36,$D37))"
       },
       {
         "title": "Negotiate the planned performance targets",
-        "explanation": "The projected ratios actually used (E37:K41) are typed <Input> values — per the documentation, 'values copied from E45:K49 and then adjusted'. The sheet's own Notes column (cell N24) explains that management then negotiates the TREND values and records the agreed figures as planned performance targets, and the sheet warns that ratios projected this way may not be acceptable. E37 ends up 0.29 rising to 0.50 by the fifth projected year.",
+        "explanation": "The projected ratios actually used (E37:K41) are typed <Input> values: per the documentation, 'values copied from E45:K49 and then adjusted'. The sheet's own Notes column (cell N24) explains that management then negotiates the TREND values and records the agreed figures as planned performance targets, and the sheet warns that ratios projected this way may not be acceptable. E37 ends up 0.29 rising to 0.50 by the fifth projected year.",
         "code": "E37:K41: <Input>  (e.g. E37: 0.29, E38: 0.31, E39: 0.35, E40: 0.40, E41: 0.50)"
       },
       {
-        "title": "Step 3 — derive the future asset requirements",
+        "title": "Step 3: derive the future asset requirements",
         "explanation": "New IT Assets # = New Business Volume / New Performance ratio. Again $C anchors the deposit column so one formula serves all seven asset classes and all five years. First projected year, low-end servers: 27.74/0.29 = 95.7 BIPS.",
         "code": "E19: =$C19/E37   (fills right to =$C19/F37 and down to =$C23/E41)"
       },
       {
         "title": "Interrogate the model, not just the numbers",
-        "explanation": "The Notes column keeps the analysis honest: 'Are the measures of capacity used correct?' and 'What are the strengths and weaknesses of this data center?' — plus a reminder that other assets (power distribution, cooling) sit outside the model. Productivity may be treated as a function of time, business volume, or organisation size; the choice is a modelling judgement, not an Excel setting."
+        "explanation": "The Notes column keeps the analysis honest: 'Are the measures of capacity used correct?' and 'What are the strengths and weaknesses of this data center?': plus a reminder that other assets (power distribution, cooling) sit outside the model. Productivity may be treated as a function of time, business volume, or organisation size; the choice is a modelling judgement, not an Excel setting."
       }
     ]
   },
   {
     "id": "w2-inkjet-printer",
     "week": "W2",
-    "title": "InkJetPrinter.xlsm — Engineering the Bait & Hook Model",
+    "title": "InkJetPrinter.xlsm: Engineering the Bait & Hook Model",
     "overview": "Builds the inkjet pricing model in stages: real market data, blackbox classification, a rough model that Solver breaks, a price-demand function, prototypes with and without fixed cost, the final trade-off model, and a two-way Data Table for sensitivity.",
     "takeaways": [
-      "A model without the price-demand relationship gives absurd answers (infinite optimal price) — structure before optimization.",
+      "A model without the price-demand relationship gives absurd answers (infinite optimal price): structure before optimization.",
       "Goal Seek finds breakeven (one cell to one value); Solver finds the optimum (MAX with several variables and constraints).",
       "Trade-off analysis varies decisions (price); sensitivity analysis varies uncontrollable parameters (slope, cartridges per printer).",
       "Breaking calculations into simple intermediate formulas made the missing fixed cost easy to catch by hand verification.",
@@ -125,11 +125,11 @@ export const walkthroughs: readonly Lab[] = [
     "steps": [
       {
         "title": "Understand the business problem",
-        "explanation": "The Home sheet asks how inkjet printers can be sold so cheaply — is a low production cost the only reason? The lecture turns that into the modelling task: choose printer and cartridge prices that maximize profit under a Bait & Hook strategy — sell the printer cheap (even below cost) and profit on marked-up proprietary cartridges. The Learn sheet lists the modelling steps to follow."
+        "explanation": "The Home sheet asks how inkjet printers can be sold so cheaply (is a low production cost the only reason? The lecture turns that into the modelling task: choose printer and cartridge prices that maximize profit under a Bait & Hook strategy) sell the printer cheap (even below cost) and profit on marked-up proprietary cartridges. The Learn sheet lists the modelling steps to follow."
       },
       {
         "title": "Ground the model in real data",
-        "explanation": "The Data sheet lists actual market prices: Epson Stylus C43SX $75 (cartridge $29.80), Canon i255 $89 ($23.90), Lexmark Z617 $59 ($65.50), HP Deskjet 3744 $75 ($46). The Lexmark cartridge costs MORE than the printer — ratio 1.11.",
+        "explanation": "The Data sheet lists actual market prices: Epson Stylus C43SX $75 (cartridge $29.80), Canon i255 $89 ($23.90), Lexmark Z617 $59 ($65.50), HP Deskjet 3744 $75 ($46). The Lexmark cartridge costs MORE than the printer: ratio 1.11.",
         "code": "C11: =C7+C10    ' printer + cartridge bundle\nC12: =C10/C7    ' cartridge/printer price ratio, copied across; Lexmark's (E12) = 1.11"
       },
       {
@@ -137,8 +137,8 @@ export const walkthroughs: readonly Lab[] = [
         "explanation": "Decisions: Printer Price, Cartridge Price. Parameters: Printer Unit Cost, Cartridge Unit Cost, Fixed Cost. The workbook's Black-Box sheet lists Profit, Total Revenue, Total Cost, Printer Revenue and Cartridge Revenue under Performance Measures, with Printer Demand and Cartridge Demand as Consequence Variables; the lecture slides simplify this to Profit as the sole performance measure and Total Revenue, Total Cost, Printer Demand and Cartridge Demand as consequence variables. The sheet also defines Historical variables (uncontrollable inputs with fixed values)."
       },
       {
-        "title": "Audit the rough model — and watch Solver break it",
-        "explanation": "In a rough model where demand ignores price — the Proto sheet, whose printer demand C13 is a typed 6.4 (thousand) — Solver asked to maximize profit (target = Profit C27, MAX, changing printer price C5) answers: optimal printer price = infinity! Higher price is always better when demand never falls. Lesson: the model is wrong, not Solver. The FormulaAudit sheet (titled 'Rough Model', with a button that toggles trace arrows) shows the repaired logic in miniature: printer demand E8 is linked to price and every formula feeds profit in M13.",
+        "title": "Audit the rough model: and watch Solver break it",
+        "explanation": "In a rough model where demand ignores price (the Proto sheet, whose printer demand C13 is a typed 6.4 (thousand)) Solver asked to maximize profit (target = Profit C27, MAX, changing printer price C5) answers: optimal printer price = infinity! Higher price is always better when demand never falls. Lesson: the model is wrong, not Solver. The FormulaAudit sheet (titled 'Rough Model', with a button that toggles trace arrows) shows the repaired logic in miniature: printer demand E8 is linked to price and every formula feeds profit in M13.",
         "code": "E8:  =10-0.06*C5          ' printer demand ('000)\nG8:  =6*E8+0*C12          ' cartridge demand\nI5:  =C5*E8               ' printer revenue\nK8:  =I5+I12              ' total revenue\nK20: =C17*E8+C20*G8+C23   ' total cost incl. fixed\nM13: =K8-K20              ' profit"
       },
       {
@@ -148,12 +148,12 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Prototype the full income statement",
-        "explanation": "Proto computes margins, revenue, cost and profit at trial prices $60/$20 with demands 6.4k printers / 42k cartridges — profit 368k. But an embedded question asks: 'Shouldn't there be a fixed cost?' Verification by hand catches the omission.",
-        "code": "C15: =(C5-C9)/C9     ' printer margin 9.1%\nC16: =(C6-C10)/C10   ' cartridge margin 66.7%\nC21: =C19+C20        ' total revenue 1,224k\nC24: =C22+C23        ' total cost 856k (no fixed cost!)\nC27: =C25+C26        ' profit 368k — overstated"
+        "explanation": "Proto computes margins, revenue, cost and profit at trial prices $60/$20 with demands 6.4k printers / 42k cartridges: profit 368k. But an embedded question asks: 'Shouldn't there be a fixed cost?' Verification by hand catches the omission.",
+        "code": "C15: =(C5-C9)/C9     ' printer margin 9.1%\nC16: =(C6-C10)/C10   ' cartridge margin 66.7%\nC21: =C19+C20        ' total revenue 1,224k\nC24: =C22+C23        ' total cost 856k (no fixed cost!)\nC27: =C25+C26        ' profit 368k: overstated"
       },
       {
         "title": "Refine with fixed cost and the IF guard",
-        "explanation": "Proto(2) adds the $70k fixed cost and a behavioral rule: if the cartridge price exceeds 2/3 of the printer price, printer demand collapses to 0. Cartridge demand is now computed as 6 per printer (38.4k instead of Proto's typed 42k), so with the fixed cost profit at $60/$20 falls from 368k to 269.2k (368 − 28.8 lost cartridge profit − 70 fixed cost).",
+        "explanation": "Proto(2) adds the $70k fixed cost and a behavioral rule: if the cartridge price exceeds 2/3 of the printer price, printer demand collapses to 0. Cartridge demand is now computed as 6 per printer (38.4k instead of Proto's typed 42k), so with the fixed cost profit at $60/$20 falls from 368k to 269.2k (368 - 28.8 lost cartridge profit - 70 fixed cost).",
         "code": "C18: =IF(C6/C5 > C12, 0, C15*C5+C14)   ' guarded demand\nC19: =C18*C13                           ' cartridge demand = 6 per printer\nC29: =C27+C28+C11                       ' total cost + fixed cost\nC32: =C30+C31-C11                       ' profit = 269.2k"
       },
       {
@@ -175,18 +175,18 @@ export const walkthroughs: readonly Lab[] = [
   {
     "id": "w2-invest-in-education",
     "week": "W2",
-    "title": "InvestInEducation.xlsx — From Blackbox to a 10-Level Margin Model",
+    "title": "InvestInEducation.xlsx: From Blackbox to a 10-Level Margin Model",
     "overview": "Models a social-enterprise investment: contributors sponsor students at 10 education levels and receive a share of future salaries, discounted by default risk. The walkthrough builds the per-level and total margin calculations and reads off the key findings.",
     "takeaways": [
       "Expected value handles risk simply: multiply the return by (1 - default probability).",
-      "Dollar margin and margin % rank levels differently — Upper primary wins on dollars, Technical degree on percentage — so pick the performance measure before optimizing.",
+      "Dollar margin and margin % rank levels differently (Upper primary wins on dollars, Technical degree on percentage) so pick the performance measure before optimizing.",
       "Row-anchored mixed references (C$16, C$21) pin the student-count and default-probability rows, while the free column letter lets one formula copy across all 10 levels.",
       "Keeping decision, parameter and output rows separate makes the model instantly ready for what-if analysis on student counts."
     ],
     "steps": [
       {
         "title": "Frame the case",
-        "explanation": "Contributors expect returns — this is an investment, not a donation. The return is a percentage of the sponsored person's salary, but sponsored students may default. The model must find each level's expected margin, the best levels, and the overall margin."
+        "explanation": "Contributors expect returns: this is an investment, not a donation. The return is a percentage of the sponsored person's salary, but sponsored students may default. The model must find each level's expected margin, the best levels, and the overall margin."
       },
       {
         "title": "Classify with the blackbox",
@@ -198,7 +198,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Enter the decision row",
-        "explanation": "Row 16 holds the student counts — 50, 50, 20, 20, 15, 10, 8, 6, 5, 3 across the levels. This is the only row a decision maker changes in what-if analysis."
+        "explanation": "Row 16 holds the student counts: 50, 50, 20, 20, 15, 10, 8, 6, 5, 3 across the levels. This is the only row a decision maker changes in what-if analysis."
       },
       {
         "title": "Compute investment per level",
@@ -249,7 +249,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Retrieve by position with INDEX",
-        "explanation": "With the position 1 typed in G4, INDEX returns the country name at that row of the array — Liechtenstein. INDEX answers 'what is at this position?'",
+        "explanation": "With the position 1 typed in G4, INDEX returns the country name at that row of the array: Liechtenstein. INDEX answers 'what is at this position?'",
         "code": "H4: =INDEX(B2:B226,G4)"
       },
       {
@@ -274,7 +274,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Return the whole row with a spill formula",
-        "explanation": "Setting column_num to 0 makes INDEX return the entire matching row (GDP and Population together), which spills into the adjacent cell — the sheet labels this 'One MATCH within INDEX - Spill Formula - start by selecting first cell'. Add @ in front to undo the spill and get a single value.",
+        "explanation": "Setting column_num to 0 makes INDEX return the entire matching row (GDP and Population together), which spills into the adjacent cell: the sheet labels this 'One MATCH within INDEX - Spill Formula - start by selecting first cell'. Add @ in front to undo the spill and get a single value.",
         "code": "H26: =INDEX(C2:D226,MATCH(G24,B2:B226,0),0)"
       }
     ]
@@ -285,7 +285,7 @@ export const walkthroughs: readonly Lab[] = [
     "title": "CasinoHotel.xlsx: LP guest-mix optimization with Solver",
     "overview": "The Model sheet finds the guest mix across four guest types (Slot Machine Player, Game of Chance Player, Show-time Guest, High Roller) that maximizes daily net income, subject to per-type demand limits, total occupancy and fire-safety limits, and a floor space budget.",
     "takeaways": [
-      "Structure LP models in layers: decision variables, parameters, consequence variables, then a single objective cell — mirroring the influence diagram.",
+      "Structure LP models in layers: decision variables, parameters, consequence variables, then a single objective cell: mirroring the influence diagram.",
       "Express constraints as spreadsheet cells (LHS formula, comparison, RHS cell) so the Solver dialog just points at them, e.g. H17 <= J17.",
       "SUM with negative terms, e.g. =SUM(H14, -H20), keeps additive models auditable compared to long a-b-c expressions.",
       "Binding constraints reveal the economics: the optimal mix uses all 40,000 units of net floor space and hits the 2000-guest fire-safety ceiling, telling management which limits cost them money.",
@@ -298,7 +298,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Lay out the decision variables",
-        "explanation": "C4:F4 hold the number of guests of each type — these are the cells Solver will change. Row 5 holds each type's minimum demand (500, 350, 250, 50) and row 6 the maximum (1000, 900, 750, 80); H4 totals the guests.",
+        "explanation": "C4:F4 hold the number of guests of each type: these are the cells Solver will change. Row 5 holds each type's minimum demand (500, 350, 250, 50) and row 6 the maximum (1000, 900, 750, 80); H4 totals the guests.",
         "code": "H4: =SUM(C4:F4)"
       },
       {
@@ -312,7 +312,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Build the objective: net income",
-        "explanation": "Total revenue H14 adds base and food revenue; net income J14 subtracts total direct expense. J14 is labeled '(to maximize)' — it is the objective cell.",
+        "explanation": "Total revenue H14 adds base and food revenue; net income J14 subtracts total direct expense. J14 is labeled '(to maximize)': it is the objective cell.",
         "code": "H14: =SUM(H18:H19)\nJ14: =SUM(H14, -H20)"
       },
       {
@@ -322,7 +322,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Configure Solver",
-        "explanation": "Per the sheet's own Documentation block: 'Use Solver to maximize J14 by changing C4:F4 subject to' C4:F4 <= C6:F6 (max demand), C4:F4 >= C5:F5 (min demand), H17 <= J17 (floor space), H4 >= J4 (occupancy of at least 1000), and H4 <= K4 (fire safety cap of 2000). Add C4:F4 = integer since fractional guests are meaningless — the integer constraint goes on decision variables only."
+        "explanation": "Per the sheet's own Documentation block: 'Use Solver to maximize J14 by changing C4:F4 subject to' C4:F4 <= C6:F6 (max demand), C4:F4 >= C5:F5 (min demand), H17 <= J17 (floor space), H4 >= J4 (occupancy of at least 1000), and H4 <= K4 (fire safety cap of 2000). Add C4:F4 = integer since fractional guests are meaningless: the integer constraint goes on decision variables only."
       },
       {
         "title": "Run Solver and interpret the answer",
@@ -334,13 +334,13 @@ export const walkthroughs: readonly Lab[] = [
     "id": "timevalue-seven-functions",
     "week": "W4",
     "title": "TimeValue.xlsm: All Seven Financial Functions, With and Without Excel",
-    "overview": "One workbook, one sheet per function (PMT, PV, FV, RATE, NPER, NPV, IRR). Every sheet solves the same situation twice — once with the Excel financial function and once with a manual period-by-period schedule (searched with Goal Seek on the PMT, PV, RATE and IRR sheets; computed straight forward on FV, NPER and NPV) — proving the function and the first-principles model agree.",
+    "overview": "One workbook, one sheet per function (PMT, PV, FV, RATE, NPER, NPV, IRR). Every sheet solves the same situation twice (once with the Excel financial function and once with a manual period-by-period schedule (searched with Goal Seek on the PMT, PV, RATE and IRR sheets; computed straight forward on FV, NPER and NPV)) proving the function and the first-principles model agree.",
     "takeaways": [
-      "Every Group 1 function (PMT, PV, FV, RATE, NPER) is the same five-quantity equation solved for a different unknown — the workbook proves each against a first-principles schedule.",
+      "Every Group 1 function (PMT, PV, FV, RATE, NPER) is the same five-quantity equation solved for a different unknown: the workbook proves each against a first-principles schedule.",
       "Keep rate, nper and pmt in the same period terms: divide annual rates by 12 for monthly problems.",
-      "Goal Seek reproduces any financial function by trial-and-error on the manual schedule — useful for validation and for problems the functions cannot express.",
+      "Goal Seek reproduces any financial function by trial-and-error on the manual schedule: useful for validation and for problems the functions cannot express.",
       "NPV() excludes today's investment (add it to the result); IRR() includes it in the value range.",
-      "Excel never checks whether your signs make sense — NPER(12%,-100,-1000) ≈ -6.96 years is returned without complaint."
+      "Excel never checks whether your signs make sense: NPER(12%,-100,-1000) ≈ -6.96 years is returned without complaint."
     ],
     "steps": [
       {
@@ -374,8 +374,8 @@ export const walkthroughs: readonly Lab[] = [
         "code": "RATE!B12: =RATE(C12,F12,D12,E12)   with C12=10, F12=-8000, D12=-50000, E12=250000"
       },
       {
-        "title": "NPER: how many years — and a MATCH() sanity check",
-        "explanation": "At 8% p.a., NPER solves for the duration to reach $250,000 (≈ 11.01 years). The no-function version tabulates years 0-20 in N14:N34 and uses MATCH with match-type 1, which returns 12: because the list starts at year 0, position 12 is year 11 (about $249,746, the last balance still ≤ the target), so the target is crossed during year 12 — bracketing the fractional NPER answer.",
+        "title": "NPER: how many years: and a MATCH() sanity check",
+        "explanation": "At 8% p.a., NPER solves for the duration to reach $250,000 (≈ 11.01 years). The no-function version tabulates years 0-20 in N14:N34 and uses MATCH with match-type 1, which returns 12: because the list starts at year 0, position 12 is year 11 (about $249,746, the last balance still ≤ the target), so the target is crossed during year 12: bracketing the fractional NPER answer.",
         "code": "NPER!C12: =NPER(B12,F12,D12,E12)\nNPER!N10: =MATCH(M10,N14:N34,1)   ← match-type 1: largest value ≤ 250000"
       },
       {
@@ -390,7 +390,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Model: manual grid vs a real Data Table",
-        "explanation": "The Model sheet computes compound growth F5 for $100 at 3% over 4 years, then sweeps rates 5%–12% across the top and years 1–20 down the side. The example builds the grid manually with mixed references; the exercise rebuilds it as a genuine Excel Data Table (cells hold {=TABLE(...)} entries).",
+        "explanation": "The Model sheet computes compound growth F5 for $100 at 3% over 4 years, then sweeps rates 5%-12% across the top and years 1-20 down the side. The example builds the grid manually with mixed references; the exercise rebuilds it as a genuine Excel Data Table (cells hold {=TABLE(...)} entries).",
         "code": "Model!F5: =IF(COUNT(C5:E5)<3,\"\",C5*(1+D5)^E5)\nModel!D9: =$C$5*(1+D$8)^$C9   ← manual two-way grid\nModel!O8: =O5*(1+P5)^Q5       ← formula cell for the real Data Table at P9:W28"
       }
     ]
@@ -399,9 +399,9 @@ export const walkthroughs: readonly Lab[] = [
     "id": "charity-donation-circular",
     "week": "W4",
     "title": "CharityDonation.xlsx: Resolving a Circular Reference by Iteration",
-    "overview": "Sam's firm expects $180,000 revenue and $108,500 costs. He donates 10% of after-tax profit to charity, but the donation is deductible before the 25% tax — charity depends on profit, which depends on charity. The workbook shows the naive circular prototype, the robust iterative model, and an explicit 25-step iteration table with a converging spider-web chart.",
+    "overview": "Sam's firm expects $180,000 revenue and $108,500 costs. He donates 10% of after-tax profit to charity, but the donation is deductible before the 25% tax: charity depends on profit, which depends on charity. The workbook shows the naive circular prototype, the robust iterative model, and an explicit 25-step iteration table with a converging spider-web chart.",
     "takeaways": [
-      "Circular references are legitimate modeling tools when the business logic is genuinely self-referential — resolve them with Enable iterative calculation, not by breaking the logic.",
+      "Circular references are legitimate modeling tools when the business logic is genuinely self-referential: resolve them with Enable iterative calculation, not by breaking the logic.",
       "Tighten Maximum change (0.0001) so the converged answer is accurate enough for money amounts.",
       "Guard circular formulas with MAX(0,...) so edge cases (no profit) do not corrupt the iteration.",
       "An explicit iteration table plus a spider-web chart turns invisible iteration into a teachable, checkable picture.",
@@ -420,12 +420,12 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Model: add MAX(0,...) guards for the no-profit case",
-        "explanation": "The final model hardens the prototype: tax and charity can never go negative even if the firm makes a loss, answering the Home sheet's question 'What happens if the company doesn't make any profit?'. Profit after tax is rewritten as (1−tax rate)×profit before tax.",
+        "explanation": "The final model hardens the prototype: tax and charity can never go negative even if the firm makes a loss, answering the Home sheet's question 'What happens if the company doesn't make any profit?'. Profit after tax is rewritten as (1-tax rate)×profit before tax.",
         "code": "Model!D9:  =MAX(0,C8*D14)    (Tax)\nModel!D12: =MAX(0,C11*D15)   (Charity)\nModel!D14: =D5-D6-D12        (Profit before tax)\nModel!D15: =(1-C8)*D14       (Profit after tax)"
       },
       {
         "title": "Read off the converged answer",
-        "explanation": "With iteration on, the model settles at Charity ≈ $4,988.37: algebraically C = 0.1×0.75×(71,500 − C), so 1.075C = 5,362.50. Cell D18 answers the Home sheet's other question — charity is exactly 7.5% (= 10% × 75%) of profit BEFORE tax, not 10%.",
+        "explanation": "With iteration on, the model settles at Charity ≈ $4,988.37: algebraically C = 0.1×0.75×(71,500 - C), so 1.075C = 5,362.50. Cell D18 answers the Home sheet's other question: charity is exactly 7.5% (= 10% × 75%) of profit BEFORE tax, not 10%.",
         "code": "Model!D18: =D12/D14   ← Charity / Profit before tax = 7.5%"
       },
       {
@@ -435,12 +435,12 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Extra: the converging spider-web chart",
-        "explanation": "A Step column alternates between updating Donation and Profit-after-tax so an XY chart of the pairs staircases into the fixed point — the classic cobweb picture of a converging iteration.",
+        "explanation": "A Step column alternates between updating Donation and Profit-after-tax so an XY chart of the pairs staircases into the fixed point: the classic cobweb picture of a converging iteration.",
         "code": "Model(2)!T9: =IF(ISODD($S9),T8,INDEX($E$8:$E$33,INT($S9/2)+1))\nModel(2)!U9: =IF(ISEVEN($S9),U8,INDEX($H$8:$H$33,INT($S9/2)+1))"
       },
       {
         "title": "Judge convergence vs divergence",
-        "explanation": "This model converges because each pass multiplies the correction by 0.075 (donation rate × after-tax fraction), shrinking it toward zero. A circular model whose feedback factor exceeds 1 would diverge — iteration only helps when the loop is a contraction.",
+        "explanation": "This model converges because each pass multiplies the correction by 0.075 (donation rate × after-tax fraction), shrinking it toward zero. A circular model whose feedback factor exceeds 1 would diverge: iteration only helps when the loop is a contraction.",
         "code": "Fixed point: C = 0.1*(1-0.25)*(180000-108500-C)  →  C = $4,988.37"
       }
     ]
@@ -451,7 +451,7 @@ export const walkthroughs: readonly Lab[] = [
     "title": "MontyHall.xlsx: simulating stay vs change vs random-door strategies",
     "overview": "The Model sheet runs 1000 trials of the Monty Hall game. Each trial randomly generates the prize door and the selected door, uses the Reveal Door Options Matrix to decide which door the host opens, computes the final door under three strategies (stay, change, random second contestant), scores each as win (1) or lose (0), and averages the scores to estimate the win probabilities (1/3, 2/3 and 1/2).",
     "takeaways": [
-      "Encode conditional game logic in an options matrix and read it with INDEX(array, row, column) — randomness only belongs in cells where a genuine choice exists.",
+      "Encode conditional game logic in an options matrix and read it with INDEX(array, row, column): randomness only belongs in cells where a genuine choice exists.",
       "The change-door shortcut 6-(selected+revealed) works because the door numbers 1+2+3 sum to 6.",
       "Score outcomes as 1/0 with (comparison)*1 so a plain average estimates a probability.",
       "Simulation confirms the analytical result: switching doubles the win probability from 1/3 to 2/3, while a no-knowledge newcomer only achieves 1/2."
@@ -463,38 +463,38 @@ export const walkthroughs: readonly Lab[] = [
         "code": "G4: =RANDBETWEEN(2,3)\nH5: =IF(RAND()<0.5,1,3)\nI6: =RANDBETWEEN(1,2)"
       },
       {
-        "title": "Step 1a — randomly generate the prize door and selected door",
+        "title": "Step 1a: randomly generate the prize door and selected door",
         "explanation": "Each trial row (10 to 1009) draws both doors independently with a discrete uniform over 1-3.",
         "code": "C10: =RANDBETWEEN(1,3)   (Prize Door)\nD10: =RANDBETWEEN(1,3)   (Selected Door)"
       },
       {
-        "title": "Step 1b — determine the revealed door with INDEX",
+        "title": "Step 1b: determine the revealed door with INDEX",
         "explanation": "INDEX reads the matrix at row = prize door, column = selected door, returning the door the host opens. The matrix range is absolute so the formula fills down 1000 rows.",
         "code": "E10: =INDEX($G$4:$I$6,C10,D10)   (Revealed Door)"
       },
       {
-        "title": "Step 2a — final door if the contestant stays",
+        "title": "Step 2a: final door if the contestant stays",
         "explanation": "Staying means keeping the originally selected door, so the 'Same Door' column just copies the selection.",
         "code": "G10: =D10   (Same Door)"
       },
       {
-        "title": "Step 2b — final door if the contestant changes",
+        "title": "Step 2b: final door if the contestant changes",
         "explanation": "Since the three door numbers sum to 6, the remaining closed door is 6 minus the selected and revealed doors. This replaces the Change Door Options Matrix with one arithmetic shortcut.",
         "code": "H10: =6-D10-E10   (Change Door)"
       },
       {
-        "title": "Step 2c — add a second contestant with no prior knowledge",
+        "title": "Step 2c: add a second contestant with no prior knowledge",
         "explanation": "A newcomer facing the 2 remaining closed doors picks either with probability 0.5. This distinguishes winning WITH prior knowledge (change strategy) from winning WITHOUT it.",
         "code": "I10: =IF(RAND()<0.5,D10,H10)   (Random Door)"
       },
       {
-        "title": "Step 3 — score each strategy as win (1) or lose (0)",
+        "title": "Step 3: score each strategy as win (1) or lose (0)",
         "explanation": "Comparing the final door to the prize door gives TRUE/FALSE; multiplying by 1 coerces it to 1/0 so probabilities can be computed by averaging.",
         "code": "K10: =(G10=$C10)*1   (Same Door win)\nL10: =(H10=$C10)*1   (Change Door win)\nM10: =(I10=$C10)*1   (Random Door win)"
       },
       {
         "title": "Aggregate 1000 trials into win probabilities",
-        "explanation": "The relative frequency of winning is the sum of the 1/0 indicators divided by the trial count — an average. Expect approximately 1/3 (stay), 2/3 (change) and 1/2 (random). B6 counts the trials.",
+        "explanation": "The relative frequency of winning is the sum of the 1/0 indicators divided by the trial count: an average. Expect approximately 1/3 (stay), 2/3 (change) and 1/2 (random). B6 counts the trials.",
         "code": "K6: =SUM(K10:K1009)/COUNT(K10:K1009)\nL6: =SUM(L10:L1009)/COUNT(L10:L1009)\nM6: =SUM(M10:M1009)/COUNT(M10:M1009)\nB6: =COUNT(B10:B1009)"
       },
       {
@@ -508,66 +508,66 @@ export const walkthroughs: readonly Lab[] = [
     "id": "w5-datasim",
     "week": "W5",
     "title": "DataSim.xlsx: generating random variates from every Week 5 method",
-    "overview": "DataSim teaches random number generation from the ground up: the Learn sheet covers RAND()/RANDBETWEEN basics and pitfalls, the Explain sheet proves that PERCENTILE and PERCENTRANK are consistent inverses (justifying M2b resampling), and the Continuous and Discrete sheets provide one working formula per distribution — empirical, uniform, normal, exponential, binomial, Poisson and more.",
+    "overview": "DataSim teaches random number generation from the ground up: the Learn sheet covers RAND()/RANDBETWEEN basics and pitfalls, the Explain sheet proves that PERCENTILE and PERCENTRANK are consistent inverses (justifying M2b resampling), and the Continuous and Discrete sheets provide one working formula per distribution: empirical, uniform, normal, exponential, binomial, Poisson and more.",
     "takeaways": [
-      "Every simulation method reduces to the same move: draw RAND() as a cumulative probability and invert a CDF — empirical (PERCENTILE/LOOKUP) or theoretical (NORMINV, CRITBINOM, -mean*LN(1-RAND())).",
-      "Always freeze a RAND() draw in its own cell before testing it in an IF — each call is a new number.",
+      "Every simulation method reduces to the same move: draw RAND() as a cumulative probability and invert a CDF: empirical (PERCENTILE/LOOKUP) or theoretical (NORMINV, CRITBINOM, -mean*LN(1-RAND())).",
+      "Always freeze a RAND() draw in its own cell before testing it in an IF: each call is a new number.",
       "Use SMALL+RANDBETWEEN for discrete resampling (returns only observed values) and PERCENTILE+RAND for continuous resampling (interpolates new values).",
       "Remember the CRF down-shift: LOOKUP matches the largest CRF <= RAND(), so the value column starts one row below the CRF column."
     ],
     "steps": [
       {
-        "title": "Learn — RAND() and a fair coin flip",
+        "title": "Learn: RAND() and a fair coin flip",
         "explanation": "RAND() draws a continuous uniform number in [0, 1.0). Comparing it to 0.5 splits the probability evenly. Press F9 to redraw all random numbers and re-run the simulation.",
         "code": "=RAND()\n=IF(RAND()<0.5,\"Head\", \"Tail\")"
       },
       {
-        "title": "Learn — continuous uniform between any min and max",
-        "explanation": "Scale RAND() into the interval [min, max): with H12 = 0.1 (min) and I12 = 0.85 (max), the draw is min + RAND()*(max−min).",
+        "title": "Learn: continuous uniform between any min and max",
+        "explanation": "Scale RAND() into the interval [min, max): with H12 = 0.1 (min) and I12 = 0.85 (max), the draw is min + RAND()*(max-min).",
         "code": "=H12+RAND()*(I12-H12)"
       },
       {
-        "title": "Learn — the repeated-RAND pitfall",
+        "title": "Learn: the repeated-RAND pitfall",
         "explanation": "Each RAND() call is a fresh draw, so testing one RAND() and returning another breaks the logic. Store the draw in its own cell and reference it in the IF.",
         "code": "WRONG: =IF(RAND()<0.5, RAND(), \"Wow\")\nCORRECT: J15: =RAND()   K15: =IF(J15<0.5,J15,\"Wow\")"
       },
       {
-        "title": "Learn — discrete uniform (die toss) two ways",
+        "title": "Learn: discrete uniform (die toss) two ways",
         "explanation": "RANDBETWEEN(bottom, top) returns an integer inclusive of both bounds but historically needed the Analysis Toolpak; INT(RAND()*(top-bottom+1))+bottom is the RAND()-only equivalent. With H24=1 and I24=6 both simulate a fair die.",
         "code": "=RANDBETWEEN(H24,I24)\n=INT(RAND()*(I24-H24+1))+H24\n=INT(RAND()*6)+1"
       },
       {
-        "title": "Explain — sort the sample and assign percentiles",
-        "explanation": "For a 25-point sample in C6:C30, SMALL with index B6 (1..25) produces the sorted values and (B6−1)/24 assigns each sorted point its percentile position (k−1)/(N−1), from 0 to 1.",
+        "title": "Explain: sort the sample and assign percentiles",
+        "explanation": "For a 25-point sample in C6:C30, SMALL with index B6 (1..25) produces the sorted values and (B6-1)/24 assigns each sorted point its percentile position (k-1)/(N-1), from 0 to 1.",
         "code": "E6: =SMALL($C$6:$C$30,B6)   (Xsorted)\nF6: =(B6-1)/24   (Y percentile)"
       },
       {
-        "title": "Explain — consistency check: PERCENTILE and PERCENTRANK are inverses",
-        "explanation": "Feeding the percentile back through PERCENTILE recovers the sorted X, and feeding the sorted X through PERCENTRANK recovers the percentile — proving the empirical CDF is invertible, which is what M2b resampling relies on.",
+        "title": "Explain: consistency check: PERCENTILE and PERCENTRANK are inverses",
+        "explanation": "Feeding the percentile back through PERCENTILE recovers the sorted X, and feeding the sorted X through PERCENTRANK recovers the percentile: proving the empirical CDF is invertible, which is what M2b resampling relies on.",
         "code": "G6: =PERCENTILE($C$6:$C$30,F6)   (check X)\nH6: =PERCENTRANK($C$6:$C$30,E6)   (check Y)"
       },
       {
-        "title": "Explain — resample by inverting the empirical CDF at RAND()",
+        "title": "Explain: resample by inverting the empirical CDF at RAND()",
         "explanation": "Put RAND() in its own cell (J6) and invert: PERCENTILE(data, RAND()) generates new representative continuous data, interpolating between original observations.",
         "code": "J6: =RAND()\nI6: =PERCENTILE($C$6:$C$30,J6)   (resampled X)"
       },
       {
-        "title": "Continuous sheet — one formula per continuous distribution",
+        "title": "Continuous sheet: one formula per continuous distribution",
         "explanation": "Row 12 holds the generator for each column, filled down to row 41 beside the 30 sample points (the C$12:C$997 ranges leave room for up to 986 data rows). Parameters live in rows 4-7 (G$4 = mean, G$5 = SD, F$6/F$7 = min/max, H$4 = exponential mean).",
         "code": "Empirical:   =PERCENTILE(C$12:C$997,RAND())\nUniform:     =F$6+RAND()*(F$7-F$6)\nNormal:      =NORMINV(RAND(),G$4,G$5)\nExponential: =-H$4*LN(1-RAND())"
       },
       {
-        "title": "Continuous sheet — EXTRA distributions",
+        "title": "Continuous sheet: EXTRA distributions",
         "explanation": "The same inversion idea extends to the extra distributions: Lognormal exponentiates a normal variate of LN(X), Gamma/Erlang invert GAMMAINV, Weibull inverts its closed-form CDF, Beta uses BETAINV with bounds A and B.",
         "code": "LogNormal: =EXP(NORMINV(RAND(), LN(K$4), LN(K$5)))\nGamma:     =GAMMAINV(RAND(), M$4, M$5)\nWeibull:   =N$5*(-LN(1-RAND()))^(1/N$4)\nBeta:      =BETAINV(RAND(),O$4,O$5,O$6,O$7)"
       },
       {
-        "title": "Discrete sheet — empirical resampling three ways",
+        "title": "Discrete sheet: empirical resampling three ways",
         "explanation": "M2a picks a random position among the N=$C$8 sample points; a rounded PERCENTILE resample also works for discrete data; M1 looks RAND() up in the down-shifted CRF table (CRF in M$12:M$32, values one row lower in L$13:L$33).",
         "code": "E12: =SMALL($C$12:$C$997,RANDBETWEEN(1,$C$8))\nF12: =ROUND(PERCENTILE($C$12:$C$997,RAND()),0)\nG12: =LOOKUP(RAND(),M$12:M$32,L$13:L$33)"
       },
       {
-        "title": "Discrete sheet — uniform, binomial and Poisson variates",
+        "title": "Discrete sheet: uniform, binomial and Poisson variates",
         "explanation": "RANDBETWEEN inverts the discrete uniform directly. CRITBINOM (modern BINOM.INV) inverts the Binomial CDF at RAND(). Poisson has no direct inverse, so use Binomial with n=1000 and p=λ/1000 since Poisson is the large-n small-p limit with λ=np.",
         "code": "H12: =RANDBETWEEN(H$6,H$7)\nI12: =CRITBINOM(I$4,I$5,RAND())\nJ12: =CRITBINOM(1000,J$4/1000,RAND())"
       }
@@ -644,7 +644,7 @@ export const walkthroughs: readonly Lab[] = [
     "title": "CallCenter-modified.xlsx: c servers, balking and reneging (c-Server, BR and BR-M sheets)",
     "overview": "The c-Server sheet generalises the model to any number of servers: an IF/LARGE rule replaces MAX, and the inputs switch to re-sampling the Data sheet. The BR sheets then add a balk limit and a renege limit, which bring in potential start and potential wait columns and blank-text (\"\") logic. The Modified sheet fixes how reneging customers' end times feed the system length, and '(Modified) (2)' uses Data Tables to compare 1 to 5 servers.",
     "takeaways": [
-      "LARGE(previous end times, c) finds when the first of c busy servers frees up. Guard it with IF(J<c, …) so LARGE never runs on fewer than c values.",
+      "LARGE(previous end times, c) finds when the first of c busy servers frees up. Guard it with IF(J<c, ...) so LARGE never runs on fewer than c values.",
       "Use \"\" to mark 'did not happen'. COUNT and AVERAGE skip it, so the balk and renege proportions become simple COUNT differences.",
       "System length is computed from the service end column, so the end-time rule decides who balks: BR inflates L, BR-2 understates it, BR-M counts renegers for exactly the renege limit.",
       "Sanity-check every output. A utilisation above 1 is impossible; in the BR sheets it comes from mixing clock times with durations.",
@@ -708,7 +708,7 @@ export const walkthroughs: readonly Lab[] = [
       },
       {
         "title": "Size the team with Data Tables ('(Modified) (2)')",
-        "explanation": "A one-way Data Table varies the servers input I4 from 1 to 5 and records the average wait, system time and system length. A two-way table then puts servers 1–5 across and 100 run numbers down, using a blank cell U1 as the column input so each row is a fresh replication. Averaging each column gives waits of about 23:25, 12:37, 3:34, 0:58 and 0:18 for 1 to 5 servers.",
+        "explanation": "A one-way Data Table varies the servers input I4 from 1 to 5 and records the average wait, system time and system length. A two-way table then puts servers 1-5 across and 100 run numbers down, using a blank cell U1 as the column input so each row is a fresh replication. Averaging each column gives waits of about 23:25, 12:37, 3:34, 0:58 and 0:18 for 1 to 5 servers.",
         "code": "P2: =J8   Q2: =K8   R2: =L8\nP3:R7: {=TABLE(,I4)}   (O3:O7 = 1..5 servers)\nO10: =J8\nP11:T110: {=TABLE(I4,U1)}   (P10:T10 = 1..5, O11:O110 = 1..100)\nP9: =AVERAGE(P11:P110)   (fill right to T9)"
       }
     ]
@@ -728,7 +728,7 @@ export const walkthroughs: readonly Lab[] = [
     "steps": [
       {
         "title": "Lay out the three zones",
-        "explanation": "Rows 3–4 are the entry zone (Last ID, Member ID, Name, Gender, Address, DOB). Rows 6–7 are the lookup zone (Row, Member ID typed in C7, fetched fields). The Member's Records table has its title in C10, headers in C11 and data from row 12. B4 starts at 0, so the first member gets ID 1. Gender uses a Data Validation list, and G2 reminds users to type DOB as dd/mm/yyyy.",
+        "explanation": "Rows 3-4 are the entry zone (Last ID, Member ID, Name, Gender, Address, DOB). Rows 6-7 are the lookup zone (Row, Member ID typed in C7, fetched fields). The Member's Records table has its title in C10, headers in C11 and data from row 12. B4 starts at 0, so the first member gets ID 1. Gender uses a Data Validation list, and G2 reminds users to type DOB as dd/mm/yyyy.",
         "code": "C4: =B4+1   (next Member ID)\nE4: Data Validation > Allow: List, Source: Male, Female"
       },
       {

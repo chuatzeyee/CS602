@@ -91,7 +91,7 @@ export default function Quiz() {
       </div>
 
       <div className="flex items-center justify-between mb-4 text-sm">
-        <span className="font-mono text-ink-muted">Q{(i % pool.length) + 1} of {pool.length} <span className={weekText(q.topic)}>· {q.topic}</span></span>
+        <span className="font-mono text-ink-muted">Q{(i % pool.length) + 1} of {pool.length} <span className={weekText(q.topic)}>, {q.topic}</span></span>
         <div className="flex items-center gap-3">
           <span className="font-mono text-ink-muted">
             <span className="text-correct">{score.right}</span>/{score.done} correct

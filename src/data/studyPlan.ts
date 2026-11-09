@@ -25,56 +25,56 @@ const quiz = (w: string): StudyLink => ({ label: `Quiz: Week ${w.slice(1)}`, to:
 const search = (q: string): StudyLink => ({ label: `Search: "${q}"`, to: `/search?q=${encodeURIComponent(q)}` })
 
 export const studyPlan: readonly StudyStep[] = [
-  // ───────────── Day 1 ─────────────
+  // Day 1
   {
     id: 'kit',
-    day: 'Mon 9 Nov', slot: '09:00–09:30', phase: 'Set up',
+    day: 'Mon 9 Nov', slot: '09:00-09:30', phase: 'Set up',
     title: 'Pack and test your offline exam kit',
     minutes: 30,
     why: 'Examena blocks the internet, so anything you have not saved locally before the exam will not be available. Fix this first so a missing file can\'t surprise you tomorrow.',
     tasks: [
-      'Copy offline/CS602-SheetSmith.html (this portal as one file) onto the exam laptop, e.g. Desktop\\CS602-exam-kit\\.',
+      'Copy offline/CS602-Guide.html (this portal as one file) onto the exam laptop, e.g. Desktop\\CS602-exam-kit\\.',
       'Turn Wi-Fi OFF, double-click the file, and confirm Search, the Lab and a mock exam all open. Turn Wi-Fi back on.',
-      'Copy into the same folder: every week\'s slides (PDF), the class workbooks (Week 1–10 folders), Past Exams solutions, and the three Quiz solution workbooks.',
-      'Excel: File › Options › Add-ins › Manage Excel Add-ins › Go… › tick Solver Add-in (and Analysis ToolPak). Confirm Data › Solver appears.',
+      'Copy into the same folder: every week\'s slides (PDF), the class workbooks (Week 1-10 folders), Past Exams solutions, and the three Quiz solution workbooks.',
+      'Excel: File > Options > Add-ins > Manage Excel Add-ins > Go... > tick Solver Add-in (and Analysis ToolPak). Confirm Data > Solver appears.',
       'Re-read the exam instructions from the instructor/Examena email: which apps are allowed, how the template is downloaded and submitted.',
       'Bookmark the file in your browser and pin Excel to the taskbar.',
     ],
     links: [{ label: 'Exam rules and format', to: '/exam' }, search('offline kit')],
     recall: [
-      { q: 'Where does Solver live once the add-in is on?', a: 'Data tab › Analyze group › Solver. Goal Seek and Data Table are under Data › What-If Analysis.' },
+      { q: 'Where does Solver live once the add-in is on?', a: 'Data tab > Analyze group > Solver. Goal Seek and Data Table are under Data > What-If Analysis.' },
       { q: 'What do you do if the offline file shows a blank page?', a: 'Open it in a different browser (Edge/Chrome both work), and make sure it is the whole .html file, not a shortcut to it.' },
     ],
   },
   {
     id: 'format',
-    day: 'Mon 9 Nov', slot: '09:30–09:50', phase: 'Set up',
+    day: 'Mon 9 Nov', slot: '09:30-09:50', phase: 'Set up',
     title: 'Learn exactly how the exam is marked',
     minutes: 20,
     why: 'Marks come only from named answer cells: formula and value are often marked separately, and $ anchoring is checked. Knowing this changes how you build everything today.',
     tasks: [
-      'Read Exam › "Exam at a glance" and "How it is marked".',
+      'Read Exam > "Exam at a glance" and "How it is marked".',
       'Read the 120-minute time plan: 5 min reading, about 55 min per question, 5 min final pass.',
       'Read the template notes: how to record Solver, Goal Seek and simulation answers.',
     ],
     links: [{ label: 'Exam Prep page', to: '/exam' }],
     recall: [
-      { q: 'How are the 2 hours and 25 marks usually split?', a: '2 business problems of about 12–13 marks each. Q1 has usually been a deterministic model + optimisation question; Q2 a simulation or queue. Spend about 55 min on each.' },
+      { q: 'How are the 2 hours and 25 marks usually split?', a: '2 business problems of about 12-13 marks each. Q1 has usually been a deterministic model + optimisation question; Q2 a simulation or queue. Spend about 55 min on each.' },
       { q: 'How must a Solver answer be recorded?', a: 'Objective cell, Max/Min, changing cells, every constraint as a range comparison (e.g. E4:E6 >= E5:E7), plus the optimal values.' },
       { q: 'Why type a formula instead of the number you calculated?', a: 'Formula and value are frequently scored separately; a typed constant loses the formula mark and breaks when inputs change.' },
     ],
   },
   {
     id: 'diagnose',
-    day: 'Mon 9 Nov', slot: '09:50–10:30', phase: 'Diagnose',
+    day: 'Mon 9 Nov', slot: '09:50-10:30', phase: 'Diagnose',
     title: 'Diagnostic quiz: find your weak weeks',
     minutes: 40,
     why: 'You have about 30 hours. Test first so you spend them on what you don\'t know yet, not on re-reading what you do.',
     tasks: [
-      'Practice Quiz › "All": answer 25 questions without looking anything up.',
-      'For every wrong answer, note its week tag (W1…W10) in the box below.',
+      'Practice Quiz > "All": answer 25 questions without looking anything up.',
+      'For every wrong answer, note its week tag (W1...W10) in the box below.',
       'Any week where you got fewer than 70% right is a priority. Do its step below in full; skim the others.',
-      'Read Exam › "Techniques the past papers test": the most frequent techniques are first.',
+      'Read Exam > "Techniques the past papers test": the most frequent techniques are first.',
     ],
     links: [{ label: 'Practice quiz (all weeks)', to: '/quiz' }, { label: 'Exam: technique frequency', to: '/exam' }],
     recall: [
@@ -83,8 +83,8 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'w1w2',
-    day: 'Mon 9 Nov', slot: '10:30–11:45', phase: 'Core skills',
-    title: 'Spreadsheet engineering: anchoring, SUMPRODUCT, IF logic, Goal Seek (W1–W2)',
+    day: 'Mon 9 Nov', slot: '10:30-11:45', phase: 'Core skills',
+    title: 'Spreadsheet engineering: anchoring, SUMPRODUCT, IF logic, Goal Seek (W1-W2)',
     minutes: 75,
     why: 'Every other question depends on these. Absolute and mixed references appeared in all 3 past papers, and SUMPRODUCT in 6 sub-parts.',
     tasks: [
@@ -113,14 +113,14 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'w3-lookup',
-    day: 'Mon 9 Nov', slot: '11:45–13:00', phase: 'Core skills',
+    day: 'Mon 9 Nov', slot: '11:45-13:00', phase: 'Core skills',
     title: 'Lookups: bracket tables, INDEX/MATCH, two-way (W3)',
     minutes: 75,
-    why: 'Approximate-match lookups on a bracket table appeared in 5 sub-parts. Exams often give the brackets as text ("$100–$199"), and you must first build a numeric lower-bound table yourself.',
+    why: 'Approximate-match lookups on a bracket table appeared in 5 sub-parts. Exams often give the brackets as text ("$100-$199"), and you must first build a numeric lower-bound table yourself.',
     tasks: [
       'Read the Week 3 notes on classic lookups, MATCH/INDEX and XLOOKUP.',
       'Do the text-bands-to-lower-bounds drill (cardboard), then the price-breaks tote bags exercise.',
-      'Two-way lookup: courier rates with INDEX(…, MATCH(…), MATCH(…)).',
+      'Two-way lookup: courier rates with INDEX(..., MATCH(...), MATCH(...)).',
       'Exam-style under time: catering order.',
       'Quiz W3.',
     ],
@@ -136,15 +136,15 @@ export const studyPlan: readonly StudyStep[] = [
     recall: [
       { q: 'Discount by spend where the table has lower bounds in F2:F6 (ascending) and rates in G2:G6.', a: '=VLOOKUP(B2,$F$2:$G$6,2,TRUE), or =LOOKUP(B2,$F$2:$F$6,$G$2:$G$6), or =INDEX($G$2:$G$6,MATCH(B2,$F$2:$F$6,1)). The first column must be sorted ascending and must start at the lowest possible value (often 0).' },
       { q: 'Two-way lookup: zone in B2 (row headers A10:A15) and weight band in C2 (column headers B9:F9) into table B10:F15.', a: '=INDEX($B$10:$F$15,MATCH(B2,$A$10:$A$15,0),MATCH(C2,$B$9:$F$9,1)). Use 0 for exact text matches and 1 for numeric bands.' },
-      { q: 'A bracket reads "200 – 499". What goes in the lower-bound column?', a: '200. Each row holds the smallest value of its band; the next band\'s lower bound closes the previous one.' },
+      { q: 'A bracket reads "200 - 499". What goes in the lower-bound column?', a: '200. Each row holds the smallest value of its band; the next band\'s lower bound closes the previous one.' },
     ],
   },
   {
     id: 'w3-solver',
-    day: 'Mon 9 Nov', slot: '14:00–15:15', phase: 'Core skills',
-    title: 'Solver and linear programming (W2–W3)',
+    day: 'Mon 9 Nov', slot: '14:00-15:15', phase: 'Core skills',
+    title: 'Solver and linear programming (W2-W3)',
     minutes: 75,
-    why: 'Solver appeared in all 3 papers and is usually the biggest single part of Q1 (3–6 marks). Most of those marks are for setting it up correctly, not for the final number.',
+    why: 'Solver appeared in all 3 papers and is usually the biggest single part of Q1 (3-6 marks). Most of those marks are for setting it up correctly, not for the final number.',
     tasks: [
       'Read the Week 3 notes on LP fundamentals and Solver in Excel, plus the casino hotel model.',
       'Learn the engines: Simplex LP for linear models, GRG Nonlinear for smooth non-linear ones, Evolutionary for IF/LOOKUP/MIN.',
@@ -163,13 +163,13 @@ export const studyPlan: readonly StudyStep[] = [
     ],
     recall: [
       { q: 'Solver gives "The linearity conditions required by this LP Solver are not satisfied". Why, and what do you do?', a: 'The model contains IF, VLOOKUP, MIN/MAX or products of decision cells. Either fix the bracket (replace the lookup with the rate for the bracket the answer must fall in, then confirm the answer stays in it) or switch to GRG Nonlinear or Evolutionary.' },
-      { q: 'How do you force whole numbers?', a: 'Add a constraint on the changing cells with relation "int". For integer models set Options › Integer Optimality (%) to 0.' },
+      { q: 'How do you force whole numbers?', a: 'Add a constraint on the changing cells with relation "int". For integer models set Options > Integer Optimality (%) to 0.' },
       { q: 'What does "Make Unconstrained Variables Non-Negative" do?', a: 'It adds ≥ 0 on every changing cell. Leave it ticked for quantities.' },
     ],
   },
   {
     id: 'w4',
-    day: 'Mon 9 Nov', slot: '15:15–16:30', phase: 'Core skills',
+    day: 'Mon 9 Nov', slot: '15:15-16:30', phase: 'Core skills',
     title: 'Financial functions and Data Tables (W4)',
     minutes: 75,
     why: 'There is always at least one quick money part. The marks are lost on sign conventions, rate/period mismatches and NPV timing.',
@@ -190,15 +190,15 @@ export const studyPlan: readonly StudyStep[] = [
       quiz('W4'),
     ],
     recall: [
-      { q: 'Project costs 50,000 today (B1) with yearly inflows in B2:B6; rate in E1. NPV?', a: '=NPV(E1,B2:B6)+B1, with B1 entered as −50000. NPV() discounts its first value by one period, so the time-0 cash flow goes outside.' },
-      { q: 'Monthly payment on a $300,000 loan at 3.5% a year over 25 years.', a: '=PMT(3.5%/12,25*12,300000). It returns a negative number (cash out). Wrap it in −PMT(…) or pass −300000 if you need it positive.' },
+      { q: 'Project costs 50,000 today (B1) with yearly inflows in B2:B6; rate in E1. NPV?', a: '=NPV(E1,B2:B6)+B1, with B1 entered as -50000. NPV() discounts its first value by one period, so the time-0 cash flow goes outside.' },
+      { q: 'Monthly payment on a $300,000 loan at 3.5% a year over 25 years.', a: '=PMT(3.5%/12,25*12,300000). It returns a negative number (cash out). Wrap it in -PMT(...) or pass -300000 if you need it positive.' },
       { q: 'Payments at the START of each period?', a: 'Set type = 1, the last argument: PMT(rate,nper,pv,fv,1). The same applies to PV, FV and NPER.' },
-      { q: 'One-way Data Table with the varying input down a column: what goes in the dialog?', a: 'Select the table (input values in the left column, output formula in the top row, one cell right of the corner). Data › What-If › Data Table › Column input cell = the model\'s input cell. Leave Row input cell empty.' },
+      { q: 'One-way Data Table with the varying input down a column: what goes in the dialog?', a: 'Select the table (input values in the left column, output formula in the top row, one cell right of the corner). Data > What-If > Data Table > Column input cell = the model\'s input cell. Leave Row input cell empty.' },
     ],
   },
   {
     id: 'w5',
-    day: 'Mon 9 Nov', slot: '16:45–18:30', phase: 'Core skills',
+    day: 'Mon 9 Nov', slot: '16:45-18:30', phase: 'Core skills',
     title: 'Monte Carlo simulation and replication Data Tables (W5)',
     minutes: 105,
     why: 'Usually the backbone of Q2. Data-table replications appeared in all 3 papers. Learn the random generators by heart.',
@@ -223,14 +223,14 @@ export const studyPlan: readonly StudyStep[] = [
     ],
     recall: [
       { q: 'Discrete random variable with values in A2:A5, probabilities in B2:B5.', a: 'CRF column C: C2 = 0, C3 = C2+B2, and so on (it starts at 0). Draw with =LOOKUP(RAND(),$C$2:$C$5,$A$2:$A$5).' },
-      { q: 'Generators: uniform a–b, normal, exponential, binomial, Bernoulli.', a: 'Uniform: =a+RAND()*(b-a) (integers: RANDBETWEEN(a,b)). Normal: =NORMINV(RAND(),mean,sd), with MAX(0,…) to floor it. Exponential: =-mean*LN(RAND()). Binomial: =CRITBINOM(n,p,RAND()) or BINOM.INV. Bernoulli: =IF(RAND()<p,1,0).' },
-      { q: 'Set up 1000 replications of output cell H20.', a: 'Put 1..1000 down a column (say K2:K1001). In L1 enter =H20. Select K1:L1001 › Data Table › Column input cell = any BLANK cell. Then take =AVERAGE(L2:L1001). Keys accept a range of answers.' },
+      { q: 'Generators: uniform a-b, normal, exponential, binomial, Bernoulli.', a: 'Uniform: =a+RAND()*(b-a) (integers: RANDBETWEEN(a,b)). Normal: =NORMINV(RAND(),mean,sd), with MAX(0,...) to floor it. Exponential: =-mean*LN(RAND()). Binomial: =CRITBINOM(n,p,RAND()) or BINOM.INV. Bernoulli: =IF(RAND()<p,1,0).' },
+      { q: 'Set up 1000 replications of output cell H20.', a: 'Put 1..1000 down a column (say K2:K1001). In L1 enter =H20. Select K1:L1001 > Data Table > Column input cell = any BLANK cell. Then take =AVERAGE(L2:L1001). Keys accept a range of answers.' },
       { q: 'Why can\'t you plug the average demand into the profit formula?', a: 'Profit is non-linear (MIN, MAX, IF), so E[f(X)] ≠ f(E[X]). Replicate the output itself and average that.' },
     ],
   },
   {
     id: 'w6',
-    day: 'Mon 9 Nov', slot: '19:30–21:30', phase: 'Core skills',
+    day: 'Mon 9 Nov', slot: '19:30-21:30', phase: 'Core skills',
     title: 'Dates, times and queue simulation (W6)',
     minutes: 120,
     why: 'Time arithmetic was the single most frequent technique in the past papers (7 sub-parts across all 3 papers), and queues have been the other half of Q2. Give this step the most time.',
@@ -255,20 +255,20 @@ export const studyPlan: readonly StudyStep[] = [
     ],
     recall: [
       { q: 'Convert: a duration in day-fraction cell D2 to minutes; 90 seconds to an Excel time.', a: 'Minutes: =D2*1440 (hours: ×24). Seconds to time: =90/86400 (minutes: /1440). Format the result as hh:mm:ss, or [h]:mm for totals over 24 h.' },
-      { q: 'Single-server: start time of customer in row 6 (arrival B6, previous end E5).', a: '=MAX(B6,E5). Wait = start − arrival; end = start + service time.' },
+      { q: 'Single-server: start time of customer in row 6 (arrival B6, previous end E5).', a: '=MAX(B6,E5). Wait = start - arrival; end = start + service time.' },
       { q: 'c-server queue: start time for the customer in row 11 (arrival D11, number already in the system E11, earlier end times $G$10:G10, c servers in $C$4).', a: '=IF(E11<$C$4,D11,LARGE($G$10:G10,$C$4)). If fewer than c customers are in the system, service starts on arrival; otherwise it starts at the c-th largest earlier end time, when a server frees up. This is the course workbook form. Number in system: =COUNTIF($G$10:G10,">"&D11).' },
       { q: 'Percentage of customers who waited under 5 minutes (waits in F2:F101 as day fractions).', a: '=COUNTIF(F2:F101,"<"&5/1440)/COUNT(F2:F101)' },
-      { q: 'Utilisation of one server.', a: 'Total service time ÷ (last end time − first start or open time). It must be below 100%.' },
+      { q: 'Utilisation of one server.', a: 'Total service time ÷ (last end time - first start or open time). It must be below 100%.' },
     ],
   },
   {
     id: 'w9w10',
-    day: 'Mon 9 Nov', slot: '21:30–22:30', phase: 'Core skills',
-    title: 'VBA, filters and PivotTables (W9–W10)',
+    day: 'Mon 9 Nov', slot: '21:30-22:30', phase: 'Core skills',
+    title: 'VBA, filters and PivotTables (W9-W10)',
     minutes: 60,
     why: 'None of the 3 past papers tested these, but the CS602 outline does not exclude them. An hour of basics is enough. Also make sure you can find the syntax quickly with Search.',
     tasks: [
-      'Skim the Week 9 notes: recording a macro (absolute vs relative), Sub/Function, For…Next, If/Select Case, Range/Cells/Offset.',
+      'Skim the Week 9 notes: recording a macro (absolute vs relative), Sub/Function, For...Next, If/Select Case, Range/Cells/Offset.',
       'Do one VBA drill (for-next bibs) and the VBA function (banquet tables).',
       'Skim the Week 10 notes: AutoFilter, Advanced Filter criteria (same row = AND, new row = OR), PivotTables.',
       'Do the Advanced Filter AND/OR exercise and the pivot orders exercise.',
@@ -291,22 +291,22 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'day1-wrap',
-    day: 'Mon 9 Nov', slot: '22:30–23:00', phase: 'Consolidate',
+    day: 'Mon 9 Nov', slot: '22:30-23:00', phase: 'Consolidate',
     title: 'Day 1 wrap-up: strategy checklist and sleep',
     minutes: 30,
     why: 'Sleep consolidates what you practised today. The aim tonight is to know the plan for tomorrow, not to cram.',
     tasks: [
-      'Exam › Strategy checklist: read all 15 items; tick the ones you have practised.',
+      'Exam > Strategy checklist: read all 15 items; tick the ones you have practised.',
       'In the notes box below, list the 3 techniques you are least sure about. Tomorrow\'s weak-spot sprint targets them.',
       'Set an alarm. Lights out by midnight.',
     ],
     links: [{ label: 'Exam: strategy checklist', to: '/exam' }],
     recall: [],
   },
-  // ───────────── Day 2 ─────────────
+  // Day 2
   {
     id: 'mock-a',
-    day: 'Tue 10 Nov', slot: '08:30–10:30', phase: 'Exam simulation',
+    day: 'Tue 10 Nov', slot: '08:30-10:30', phase: 'Exam simulation',
     title: 'Mock Exam A under exam conditions (120 min)',
     minutes: 120,
     why: 'Timing is the usual reason people lose marks. Practise the 5/55/55/5 split for real, with only the offline kit.',
@@ -322,7 +322,7 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'review-a',
-    day: 'Tue 10 Nov', slot: '10:45–11:30', phase: 'Exam simulation',
+    day: 'Tue 10 Nov', slot: '10:45-11:30', phase: 'Exam simulation',
     title: 'Review Mock A: every lost mark becomes a drill',
     minutes: 45,
     why: 'You learn most from a mock in the review afterwards.',
@@ -336,7 +336,7 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'mock-b',
-    day: 'Tue 10 Nov', slot: '11:30–13:30', phase: 'Exam simulation',
+    day: 'Tue 10 Nov', slot: '11:30-13:30', phase: 'Exam simulation',
     title: 'Mock Exam B under exam conditions (120 min)',
     minutes: 120,
     why: 'A second full run shows whether the fixes from your review stuck, and builds stamina for 2 hours of focus.',
@@ -349,7 +349,7 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'review-b',
-    day: 'Tue 10 Nov', slot: '14:15–15:00', phase: 'Exam simulation',
+    day: 'Tue 10 Nov', slot: '14:15-15:00', phase: 'Exam simulation',
     title: 'Review Mock B',
     minutes: 45,
     why: 'Same method as Mock A. Any mistake that appears in both mocks is your top priority.',
@@ -362,12 +362,12 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'sprint',
-    day: 'Tue 10 Nov', slot: '15:00–16:00', phase: 'Consolidate',
+    day: 'Tue 10 Nov', slot: '15:00-16:00', phase: 'Consolidate',
     title: 'Weak-spot sprint',
     minutes: 60,
     why: 'Your last focused hour goes on the techniques that cost you marks in the mocks.',
     tasks: [
-      'Take the top 2–3 weak techniques from your notes. Do one Level 2 and one Level 3 Lab exercise for each.',
+      'Take the top 2-3 weak techniques from your notes. Do one Level 2 and one Level 3 Lab exercise for each.',
       'Re-run the quiz for your weakest week.',
       'If time allows, start Mock C and do only its simulation question.',
     ],
@@ -376,7 +376,7 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'retrieval',
-    day: 'Tue 10 Nov', slot: '16:00–16:20', phase: 'Consolidate',
+    day: 'Tue 10 Nov', slot: '16:00-16:20', phase: 'Consolidate',
     title: 'Open-book retrieval drill',
     minutes: 20,
     why: 'In an open-book exam, how fast you can find something matters as much as what you remember. Practise looking things up quickly.',
@@ -389,7 +389,7 @@ export const studyPlan: readonly StudyStep[] = [
   },
   {
     id: 'exam-ready',
-    day: 'Tue 10 Nov', slot: '16:30–19:00', phase: 'Exam day',
+    day: 'Tue 10 Nov', slot: '16:30-19:00', phase: 'Exam day',
     title: 'Rest, then set up for the exam',
     minutes: 45,
     why: 'Arrive rested with everything open. Don\'t start new topics now.',

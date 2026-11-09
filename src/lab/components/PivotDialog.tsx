@@ -183,7 +183,7 @@ export default function PivotDialog({ sheet, selection, task, onClose, onDone }:
         className={`${input} !py-1 text-xs`}
         disabled={!list.length}
       >
-        <option value="">Add field…</option>
+        <option value="">Add field...</option>
         {list.filter(f => area === 'values' || !has({ ...layout, values: [] }, f.name)).map(f => <option key={f.name} value={f.name}>{f.name}</option>)}
       </select>
     </section>

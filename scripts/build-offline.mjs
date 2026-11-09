@@ -1,4 +1,4 @@
-// Builds ONE self-contained HTML file (offline/CS602-SheetSmith.html) that opens by double-click from disk:
+// Builds ONE self-contained HTML file (offline/CS602-Guide.html) that opens by double-click from disk:
 // no server, no internet. Used for the open-book exam under Examena, which blocks the network.
 import { build } from 'vite'
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync } from 'node:fs'
@@ -38,16 +38,19 @@ for (const f of readdirSync(assets)) {
   }
 }
 if (/src="\.\/assets|href="\.\/assets/.test(html)) throw new Error('an asset was left un-inlined')
-html = html.replace(/<title>[^<]*<\/title>/, '<title>CS602 Reference</title>')
-// no em dashes or middle dots in the exam copy: ' — ' introduces an explanation (': '), '·' is either a separator
-// (' · ' -> ', ') or multiplication in formulas like S·N(d1) ('*')
+html = html.replace(/<title>[^<]*<\/title>/, '<title>CS602 Guide</title>')
+// no em/en dashes, middle dots, ellipsis or minus-sign characters, even from libraries: a spaced em dash introduces an
+// explanation (': '), a spaced middle dot is a separator (', '), an unspaced one is multiplication ('*')
+const ARTEFACT = /[\u2014\u2013\u00b7\u2026\u2212]/
 html = html
-  .replace(/\\u2014|&mdash;/gi, '—').replace(/\\u00b7|&middot;/gi, '·')
-  .replace(/\s+—\s+/g, ': ').replace(/—/g, '-')
-  .replace(/\s+·\s+/g, ', ').replace(/·/g, '*')
-if (/[—·]/.test(html)) throw new Error('em dash or middle dot left in the offline copy')
+  .replace(/\\u2014|&mdash;/gi, '\u2014').replace(/\\u00b7|&middot;/gi, '\u00b7')
+  .replace(/\\u2013|\\u2212|&ndash;|&minus;/gi, '-').replace(/\\u2026|&hellip;/gi, '...')
+  .replace(/\s+\u2014\s+/g, ': ').replace(/\u2014/g, '-')
+  .replace(/\s+\u00b7\s+/g, ', ').replace(/\u00b7/g, '*')
+  .replace(/[\u2013\u2212]/g, '-').replace(/\u2026/g, '...')
+if (ARTEFACT.test(html)) throw new Error('an em/en dash, middle dot, ellipsis or minus sign is left in the offline copy')
 mkdirSync('offline', { recursive: true })
-const target = join('offline', 'CS602-SheetSmith.html')
+const target = join('offline', 'CS602-Guide.html')
 writeFileSync(target, html)
 rmSync(OUT, { recursive: true, force: true })
 console.log(`wrote ${target} (${(html.length / 1e6).toFixed(1)} MB)`)

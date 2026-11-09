@@ -71,7 +71,7 @@ test('sources: one row per number, each with a source', () => {
 test('sources cite the original public sources', () => {
   const cited = sources.map(r => r.source).join(' | ')
   for (const name of ['MOM Comprehensive Labour Force Survey, June 2025', 'SingStat table 17886', 'MOM levy',
-    'data.gov.sg', '9 Oct 2026', 'NPTD', 'MOM retrenchment incidence, 2007–2025']) {
+    'data.gov.sg', '9 Oct 2026', 'NPTD', 'MOM retrenchment incidence, 2007-2025']) {
     assert.ok(cited.includes(name), `cites ${name}`)
   }
 })

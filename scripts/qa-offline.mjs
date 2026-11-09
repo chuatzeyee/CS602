@@ -3,7 +3,7 @@
 import { chromium } from 'playwright-core'
 import { resolve } from 'node:path'
 
-const file = 'file://' + resolve('offline/CS602-SheetSmith.html')
+const file = 'file://' + resolve('offline/CS602-Guide.html')
 const routes = process.argv.slice(2).length ? process.argv.slice(2) : ['/', '/search?q=npv', '/topics', '/functions', '/models', '/exam', '/lab', '/study']
 const browser = await chromium.launch({ executablePath: '/usr/bin/chromium-browser', headless: true })
 const page = await browser.newPage()

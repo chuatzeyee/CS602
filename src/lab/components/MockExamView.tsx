@@ -234,7 +234,7 @@ export default function MockExamView({ mock, backTo = '/exam' }: MockExamViewPro
   if (phase === 'submitting' || (phase === 'done' && !results)) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-16 flex items-center justify-center gap-2 text-ink-muted text-sm">
-        <LoaderCircle size={16} className="animate-spin" /> Marking your answers…
+        <LoaderCircle size={16} className="animate-spin" /> Marking your answers...
       </div>
     )
   }
@@ -253,7 +253,7 @@ export default function MockExamView({ mock, backTo = '/exam' }: MockExamViewPro
             <div>
               <p className="text-xs text-ink-muted">{autoSubmitted ? 'Time is up: submitted automatically' : 'Submitted'}</p>
               <p className="text-3xl font-bold font-mono text-ink">{fmtMarks(score.got)}<span className="text-ink-muted text-xl">/{fmtMarks(score.max)}</span></p>
-              <p className="text-xs text-ink-muted">{score.max ? Math.round((score.got / score.max) * 100) : 0}%{best ? ` · best ${fmtMarks(best.got)}/${fmtMarks(best.max)}` : ''}</p>
+              <p className="text-xs text-ink-muted">{score.max ? Math.round((score.got / score.max) * 100) : 0}%{best ? `, best ${fmtMarks(best.got)}/${fmtMarks(best.max)}` : ''}</p>
             </div>
             <ul className="flex flex-wrap gap-2">
               {mock.questions.map((x, i) => (
@@ -284,7 +284,7 @@ export default function MockExamView({ mock, backTo = '/exam' }: MockExamViewPro
               Q{i + 1}{' '}
               {score
                 ? <span className="font-mono opacity-70">{fmtMarks(score.questions[x.id].got)}/{fmtMarks(x.marks)}</span>
-                : <span className="opacity-70 sr-only sm:not-sr-only">· {fmtMarks(x.marks)} mark{x.marks === 1 ? '' : 's'}</span>}
+                : <span className="opacity-70 sr-only sm:not-sr-only">, {fmtMarks(x.marks)} mark{x.marks === 1 ? '' : 's'}</span>}
             </button>
           ))}
         </div>

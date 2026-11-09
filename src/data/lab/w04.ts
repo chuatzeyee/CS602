@@ -1329,7 +1329,7 @@ const optionPricing: Exercise = {
   scenario:
     'Kai, an analyst at a fund in Raffles Place, is pricing six-month European options on a bank share trading at $38.40. The exercise price is $40, the risk-free rate 3.2% a year and the share\'s volatility 24% a year. ' +
     'Following the course, keep the inputs apart from the intermediate variables and split the long Black-Scholes formulas into intermediate cells: d1, d2, N(d1), N(d2), N(-d1) and N(-d2), then the call and the put. ' +
-    'Call = S·N(d1) - X·exp(-rf·t)·N(d2); Put = -S·N(-d1) + X·exp(-rf·t)·N(-d2); d1 = [LN(S/X) + (rf + σ²/2)·t] / (σ·√t); d2 has (rf - σ²/2) instead.',
+    'Call = S*N(d1) - X*exp(-rf*t)*N(d2); Put = -S*N(-d1) + X*exp(-rf*t)*N(-d2); d1 = [LN(S/X) + (rf + σ²/2)*t] / (σ*√t); d2 has (rf - σ²/2) instead.',
   sheet: {
     rows: 18,
     cols: 6,
@@ -1421,7 +1421,7 @@ const optionPricing: Exercise = {
       id: 'call',
       kind: 'formula',
       cells: 'B15',
-      prompt: 'In B15 price the call: S·N(d1) - X·exp(-rf·t)·N(d2), using `EXP` and the cells above.',
+      prompt: 'In B15 price the call: S*N(d1) - X*exp(-rf*t)*N(d2), using `EXP` and the cells above.',
       solution: '=B3*B11-B4*EXP(-B5*B7)*B12',
       check: { mustUse: ['EXP'] },
       wrong: ['=B3*B11-B4*EXP(B5*B7)*B12', '=B3*B11-B4*B12', '=B3*B12-B4*EXP(-B5*B7)*B11'],
@@ -1432,7 +1432,7 @@ const optionPricing: Exercise = {
       id: 'put',
       kind: 'formula',
       cells: 'B16',
-      prompt: 'In B16 price the put: -S·N(-d1) + X·exp(-rf·t)·N(-d2), using the N(-d) cells.',
+      prompt: 'In B16 price the put: -S*N(-d1) + X*exp(-rf*t)*N(-d2), using the N(-d) cells.',
       solution: '=-B3*B13+B4*EXP(-B5*B7)*B14',
       check: { mustUse: ['EXP'] },
       wrong: [
@@ -1442,7 +1442,7 @@ const optionPricing: Exercise = {
       ],
       hints: ['The put pays when the share ends BELOW X, so its signs are the mirror image of the call.', 'Use N(-d1) (B13) with S and N(-d2) (B14) with the discounted X.'],
       explain:
-        'With the 24% volatility the put is worth $3.14. Put-call parity checks it: put = call - S + X·exp(-rf·t) = 2.17 - 38.40 + 39.37. ' +
+        'With the 24% volatility the put is worth $3.14. Put-call parity checks it: put = call - S + X*exp(-rf*t) = 2.17 - 38.40 + 39.37. ' +
         'Writing NORMSDIST(-B9) and NORMSDIST(-B10) straight into the put gives the same value in one long formula.',
     },
     {

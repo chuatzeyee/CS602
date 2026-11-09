@@ -8,10 +8,10 @@ const weeks = weekOrder(labs.map(l => l.week))
 
 // tab label = workbook name; repeated names get a part number
 function tabLabels(list: readonly Lab[]): string[] {
-  const names = list.map(l => l.title.split(/:\s| — /)[0])
+  const names = list.map(l => l.title.split(/:\s|: /)[0])
   return names.map((n, i) => {
     const total = names.filter(x => x === n).length
-    return total > 1 ? `${n} · part ${names.slice(0, i + 1).filter(x => x === n).length}` : n
+    return total > 1 ? `${n}, part ${names.slice(0, i + 1).filter(x => x === n).length}` : n
   })
 }
 
@@ -58,7 +58,7 @@ export default function Models() {
 
       <div key={lab.id}>
         <div className="mb-8 animate-fade-in">
-          <p className={`font-mono text-xs mb-2 ${weekText(lab.week)}`}>{lab.week} · model walkthrough</p>
+          <p className={`font-mono text-xs mb-2 ${weekText(lab.week)}`}>{lab.week}, model walkthrough</p>
           <h1 className="text-2xl sm:text-3xl font-bold text-ink mb-2 break-words">{lab.title}</h1>
           <p className="text-ink-secondary leading-relaxed">{lab.overview}</p>
         </div>

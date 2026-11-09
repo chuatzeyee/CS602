@@ -17,7 +17,7 @@ import {
 
 import { OFFLINE, routeAvailable } from '../offline'
 
-const SITE = OFFLINE ? 'CS602 Reference' : 'CS602 SheetSmith'
+const SITE = 'CS602 Guide'
 
 // title = the page's own heading, used for the browser tab
 const navItems = [
@@ -49,7 +49,7 @@ function useRouteTitle(pathname: string) {
   useEffect(() => {
     const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname // the router matches '/x/' as '/x'
     const title = subPageTitles.get(path) ?? navItems.find(n => isCurrent(n.to, path))?.title
-    document.title = OFFLINE ? title ?? SITE : title && title !== SITE ? `${title} · ${SITE}` : SITE
+    document.title = OFFLINE ? title ?? SITE : title && title !== SITE ? `${title} | ${SITE}` : SITE
   }, [pathname])
 }
 

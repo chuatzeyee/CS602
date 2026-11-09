@@ -118,7 +118,7 @@ export const presentationScript: PresentationScript = {
       source: 'SingStat table 17886 (household employment income at selected percentiles, 2025)',
     },
     {
-      number: 'Helper $1,117 a month (range $866–1,311)',
+      number: 'Helper $1,117 a month (range $866-1,311)',
       source: 'Our estimate from MOM levy rates, SingStat helper salary data (Household Expenditure Survey 2023) and published helper cost guides',
     },
     {
@@ -135,7 +135,7 @@ export const presentationScript: PresentationScript = {
     },
     {
       number: '0.8% job loss a year per earner; 1.4% high case (2009 peak)',
-      source: 'MOM retrenchment incidence, 2007–2025 (about 8 per 1,000 prime-age resident employees a year; 13.8 per 1,000 at the 2009 peak)',
+      source: 'MOM retrenchment incidence, 2007-2025 (about 8 per 1,000 prime-age resident employees a year; 13.8 per 1,000 at the 2009 peak)',
     },
     {
       number: "Package up to $62,000; about $70,000 with the MediSave Grant and Edusave",
@@ -163,10 +163,10 @@ export const presentationScript: PresentationScript = {
     },
     {
       number: "Income growth 3.7%; discount rate 2.5%; inflation 2% a year",
-      source: "MOM income growth 2015–2025; CPF, SGS and Savings Bond rates; SingStat CPI",
+      source: "MOM income growth 2015-2025; CPF, SGS and Savings Bond rates; SingStat CPI",
     },
     {
-      number: "64% cost, 49% stress, 34% work–family balance",
+      number: "64% cost, 49% stress, 34% work-family balance",
       source: "NPTD Marriage and Parenthood Survey 2021 (married respondents not wanting more children)",
     },
   ],
@@ -180,16 +180,16 @@ export const scriptPoints: Readonly<Record<string, readonly string[]>> = {
   "Point to the persona box": [
     "Personas calibrated to MOM 2025 income data",
     "A ≈ $10,800/month gross: middle of working households",
-    "B ≈ $16,700 · C (sandwiched) ≈ $8,200"
+    "B ≈ $16,700, C (sandwiched) ≈ $8,200"
   ],
   "Point to the 6-month and 3-month figures": [
-    "Start with 6 months of expenses saved (MAS guide: 3–6 months)",
+    "Start with 6 months of expenses saved (MAS guide: 3-6 months)",
     "Financial stress = savings below 3 months in any year of 20"
   ],
   "Point to the assumptions box": [
     "No single official figure → flagged as an assumption",
     "Helper ≈ $1,117/month (derived from MOM levy and salary data)",
-    "Preschool fee cuts phased evenly 2028–2030 (NDR timeline)"
+    "Preschool fee cuts phased evenly 2028-2030 (NDR timeline)"
   ],
   "Slide 10": [
     "Data behind all 5 models + how we checked it",
@@ -204,7 +204,7 @@ export const scriptPoints: Readonly<Record<string, readonly string[]>> = {
   "How we collected it, with Python": [
     "~95 Python scripts",
     "Open APIs (SingStat TableBuilder, data.gov.sg for ECDA) → requests",
-    "MOM Excel tables → openpyxl · web pages → BeautifulSoup · browser-only pages (MOE fees) → Playwright",
+    "MOM Excel tables → openpyxl, web pages → BeautifulSoup, browser-only pages (MOE fees) → Playwright",
     "~950 raw files saved with their access date",
     "pandas → tidy tables + derived numbers (CPI re-pricing to 2026; low/high from percentiles and history)",
     "All scripted → the second pass re-runs every download"
@@ -228,16 +228,16 @@ export const scriptPoints: Readonly<Record<string, readonly string[]>> = {
     "Monte Carlo shocks calibrated to history",
     "Job loss ≈ 0.8%/year per earner (MOM); high case 1.4% (2009 peak)",
     "Jobseeker Support up to $6,000 per spell",
-    "Medical bills net of MediShield Life + MediSave · inflation ≈ 2%/year"
+    "Medical bills net of MediShield Life + MediSave, inflation ≈ 2%/year"
   ],
   "Point to \"CPF, tax and macro\"": [
     "CPF 2026: 20% employee / 17% employer",
     "IRAS tax rates and reliefs",
-    "Income growth 3.7% · discount rate 2.5%, each with a range"
+    "Income growth 3.7%, discount rate 2.5%, each with a range"
   ],
   "Point to \"Fertility and childcare\"": [
     "AHP grounded in the Marriage & Parenthood Survey 2021",
-    "Married, not wanting more children: 64% cost · 49% too stressful · 34% work–family balance"
+    "Married, not wanting more children: 64% cost, 49% too stressful, 34% work-family balance"
   ],
   "Pause on the whole slide": [
     "Data used 3 ways:",

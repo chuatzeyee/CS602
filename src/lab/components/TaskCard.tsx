@@ -159,7 +159,7 @@ export default function TaskCard(p: TaskCardProps) {
               value={p.note}
               onChange={e => p.onNote(e.target.value)}
               rows={4}
-              placeholder="Write your answer…"
+              placeholder="Write your answer..."
               className={`${input} resize-y leading-relaxed`}
             />
             {learn && (

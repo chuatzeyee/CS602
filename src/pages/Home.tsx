@@ -67,7 +67,7 @@ const cards: readonly Card[] = [
     to: '/quiz',
     icon: ClipboardCheck,
     title: 'Practice Quiz',
-    description: 'MCQ bank with worked explanations — concepts, function behaviour, and calculation drills',
+    description: 'MCQ bank with worked explanations: concepts, function behaviour, and calculation drills',
     stats: [`${questions.length} questions`],
   },
   {
@@ -81,14 +81,14 @@ const cards: readonly Card[] = [
     to: '/models',
     icon: FlaskConical,
     title: 'Model Walkthroughs',
-    description: 'The signature session workbooks — water tank, breakeven, Solver, time value of money, simulation, call-centre queues, VBA macros, filters and PivotTables — rebuilt step by step with the real formulas and code',
+    description: 'The signature session workbooks (water tank, breakeven, Solver, time value of money, simulation, call-centre queues, VBA macros, filters and PivotTables) rebuilt step by step with the real formulas and code',
     stats: [`${walkthroughs.length} models`],
   },
   {
     to: '/lab',
     icon: Table2,
     title: 'Excel Lab',
-    description: 'Hands-on exercises for every week in a spreadsheet that runs in your browser — formulas, Goal Seek, Data Tables, Solver, filters, PivotTables and VBA — checked against hidden test inputs, plus a free sandbox',
+    description: 'Hands-on exercises for every week in a spreadsheet that runs in your browser (formulas, Goal Seek, Data Tables, Solver, filters, PivotTables and VBA) checked against hidden test inputs, plus a free sandbox',
     stats: 'lab',
   },
   {
@@ -128,7 +128,7 @@ export default function Home() {
           </span>
         </div>
         <h1 className="text-4xl font-bold text-ink mb-2 tracking-tight">
-          <span aria-hidden="true">📊</span> CS602 SheetSmith
+          CS602 Guide
         </h1>
         <p className="text-lg text-glow font-medium mb-6 font-mono tracking-wide">
           {course.courseTitle}
@@ -149,7 +149,7 @@ export default function Home() {
         </Link>
         <Link to="/search" className="flex items-center gap-3 p-5 rounded-lg border border-glow/40 bg-glow-dim/40 hover:bg-glow-dim transition-colors">
           <Search size={22} className="text-glow shrink-0" />
-          <div><div className="font-semibold text-ink">Search everything</div><div className="text-xs text-ink-secondary">Open-book lookup · Ctrl K or / from any page</div></div>
+          <div><div className="font-semibold text-ink">Search everything</div><div className="text-xs text-ink-secondary">Open-book lookup, Ctrl K or / from any page</div></div>
         </Link>
       </div>
 
@@ -179,7 +179,7 @@ export default function Home() {
                   <div className="flex flex-wrap gap-1.5">
                     {shown
                       ? shown.map(text => <span key={text} className={badge}>{text}</span>)
-                      : lazy === 'loading' && <span className={`${badge} opacity-50`} aria-hidden="true">…</span>}
+                      : lazy === 'loading' && <span className={`${badge} opacity-50`} aria-hidden="true">...</span>}
                   </div>
                 </div>
               </div>

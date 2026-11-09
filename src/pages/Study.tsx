@@ -77,7 +77,7 @@ function Rail({ p, go }: { p: Progress; go: (i: number) => void }) {
                 <span className={`mt-0.5 h-4 w-4 shrink-0 rounded-full border flex items-center justify-center ${done ? 'bg-glow border-glow text-void' : 'border-edge-bright'}`}>
                   {done && <Check size={11} strokeWidth={3} />}
                 </span>
-                <span className="leading-snug"><span className="font-mono text-[11px] text-ink-muted mr-1">{s.slot.split('–')[0]}</span>{s.title}</span>
+                <span className="leading-snug"><span className="font-mono text-[11px] text-ink-muted mr-1">{s.slot.split('-')[0]}</span>{s.title}</span>
               </button>
             </li>
           )

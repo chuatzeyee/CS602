@@ -550,7 +550,7 @@ const rider: Exercise = {
       tool: 'datatable',
       cells: 'E4:E103',
       prompt:
-        'Select D3:E103 and run What-If Analysis › Data Table with an empty Row input cell and the Column input cell on an empty cell ' +
+        'Select D3:E103 and run What-If Analysis > Data Table with an empty Row input cell and the Column input cell on an empty cell ' +
         'outside the table (H5 is free). Each of the 100 rows is one replication of the trip.',
       toolSetup: { range: 'D3:E103', colInput: 'H5' },
       random: { trials: 5, stat: 'mean', target: 30, tol: 3 },
@@ -831,7 +831,7 @@ const fleet: Exercise = {
       kind: 'tool',
       tool: 'datatable',
       cells: 'E12:E111',
-      prompt: 'Replicate the day 100 times: select D11:E111 and run What-If Analysis › Data Table with the Column input cell on an empty cell (B20 is free).',
+      prompt: 'Replicate the day 100 times: select D11:E111 and run What-If Analysis > Data Table with the Column input cell on an empty cell (B20 is free).',
       toolSetup: { range: 'D11:E111', colInput: 'B20' },
       random: { trials: 5, stat: 'mean', target: 215.5, tol: 17 },
       hints: [

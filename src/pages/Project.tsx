@@ -354,7 +354,7 @@ function DrillPanel({ drill, id, labelledBy, hidden }: { drill: Drill<string>; i
         <p className="text-sm text-ink-secondary">{drill.prompt}</p>
         <div className="flex items-center gap-3">
           <span className="font-mono text-xs text-ink-muted" data-testid="drill-score">
-            <span className="text-correct">{correct}</span>/{answered} correct · {n} items
+            <span className="text-correct">{correct}</span>/{answered} correct, {n} items
           </span>
           <button onClick={reset} className="flex items-center gap-1.5 text-xs text-ink-muted hover:text-ink transition-colors">
             <RotateCcw size={13} /> Reset

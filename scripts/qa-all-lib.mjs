@@ -192,7 +192,7 @@ export const cardStates = () => page().evaluate(() => [...document.querySelector
 // longest = the longest main-thread task meanwhile (the check itself)
 export const pressCheck = () => page().evaluate(async () => {
   const bar = document.querySelector('[role="toolbar"][aria-label="Spreadsheet tools"]')
-  const find = () => [...(bar?.querySelectorAll('button') ?? [])].find(b => /^(Check|Checking…)$/.test((b.textContent ?? '').trim()))
+  const find = () => [...(bar?.querySelectorAll('button') ?? [])].find(b => /^(Check|Checking...)$/.test((b.textContent ?? '').trim()))
   const btn = find()
   if (!btn) return { error: 'no Check button' }
   if (btn.disabled) return { error: 'the Check button is disabled' }
@@ -212,7 +212,7 @@ export const pressCheck = () => page().evaluate(async () => {
     const busy = Boolean(b && (b.textContent ?? '').includes('Checking'))
     if (busy) sawBusy = true
     if (sawBusy && !busy) break
-    if (!sawBusy && performance.now() - t0 > 3000) return { error: 'Check never showed "Checking…"' }
+    if (!sawBusy && performance.now() - t0 > 3000) return { error: 'Check never showed "Checking..."' }
     if (performance.now() - t0 > 180000) return { error: 'Check still busy after 180 s' }
     await new Promise(r => setTimeout(r, 8))
   }
@@ -309,7 +309,7 @@ export async function revealAll(tasks, problems, timings) {
       const code = await vbaEditor().inputValue().catch(() => null)
       if (code === null) problems.push(`task ${i + 1} (${t.id}): no VBA editor after Reveal`)
       else if (!sameCode(code, t.vba.solution)) {
-        problems.push(`task ${i + 1} (${t.id}): after Reveal the VBA editor does not hold the reference macro (${code.slice(0, 60).replace(/\n/g, ' ')}…)`)
+        problems.push(`task ${i + 1} (${t.id}): after Reveal the VBA editor does not hold the reference macro (${code.slice(0, 60).replace(/\n/g, ' ')}...)`)
       }
     }
   }
@@ -415,8 +415,8 @@ export async function auditFunctionCard(card, problems) {
 }
 
 export const DIALOG_OF = {
-  goalseek: { open: async () => { await tool('What-If Analysis').click(); await page().getByRole('menuitem', { name: 'Goal Seek…' }).click() }, title: 'Goal Seek' },
-  datatable: { open: async () => { await tool('What-If Analysis').click(); await page().getByRole('menuitem', { name: 'Data Table…' }).click() }, title: 'Data Table' },
+  goalseek: { open: async () => { await tool('What-If Analysis').click(); await page().getByRole('menuitem', { name: 'Goal Seek...' }).click() }, title: 'Goal Seek' },
+  datatable: { open: async () => { await tool('What-If Analysis').click(); await page().getByRole('menuitem', { name: 'Data Table...' }).click() }, title: 'Data Table' },
   solver: { open: () => tool('Solver').click(), title: 'Solver Parameters' },
   sort: { open: () => tool('Sort').click(), title: 'Sort' },
   autofilter: { open: () => tool('Filter').click(), title: 'Filter (AutoFilter)' },

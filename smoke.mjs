@@ -86,7 +86,7 @@ await check('theme defines a distinct colour for every week', () => {
 // home
 await go('/')
 await check('home renders title, content cards and real coverage', async () => {
-  expect((await page.textContent('h1')).includes('CS602 SheetSmith'), 'home title')
+  expect((await page.textContent('h1')).includes('CS602 Guide'), 'home title')
   const cards = await page.$$eval('a.group h2', els => els.map(e => e.textContent))
   const missing = CONTENT_CARDS.filter(c => !cards.includes(c))
   expect(missing.length === 0, `missing cards ${missing}`)

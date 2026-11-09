@@ -3,7 +3,7 @@ import type { Definition } from './types'
 export const definitions: readonly Definition[] = [
   {
     "term": "Model",
-    "definition": "A simplified representation of a real business situation built to support a decision; it provides decision support only — 'NOT an antidote nor a magical crystal ball'.",
+    "definition": "A simplified representation of a real business situation built to support a decision; it provides decision support only: 'NOT an antidote nor a magical crystal ball'.",
     "example": "The Community Water Tank worksheet lets Sammy compare tank heights before pouring any concrete.",
     "source": "W1"
   },
@@ -33,7 +33,7 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "Performance measure",
-    "definition": "The output used to judge how good a decision is — the quantity the decision maker is trying to optimise.",
+    "definition": "The output used to judge how good a decision is: the quantity the decision maker is trying to optimise.",
     "example": "Cost of Tank (minimise); New IT Assets # (plan).",
     "source": "W1"
   },
@@ -58,7 +58,7 @@ export const definitions: readonly Definition[] = [
   {
     "term": "Mixed reference",
     "definition": "A reference locking only one part: $C5 freezes the column (survives filling right), C$5 freezes the row (survives filling down).",
-    "example": "=$C9/E9 fills right to =$C9/F9 — the deposit column stays put while the asset column advances.",
+    "example": "=$C9/E9 fills right to =$C9/F9: the deposit column stays put while the asset column advances.",
     "source": "W1"
   },
   {
@@ -70,7 +70,7 @@ export const definitions: readonly Definition[] = [
   {
     "term": "Auto-Fill Function",
     "definition": "An operation that writes VALUES (no formulas) by fitting a least-squares straight line through the selected points and extrapolating, assuming the points are equally spaced on the x-axis.",
-    "example": "RetailGasoline auto-fills 1990/1995/2000 prices out to 2005/2010/2015 — Brazil's price extrapolates down to 1.19 by 2015.",
+    "example": "RetailGasoline auto-fills 1990/1995/2000 prices out to 2005/2010/2015: Brazil's price extrapolates down to 1.19 by 2015.",
     "source": "W1"
   },
   {
@@ -87,7 +87,7 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "Performance ratio",
-    "definition": "Business Volume divided by # Equipment — how much business each unit of an IT asset supports; new requirement = New Business Volume / New Performance ratio.",
+    "definition": "Business Volume divided by # Equipment: how much business each unit of an IT asset supports; new requirement = New Business Volume / New Performance ratio.",
     "example": "Year 1 low-end servers: 3.91/20 = 0.1955 $b per BIPS (Model!E27 =$C9/E9).",
     "source": "W1"
   },
@@ -105,7 +105,7 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "Test cases",
-    "definition": "Extra input sets placed on the worksheet that demonstrate extremes and show the model computes correctly for ANY quantities entered — a required block in a professional layout.",
+    "definition": "Extra input sets placed on the worksheet that demonstrate extremes and show the model computes correctly for ANY quantities entered: a required block in a professional layout.",
     "example": "Assign0Soln Q1 re-runs the EOQ model for demands of 25,000 up to 200,000 with varied order and carry costs.",
     "source": "W1"
   },
@@ -139,7 +139,7 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "Historical Variable",
-    "definition": "An input variable with its value fixed (uncontrollable) — the InkJetPrinter workbook's term for inputs taken from historical data.",
+    "definition": "An input variable with its value fixed (uncontrollable): the InkJetPrinter workbook's term for inputs taken from historical data.",
     "source": "W2"
   },
   {
@@ -166,7 +166,7 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "Goal Seek",
-    "definition": "A what-if tool that finds the input value in ONE cell needed to make another cell reach a desired result — it calculates backward. It cannot maximize or minimize.",
+    "definition": "A what-if tool that finds the input value in ONE cell needed to make another cell reach a desired result: it calculates backward. It cannot maximize or minimize.",
     "example": "On the inkjet Model sheet, set cell C32 (Profit) to value 0 by changing C5 (Printer price) to find breakeven; the slides call the profit cell C27, its address on the Proto sheet.",
     "source": "W2"
   },
@@ -297,7 +297,7 @@ export const definitions: readonly Definition[] = [
   {
     "term": "Sign Convention",
     "definition": "In Excel financial functions, a negative amount is money taken away from the point of reference and a positive amount is money added to it.",
-    "example": "From the borrower's view, PMT(8%/12,10,10000) returns -$1,037.03 — negative because the payment leaves the borrower's pocket.",
+    "example": "From the borrower's view, PMT(8%/12,10,10000) returns -$1,037.03: negative because the payment leaves the borrower's pocket.",
     "source": "W4"
   },
   {
@@ -337,13 +337,13 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "NPV()",
-    "definition": "NPV(rate, value1, value2, …) returns the present value of uneven cash flows assumed at the end of each period, with value1 at the end of period 1; an investment made today must be excluded from the arguments and added to the result.",
+    "definition": "NPV(rate, value1, value2, ...) returns the present value of uneven cash flows assumed at the end of each period, with value1 at the end of period 1; an investment made today must be excluded from the arguments and added to the result.",
     "example": "=NPV(B10, C15:C24) + C14 where C14 holds the -$200,000 initial outlay.",
     "source": "W4"
   },
   {
     "term": "IRR()",
-    "definition": "IRR(values, [guess]) returns the internal rate of return — the rate at which the NPV of the cash flows (including the initial investment) is zero; it needs at least one positive and one negative value and iterates up to 20 times to 0.00001% accuracy.",
+    "definition": "IRR(values, [guess]) returns the internal rate of return: the rate at which the NPV of the cash flows (including the initial investment) is zero; it needs at least one positive and one negative value and iterates up to 20 times to 0.00001% accuracy.",
     "example": "=IRR(C14:C24) ≈ 24.05% for the $200,000 project.",
     "source": "W4"
   },
@@ -360,12 +360,12 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "Call Option",
-    "definition": "The right (not obligation) to BUY an asset at a pre-agreed exercise price at a specified future time; priced by Black-Scholes as S·N(d1) − X·exp(−rf·t)·N(d2).",
+    "definition": "The right (not obligation) to BUY an asset at a pre-agreed exercise price at a specified future time; priced by Black-Scholes as S*N(d1) - X*exp(-rf*t)*N(d2).",
     "source": "W4"
   },
   {
     "term": "Put Option",
-    "definition": "The right (not obligation) to SELL an asset at a pre-agreed exercise price at a specified future time; priced by Black-Scholes as −S·N(−d1) + X·exp(−rf·t)·N(−d2).",
+    "definition": "The right (not obligation) to SELL an asset at a pre-agreed exercise price at a specified future time; priced by Black-Scholes as -S*N(-d1) + X*exp(-rf*t)*N(-d2).",
     "source": "W4"
   },
   {
@@ -376,7 +376,7 @@ export const definitions: readonly Definition[] = [
   {
     "term": "Balloon Payment",
     "definition": "A larger lump-sum amount paid together with the final periodic payment of a loan, entered as the fv argument of PMT with the appropriate sign.",
-    "example": "=PMT(5%/12, 60, 140000, -10000) — the -10000 is the balloon.",
+    "example": "=PMT(5%/12, 60, 140000, -10000): the -10000 is the balloon.",
     "source": "W4"
   },
   {
@@ -387,7 +387,7 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "RAND()",
-    "definition": "Excel function returning a continuous uniform random real number in [0, 1.0) — can equal 0 but never 1. Used as a randomly drawn cumulative probability.",
+    "definition": "Excel function returning a continuous uniform random real number in [0, 1.0): can equal 0 but never 1. Used as a randomly drawn cumulative probability.",
     "example": "=RAND() drawn as 0.556 is looked up against a CRF table to pick the simulated value.",
     "source": "W5"
   },
@@ -411,7 +411,7 @@ export const definitions: readonly Definition[] = [
   {
     "term": "LOOKUP down-shift rule",
     "definition": "LOOKUP returns the largest lookup value less than or equal to the target, so the CRF column must be shifted down one row relative to the values column; with VLOOKUP the CRF must be the leftmost column.",
-    "example": "=LOOKUP(RAND(),M$12:M$32,L$13:L$33) — the values range starts one row lower than the CRF range.",
+    "example": "=LOOKUP(RAND(),M$12:M$32,L$13:L$33): the values range starts one row lower than the CRF range.",
     "source": "W5"
   },
   {
@@ -423,7 +423,7 @@ export const definitions: readonly Definition[] = [
   {
     "term": "Probability Density Function (PDF)",
     "definition": "For a continuous random variable, the density at x; probabilities are areas under the curve. Returned when cumulative = FALSE for continuous distributions.",
-    "example": "Exponential PDF: f(x) = λe^−λx where λ is the arrival rate.",
+    "example": "Exponential PDF: f(x) = λe^-λx where λ is the arrival rate.",
     "source": "W5"
   },
   {
@@ -434,28 +434,28 @@ export const definitions: readonly Definition[] = [
   {
     "term": "Inverse transform (inversion) method",
     "definition": "Simulating a random variate by setting the CDF equal to RAND() and solving for x, i.e. X' = F^-1(RAND()). Method M3 in Week 5.",
-    "example": "Exponential: Y = 1 − e^−λx solved for x gives X' = −mean*LN(1−RAND()), and since 1−RAND() is still uniform, X' = −mean*LN(RAND()).",
+    "example": "Exponential: Y = 1 - e^-λx solved for x gives X' = -mean*LN(1-RAND()), and since 1-RAND() is still uniform, X' = -mean*LN(RAND()).",
     "source": "W5"
   },
   {
     "term": "Binomial distribution",
-    "definition": "Distribution of the number of successes in n independent trials each with success probability p: P(X=k) = nCk p^k (1−p)^(n−k). Excel: BINOMDIST(number_s, trials, probability_s, cumulative).",
+    "definition": "Distribution of the number of successes in n independent trials each with success probability p: P(X=k) = nCk p^k (1-p)^(n-k). Excel: BINOMDIST(number_s, trials, probability_s, cumulative).",
     "source": "W5"
   },
   {
     "term": "Poisson distribution",
-    "definition": "Distribution of the number of events in a fixed interval with average rate λ: P(X=k) = e^−λ λ^k / k!. It is the limit of the Binomial with λ = np for very large n and small p. Excel: POISSON(x, mean, cumulative).",
+    "definition": "Distribution of the number of events in a fixed interval with average rate λ: P(X=k) = e^-λ λ^k / k!. It is the limit of the Binomial with λ = np for very large n and small p. Excel: POISSON(x, mean, cumulative).",
     "example": "Simulated by X' = CRITBINOM(1000, mean/1000, RAND()).",
     "source": "W5"
   },
   {
     "term": "Exponential distribution",
-    "definition": "Continuous distribution of inter-arrival times: f(x) = λe^−λx, where λ = arrival rate and mean = 1/λ. Excel: EXPONDIST(x, lambda, cumulative) — note the argument is the rate, not the mean.",
+    "definition": "Continuous distribution of inter-arrival times: f(x) = λe^-λx, where λ = arrival rate and mean = 1/λ. Excel: EXPONDIST(x, lambda, cumulative): note the argument is the rate, not the mean.",
     "source": "W5"
   },
   {
     "term": "Standardisation (Z-score)",
-    "definition": "Transforming a normal variable to standard normal with Z = (x − µ)/σ. NORMSDIST(z) gives the standard normal CDF; NORMSINV(RAND()) simulates a standard normal variate.",
+    "definition": "Transforming a normal variable to standard normal with Z = (x - µ)/σ. NORMSDIST(z) gives the standard normal CDF; NORMSINV(RAND()) simulates a standard normal variate.",
     "source": "W5"
   },
   {
@@ -466,8 +466,8 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "PERCENTILE resampling (M2b)",
-    "definition": "X' = PERCENTILE(data, RAND()) resamples continuous data: Excel sorts the data, places points at percentiles (k−1)/(N−1), and linearly interpolates between the two points that bracket the drawn percentile.",
-    "example": "Sorted 1.0, 3.0, 5.0, 7.0 sit at percentiles 0, 1/3, 2/3, 1; RAND()=0.5 gives (0.5−1/3)/(2/3−1/3) = (X'−3.0)/(5.0−3.0), so X' = 4.0.",
+    "definition": "X' = PERCENTILE(data, RAND()) resamples continuous data: Excel sorts the data, places points at percentiles (k-1)/(N-1), and linearly interpolates between the two points that bracket the drawn percentile.",
+    "example": "Sorted 1.0, 3.0, 5.0, 7.0 sit at percentiles 0, 1/3, 2/3, 1; RAND()=0.5 gives (0.5-1/3)/(2/3-1/3) = (X'-3.0)/(5.0-3.0), so X' = 4.0.",
     "source": "W5"
   },
   {
@@ -478,8 +478,8 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "Change door shortcut",
-    "definition": "In 3-door Monty Hall, the switch door can be computed without a matrix: Change door = 6 − (revealed door + selected door), because the three door numbers always sum to 6.",
-    "example": "Selected = 1, revealed = 2 → change door = 6 − 3 = 3.",
+    "definition": "In 3-door Monty Hall, the switch door can be computed without a matrix: Change door = 6 - (revealed door + selected door), because the three door numbers always sum to 6.",
+    "example": "Selected = 1, revealed = 2 → change door = 6 - 3 = 3.",
     "source": "W5"
   },
   {
@@ -508,7 +508,7 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "[h] format code",
-    "definition": "A custom time code that keeps counting hours past 23 (24, 25, …) instead of wrapping at midnight, used to display elapsed durations longer than a day.",
+    "definition": "A custom time code that keeps counting hours past 23 (24, 25, ...) instead of wrapping at midnight, used to display elapsed durations longer than a day.",
     "example": "A total of 31 h 15 min shows as 31:15 with [h]:mm but as 7:15 with h:mm.",
     "source": "W6"
   },
@@ -568,13 +568,13 @@ export const definitions: readonly Definition[] = [
   },
   {
     "term": "Balk proportion",
-    "definition": "The share of all arrivals who balked: (total arrivals − total who joined the queue) ÷ total arrivals.",
+    "definition": "The share of all arrivals who balked: (total arrivals - total who joined the queue) ÷ total arrivals.",
     "example": "F8 =(COUNT(E15:E99)-COUNT(F15:F99))/COUNT(E15:E99) = 0.16 in 'c-Server (BR)'.",
     "source": "W6"
   },
   {
     "term": "Renege proportion",
-    "definition": "The share of customers who joined the queue but left before starting service: (total who joined − total who started service) ÷ total who joined.",
+    "definition": "The share of customers who joined the queue but left before starting service: (total who joined - total who started service) ÷ total who joined.",
     "example": "G8 =(COUNT(F15:F99)-COUNT(H15:H99))/COUNT(F15:F99) = 0.19 in 'c-Server (BR)'.",
     "source": "W6"
   },

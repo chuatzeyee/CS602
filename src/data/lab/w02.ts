@@ -407,7 +407,7 @@ const bentoContract: Exercise = {
       check: { tol: 0.005 },
       hints: [
         'Break-even means profit = 0.',
-        'What-If Analysis › Goal Seek: Set cell = the profit cell, To value = 0, By changing cell = the price (a cell holding a number, not a formula).',
+        'What-If Analysis > Goal Seek: Set cell = the profit cell, To value = 0, By changing cell = the price (a cell holding a number, not a formula).',
       ],
       explain:
         'Goal Seek tries prices until the profit reaches 0: $7.25 a box. Check: (7.25 - 3.85) x 650 = 2,210, exactly the fixed cost, the same as the ' +
@@ -462,7 +462,7 @@ const earbuds: Exercise = {
     colWidths: { A: 120, B: 140, C: 165, D: 170, E: 200, F: 140 },
     cells: {
       A1: title('Wireless earbuds: two price-demand curves'),
-      A3: label('Quadratic trendline: units = a·price² + b·price + c'),
+      A3: label('Quadratic trendline: units = a*price² + b*price + c'),
       A4: label('a (price²)'),
       B4: input(0.01237, '0.00000'),
       A5: label('b (price)'),
@@ -835,7 +835,7 @@ const escapeRoom: Exercise = {
       answer: { B4: 41.5, B8: 8967 },
       check: { tol: 0.01 },
       hints: [
-        'Data › Solver: Set Objective B8, To Max, By Changing Variable Cells B4.',
+        'Data > Solver: Set Objective B8, To Max, By Changing Variable Cells B4.',
         'Profit is a curve in the price, so choose GRG Nonlinear (Simplex LP refuses non-linear models).',
       ],
       explain:
@@ -981,7 +981,7 @@ const rooftopCinema: Exercise = {
       kind: 'tool',
       tool: 'datatable',
       cells: 'E5:H17',
-      prompt: 'Select D4:H17 and run What-If Analysis › Data Table with B4 as the column input cell, so each price in D5:D17 is fed into the model.',
+      prompt: 'Select D4:H17 and run What-If Analysis > Data Table with B4 as the column input cell, so each price in D5:D17 is fed into the model.',
       toolSetup: { range: 'D4:H17', colInput: 'B4' },
       answer: { E5: 280, F5: 2800, H5: 1492, E10: 210, H10: 2619, F11: 4224, H17: 783.6 },
       check: { tol: 0.005 },
@@ -1122,7 +1122,7 @@ const scooterShare: Exercise = {
       tool: 'datatable',
       cells: 'E5:I11',
       prompt:
-        'Select D4:I11 and run What-If Analysis › Data Table: the slopes in row 4 go into the row input cell B8, the ride lengths in column D into the ' +
+        'Select D4:I11 and run What-If Analysis > Data Table: the slopes in row 4 go into the row input cell B8, the ride lengths in column D into the ' +
         'column input cell B9.',
       toolSetup: { range: 'D4:I11', rowInput: 'B8', colInput: 'B9' },
       answer: { E5: 6380, I5: 14300, G8: 24380, E11: 27440, I11: 49400 },
@@ -1723,7 +1723,7 @@ const incomeShareFund: Exercise = {
       cells: 'C22:D28',
       prompt:
         '(h) The Data Table frame B21:D28 lists income shares from 8% to 14% down column B and links to the total margin (C21) and the margin % (D21). ' +
-        'Run What-If Analysis › Data Table on it with B4 as the column input cell.',
+        'Run What-If Analysis > Data Table on it with B4 as the column input cell.',
       toolSetup: { range: 'B21:D28', colInput: 'B4' },
       answer: { C22: -254136, D22: -0.16976352705410822, C24: 56580, D24: 0.03779559118236473, C28: 678012, D28: 0.45291382765531063 },
       check: { tol: 0.0001 },

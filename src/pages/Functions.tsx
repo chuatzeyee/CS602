@@ -38,7 +38,7 @@ export default function Functions() {
           value={query}
           onChange={e => setQuery(e.target.value)}
           onKeyDown={e => { if (e.key === 'Escape') setQuery('') }}
-          placeholder="Search functions, syntax, notes…"
+          placeholder="Search functions, syntax, notes..."
           className="w-full bg-surface border border-edge rounded-lg pl-10 pr-4 py-2.5 text-sm text-ink focus:outline-none focus:border-glow"
         />
       </div>

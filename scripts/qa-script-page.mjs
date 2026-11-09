@@ -12,7 +12,7 @@ const PORT = process.argv[2] ?? '4691'
 const ROOT = `http://localhost:${PORT}/CS602/`
 const OUT = '/tmp/script-page'
 const KEY = 'cs602-script-large'
-const TITLE = 'Data script · CS602 SheetSmith'
+const TITLE = 'Data script | CS602 Guide'
 const H1 = 'Proposal presentation: data portion script'
 const CUES = [
   'Slide 9', 'Point to the persona box', 'Point to the 6-month and 3-month figures', 'Point to the assumptions box',
@@ -159,7 +159,7 @@ const visibleCount = (page, selector) => page.$$eval(selector, els => els.filter
     const heads = await page.$$eval('table th', ths => ths.map(t => t.textContent))
     expect(heads.join('|') === 'Number in the script|Source', `columns ${heads}`)
     const text = await pageText(page)
-    for (const s of ['MOM Comprehensive Labour Force Survey, June 2025', 'SingStat table 17886', 'MOM levy', 'data.gov.sg (as at 9 Oct 2026)', 'NPTD NDR 2026 release', 'MOM retrenchment incidence, 2007–2025']) {
+    for (const s of ['MOM Comprehensive Labour Force Survey, June 2025', 'SingStat table 17886', 'MOM levy', 'data.gov.sg (as at 9 Oct 2026)', 'NPTD NDR 2026 release', 'MOM retrenchment incidence, 2007-2025']) {
       expect(text.includes(s), `cites ${s}`)
     }
   })
@@ -214,7 +214,7 @@ const visibleCount = (page, selector) => page.$$eval(selector, els => els.filter
     await go(page, '/project/data-script', H1)
     await page.locator('#main-content a[href="#/project"]').click()
     await page.waitForFunction(() => document.querySelector('#main-content h1')?.textContent === 'Group Project', null, { timeout: 15000 })
-    expect(await page.title() === 'Group Project · CS602 SheetSmith', `project title "${await page.title()}"`)
+    expect(await page.title() === 'Group Project | CS602 Guide', `project title "${await page.title()}"`)
     await go(page, '/project/data-script/', H1)
     expect(await page.title() === TITLE, `title with trailing slash "${await page.title()}"`)
   })

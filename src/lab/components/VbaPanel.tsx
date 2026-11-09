@@ -81,7 +81,7 @@ export default function VbaPanel({ sheet, task, code, onCodeChange, activeCell, 
   const errorLine = last && last.source === code && last.result.error && last.result.error.line > 0 ? last.result.error.line : undefined
   const idle = macros.length
     ? `Choose a macro and press Run (F5). It runs on the sheet above, starting from the active cell ${activeCell}.`
-    : 'Write a Sub with no parameters (Sub Name() … End Sub) to run it.'
+    : 'Write a Sub with no parameters (Sub Name() ... End Sub) to run it.'
 
   return (
     <div
@@ -95,7 +95,7 @@ export default function VbaPanel({ sheet, task, code, onCodeChange, activeCell, 
     >
       <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 border-b border-edge px-2 py-1.5">
         <span className="flex items-center gap-1.5 font-medium text-ink-secondary">
-          <SquareTerminal size={14} aria-hidden /> VBA <span className="hidden text-ink-muted sm:inline">· Module1</span>
+          <SquareTerminal size={14} aria-hidden /> VBA <span className="hidden text-ink-muted sm:inline">Module1</span>
         </span>
         <label htmlFor={selectId} className="sr-only">Macro to run</label>
         <select

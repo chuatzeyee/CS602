@@ -25,7 +25,7 @@ export function weekOrder(ids: Iterable<string>): string[] {
   return [...new Set(ids)].sort((a, b) => weekNum(a) - weekNum(b) || a.localeCompare(b))
 }
 
-// ['w1', ..., 'w6', 'w9', 'w10'] -> 'Weeks 1–6, 9 and 10'
+// ['w1', ..., 'w6', 'w9', 'w10'] -> 'Weeks 1-6, 9 and 10'
 export function weekSpan(ids: readonly string[]): string {
   const nums = [...new Set(ids.map(id => Number(id.replace(/\D/g, ''))))]
     .filter(n => n > 0)
@@ -34,7 +34,7 @@ export function weekSpan(ids: readonly string[]): string {
   for (let i = 0; i < nums.length; ) {
     let j = i
     while (j + 1 < nums.length && nums[j + 1] === nums[j] + 1) j++
-    if (j - i >= 2) parts.push(`${nums[i]}\u2060–\u2060${nums[j]}`) // word joiners keep '1–6' on one line
+    if (j - i >= 2) parts.push(`${nums[i]}\u2060-\u2060${nums[j]}`) // word joiners keep '1-6' on one line
     else parts.push(...nums.slice(i, j + 1).map(String))
     i = j + 1
   }

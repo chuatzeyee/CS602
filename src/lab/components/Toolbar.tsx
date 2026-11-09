@@ -84,8 +84,8 @@ export default function Toolbar(p: ToolbarProps) {
   const fmtName = NUMBER_FORMATS.find(f => f.code === p.format)?.label ?? (p.format ? 'Custom' : 'General')
   const has = (t: ToolKey) => p.tools.includes(t)
   const whatIf = [
-    has('goalseek') && { key: 'goalseek', label: 'Goal Seek…', onSelect: () => p.onTool('goalseek') },
-    has('datatable') && { key: 'datatable', label: 'Data Table…', onSelect: () => p.onTool('datatable') },
+    has('goalseek') && { key: 'goalseek', label: 'Goal Seek...', onSelect: () => p.onTool('goalseek') },
+    has('datatable') && { key: 'datatable', label: 'Data Table...', onSelect: () => p.onTool('datatable') },
   ].filter(x => x !== false)
 
   return (
@@ -100,7 +100,7 @@ export default function Toolbar(p: ToolbarProps) {
             aria-busy={p.check.busy}
           >
             {p.check.busy ? <LoaderCircle size={14} className="animate-spin" /> : <ListChecks size={14} />}
-            {p.check.busy ? 'Checking…' : 'Check'}
+            {p.check.busy ? 'Checking...' : 'Check'}
           </button>
           {p.check.summary && <span className="flex-shrink-0 px-2 text-xs font-mono">{p.check.summary}</span>}
           <Sep />
@@ -125,7 +125,7 @@ export default function Toolbar(p: ToolbarProps) {
             disabled: p.readOnly,
             onSelect: () => p.onFormat(f.code),
           })),
-          { key: 'custom', label: 'Custom…', hint: p.format && !NUMBER_FORMATS.some(f => f.code === p.format) ? p.format : '', disabled: p.readOnly, onSelect: p.onCustomFormat },
+          { key: 'custom', label: 'Custom...', hint: p.format && !NUMBER_FORMATS.some(f => f.code === p.format) ? p.format : '', disabled: p.readOnly, onSelect: p.onCustomFormat },
         ]}
       />
       <Sep />

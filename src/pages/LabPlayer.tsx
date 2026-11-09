@@ -39,7 +39,7 @@ export default function LabPlayer() {
           <ArrowLeft size={14} /> Excel Lab
         </Link>
         <span className="text-ink-faint text-xs">/</span>
-        <span className="text-xs font-mono text-ink-secondary">{ex.week} · L{ex.level} {LEVELS[ex.level]}</span>
+        <span className="text-xs font-mono text-ink-secondary">{ex.week}, L{ex.level} {LEVELS[ex.level]}</span>
         <div className="ml-auto flex items-center gap-1.5">
           {prev ? (
             <Link to={`/lab/${prev.id}`} title={prev.title} className={`${nav} bg-surface text-ink-secondary border-edge hover:text-ink hover:border-edge-bright`}>

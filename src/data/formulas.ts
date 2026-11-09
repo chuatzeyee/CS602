@@ -57,7 +57,7 @@ export const formulas: readonly Formula[] = [
   {
     "name": "Volume-based TREND projection (Method 1 anchoring)",
     "formula": "=TREND(E$27:E$36,$C$27:$C$36,$C37)",
-    "note": "DataCenterAssets Model!E45. Seven $ signs: known_y rows locked, known_x fully locked, new_x column locked — fills both right (asset classes) and down (projected years) without sliding the history window.",
+    "note": "DataCenterAssets Model!E45. Seven $ signs: known_y rows locked, known_x fully locked, new_x column locked: fills both right (asset classes) and down (projected years) without sliding the history window.",
     "week": "W1"
   },
   {
@@ -93,7 +93,7 @@ export const formulas: readonly Formula[] = [
   {
     "name": "Guarded printer demand (IF)",
     "formula": "=IF(C6>$C12*C5,0,$C14+$C15*C5)",
-    "note": "Model sheet C18: demand collapses to 0 when the cartridge price C6 exceeds the max ratio (2/3) times the printer price — the bait & hook limit.",
+    "note": "Model sheet C18: demand collapses to 0 when the cartridge price C6 exceeds the max ratio (2/3) times the printer price: the bait & hook limit.",
     "week": "W2"
   },
   {
@@ -117,7 +117,7 @@ export const formulas: readonly Formula[] = [
   {
     "name": "Total cost with fixed cost",
     "formula": "=C27+C28+$C11",
-    "note": "Model sheet C29: printer cost + cartridge cost + fixed cost ($70k). Proto omitted the fixed cost — 'Shouldn't there be a fixed cost?'",
+    "note": "Model sheet C29: printer cost + cartridge cost + fixed cost ($70k). Proto omitted the fixed cost: 'Shouldn't there be a fixed cost?'",
     "week": "W2"
   },
   {
@@ -217,37 +217,37 @@ export const formulas: readonly Formula[] = [
     "week": "W3"
   },
   {
-    "name": "PMT — loan payment with balloon",
+    "name": "PMT: loan payment with balloon",
     "formula": "=PMT(B12/12, C12, D12, E12)  → =PMT(5%/12, 60, 140000, -10000)",
     "note": "TimeValue.xlsm PMT sheet F12: monthly payment ≈ -$2,494.93 for a $140,000 car loan at 5% p.a. monthly rest with a $10,000 balloon.",
     "week": "W4"
   },
   {
-    "name": "PV — beginning-of-month withdrawals",
+    "name": "PV: beginning-of-month withdrawals",
     "formula": "=PV(B12/12, C12, F12, E12, 1)  → =PV(3%/12, 9, -3500, -600, 1)",
     "note": "TimeValue.xlsm PV sheet D12: type 1 puts the $3,500 withdrawals at the beginning of each month; result ≈ $31,774.27.",
     "week": "W4"
   },
   {
-    "name": "FV — lump sum plus yearly injections",
+    "name": "FV: lump sum plus yearly injections",
     "formula": "=FV(B12, C12, F12, D12)  → =FV(6.5%, 10, -8000, -50000)",
     "note": "TimeValue.xlsm FV sheet E12: future value of $50,000 now plus $8,000 per year for 10 years at 6.5% p.a.",
     "week": "W4"
   },
   {
-    "name": "RATE — required return",
+    "name": "RATE: required return",
     "formula": "=RATE(C12, F12, D12, E12)  → =RATE(10, -8000, -50000, 250000)",
     "note": "TimeValue.xlsm RATE sheet B12: iterative, default guess 10%, #NUM! if no convergence in 20 iterations; answer ≈ 9.59% p.a.",
     "week": "W4"
   },
   {
-    "name": "NPER — investment duration",
+    "name": "NPER: investment duration",
     "formula": "=NPER(B12, F12, D12, E12)  → =NPER(8%, -8000, -50000, 250000)",
     "note": "TimeValue.xlsm NPER sheet C12 ≈ 11.01 years. The schedule cross-check =MATCH(M10, N14:N34, 1) returns 12: the list starts at year 0, so position 12 is year 11, the last balance still under $250,000, and the target is crossed during year 12.",
     "week": "W4"
   },
   {
-    "name": "NPV — with initial investment today",
+    "name": "NPV: with initial investment today",
     "formula": "=NPV(B10, C15:C24) + C14",
     "note": "TimeValue.xlsm NPV sheet C10: the -$200,000 in C14 occurs today, so it is excluded from NPV() and added to the result.",
     "week": "W4"
@@ -255,11 +255,11 @@ export const formulas: readonly Formula[] = [
   {
     "name": "Manual present value of one cash flow",
     "formula": "=M14/(1+L$10)^L14   (PV = CashFlow / (1+rate)^n)",
-    "note": "TimeValue.xlsm NPV sheet N14: summing these per-year PVs reproduces NPV() exactly — NPV(10%,-10000,3000,4200,6800) = $1,188.44.",
+    "note": "TimeValue.xlsm NPV sheet N14: summing these per-year PVs reproduces NPV() exactly: NPV(10%,-10000,3000,4200,6800) = $1,188.44.",
     "week": "W4"
   },
   {
-    "name": "IRR — internal rate of return",
+    "name": "IRR: internal rate of return",
     "formula": "=IRR(C14:C24)",
     "note": "TimeValue.xlsm IRR sheet C10: include ALL values (year-0 outflow too); needs ≥1 positive and ≥1 negative value; result ≈ 24.05%.",
     "week": "W4"
@@ -267,13 +267,13 @@ export const formulas: readonly Formula[] = [
   {
     "name": "Residue loan recurrence",
     "formula": "=N14*(1+L$10/12)-M15",
-    "note": "TimeValue.xlsm PMT sheet N15: each month's residue = previous residue grown one month at 5%/12 minus the payment — the no-function check used with Goal Seek.",
+    "note": "TimeValue.xlsm PMT sheet N15: each month's residue = previous residue grown one month at 5%/12 minus the payment: the no-function check used with Goal Seek.",
     "week": "W4"
   },
   {
     "name": "Charity Donation circular formulas",
     "formula": "D12 =MAX(0,C11*D15);  D14 =D5-D6-D12;  D15 =(1-C8)*D14",
-    "note": "CharityDonation.xlsx Model sheet: charity is 10% of after-tax profit while being deducted before tax — enable iterative calculation (max change 0.0001); converges to ≈$4,988.",
+    "note": "CharityDonation.xlsx Model sheet: charity is 10% of after-tax profit while being deducted before tax: enable iterative calculation (max change 0.0001); converges to ≈$4,988.",
     "week": "W4"
   },
   {
@@ -309,7 +309,7 @@ export const formulas: readonly Formula[] = [
   {
     "name": "Continuous uniform variate",
     "formula": "=F$6+RAND()*(F$7-F$6)",
-    "note": "X' = min + RAND()*(max − min). F$6 = min, F$7 = max in DataSim.xlsx; the Learn sheet uses the same pattern =H12+RAND()*(I12-H12).",
+    "note": "X' = min + RAND()*(max - min). F$6 = min, F$7 = max in DataSim.xlsx; the Learn sheet uses the same pattern =H12+RAND()*(I12-H12).",
     "week": "W5"
   },
   {
@@ -327,7 +327,7 @@ export const formulas: readonly Formula[] = [
   {
     "name": "Exponential variate by inversion (M3a)",
     "formula": "=-H$4*LN(1-RAND())",
-    "note": "From solving Y = 1 − e^−λx for x: X' = −mean*LN(1−RAND()); H$4 = mean = 1/λ. Since 1−RAND() is still uniform, =-mean*LN(RAND()) is equivalent.",
+    "note": "From solving Y = 1 - e^-λx for x: X' = -mean*LN(1-RAND()); H$4 = mean = 1/λ. Since 1-RAND() is still uniform, =-mean*LN(RAND()) is equivalent.",
     "week": "W5"
   },
   {
@@ -345,19 +345,19 @@ export const formulas: readonly Formula[] = [
   {
     "name": "Monty Hall change door and win indicator",
     "formula": "=6-D10-E10",
-    "note": "Change door = 6 − (selected + revealed) since door numbers sum to 6. Win indicator: =(G10=$C10)*1 converts TRUE/FALSE to 1/0; win probability: =SUM(K10:K1009)/COUNT(K10:K1009), i.e. an average over 1000 trials.",
+    "note": "Change door = 6 - (selected + revealed) since door numbers sum to 6. Win indicator: =(G10=$C10)*1 converts TRUE/FALSE to 1/0; win probability: =SUM(K10:K1009)/COUNT(K10:K1009), i.e. an average over 1000 trials.",
     "week": "W5"
   },
   {
     "name": "Village tank size (array formula)",
     "formula": "{=MAX(0,C12:N12-C13:N13)-MAX(0,N12-N13)}",
-    "note": "MAX(0, Cum Supply − Cum Demand) over all 12 months minus the December surplus, so leftover year-end water is flushed. Household version over 24 hours: {=MAX(0,C17:N17-C18:N18,C21:N21-C22:N22)-MAX(0,N21-N22)}. From VillageWater.xlsx Model sheet.",
+    "note": "MAX(0, Cum Supply - Cum Demand) over all 12 months minus the December surplus, so leftover year-end water is flushed. Household version over 24 hours: {=MAX(0,C17:N17-C18:N18,C21:N21-C22:N22)-MAX(0,N21-N22)}. From VillageWater.xlsx Model sheet.",
     "week": "W5"
   },
   {
     "name": "Sinusoidal hourly household demand",
     "formula": "=SUM(B18,($C$5/24)*$C$4*(1-SIN(C16/24*2*PI())))",
-    "note": "Accumulates hourly demand using the (1 − SIN(i/24*2π)) consumption pattern; $C$5 = litres/person/day, $C$4 = family size 5, C16 = hour i. Rainfall uncertainty extension: MAX(0, average rainfall − NORMINV(RAND(),0,CV*MEAN)).",
+    "note": "Accumulates hourly demand using the (1 - SIN(i/24*2π)) consumption pattern; $C$5 = litres/person/day, $C$4 = family size 5, C16 = hour i. Rainfall uncertainty extension: MAX(0, average rainfall - NORMINV(RAND(),0,CV*MEAN)).",
     "week": "W5"
   },
   {

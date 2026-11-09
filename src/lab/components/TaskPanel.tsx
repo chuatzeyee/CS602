@@ -21,7 +21,7 @@ export default function TaskPanel({ exercise, mode, summary, children }: TaskPan
       <section className="bg-surface border border-edge rounded-lg px-4 py-4" aria-label="Scenario">
         {!exam && (
           <div className="flex flex-wrap items-center gap-2 mb-1.5 text-[11px] font-mono text-ink-muted">
-            <span className="uppercase tracking-wider">{exercise.week} · L{exercise.level} {LEVELS[exercise.level]}</span>
+            <span className="uppercase tracking-wider">{exercise.week}, L{exercise.level} {LEVELS[exercise.level]}</span>
             <span className="flex items-center gap-1"><Clock size={11} /> {exercise.minutes} min</span>
             {exercise.extension && (
               <span className="flex items-center gap-1 text-s2" title="Uses functions beyond this week's syllabus"><Sparkles size={10} /> extension</span>

@@ -25,7 +25,7 @@ const wk = (id: string) => id.toUpperCase()
 function build(): SearchDoc[] {
   const docs: SearchDoc[] = []
   for (const s of sessions) for (const t of s.topics) for (const sec of t.sections)
-    docs.push({ kind: 'Notes', week: wk(s.id), title: `${t.title} › ${sec.heading}`, body: sec.points.join('\n'), to: `/topics?week=${wk(s.id)}` })
+    docs.push({ kind: 'Notes', week: wk(s.id), title: `${t.title} > ${sec.heading}`, body: sec.points.join('\n'), to: `/topics?week=${wk(s.id)}` })
   for (const d of definitions)
     docs.push({ kind: 'Glossary', week: d.source, title: d.term, body: d.example ? `${d.definition}\nExample: ${d.example}` : d.definition, to: '/topics?view=glossary' })
   for (const f of formulas)
@@ -33,14 +33,14 @@ function build(): SearchDoc[] {
   for (const w of walkthroughs) {
     docs.push({ kind: 'Model', week: w.week, title: w.title, body: [w.overview, ...w.takeaways].join('\n'), to: '/models' })
     for (const st of w.steps)
-      docs.push({ kind: 'Model', week: w.week, title: `${w.title.split(':')[0]} › ${st.title}`, body: st.explanation, code: st.code, to: '/models' })
+      docs.push({ kind: 'Model', week: w.week, title: `${w.title.split(':')[0]} > ${st.title}`, body: st.explanation, code: st.code, to: '/models' })
   }
   for (const q of questions)
     docs.push({ kind: 'Quiz', week: q.topic, title: q.question, body: `Answer: ${q.options[q.answerIndex]}\n${q.explanation}`, to: `/quiz?topic=${q.topic}` })
   for (const e of exercises) for (const t of e.tasks) {
     const code = t.solution ?? (t.solutions ? Object.entries(t.solutions).map(([c, f]) => `${c}: ${f}`).join('\n') : undefined)
     if (!code && !t.explain) continue
-    docs.push({ kind: 'Lab', week: e.week, title: `${e.title} › ${t.prompt.replace(/`/g, '').slice(0, 120)}`, body: [t.prompt.replace(/`/g, ''), t.explain ?? ''].filter(Boolean).join('\n'), code, to: `/lab/${e.id}` })
+    docs.push({ kind: 'Lab', week: e.week, title: `${e.title} > ${t.prompt.replace(/`/g, '').slice(0, 120)}`, body: [t.prompt.replace(/`/g, ''), t.explain ?? ''].filter(Boolean).join('\n'), code, to: `/lab/${e.id}` })
   }
   const examNotes = [
     ...exam.marking, ...exam.strategy, ...exam.mockConventions,

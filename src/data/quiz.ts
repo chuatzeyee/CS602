@@ -12,7 +12,7 @@ export const questions: readonly QuizQuestion[] = [
       "$405"
     ],
     "answerIndex": 2,
-    "explanation": "Length = 30/(2 x 3) = 5 m. Base area = 2 x 5 = 10 sqm; side area = 2 x (2+5) x 3 = 42 sqm. Cost = 10 x 10 + 42 x 5 = 100 + 210 = $310. ($305 is the tempting distractor — it is the true minimum, achieved at height 3.87 m, not 3 m.)"
+    "explanation": "Length = 30/(2 x 3) = 5 m. Base area = 2 x 5 = 10 sqm; side area = 2 x (2+5) x 3 = 42 sqm. Cost = 10 x 10 + 42 x 5 = 100 + 210 = $310. ($305 is the tempting distractor: it is the true minimum, achieved at height 3.87 m, not 3 m.)"
   },
   {
     "id": "w1q2",
@@ -64,7 +64,7 @@ export const questions: readonly QuizQuestion[] = [
       "=$C10/E10"
     ],
     "answerIndex": 1,
-    "explanation": "Filling right changes column letters only: $C is locked so it stays, but E9 is free and slides to F9. Row numbers never change on a horizontal fill — =$C10/E10 would result from filling DOWN with no locks."
+    "explanation": "Filling right changes column letters only: $C is locked so it stays, but E9 is free and slides to F9. Row numbers never change on a horizontal fill: =$C10/E10 would result from filling DOWN with no locks."
   },
   {
     "id": "w1q6",
@@ -103,7 +103,7 @@ export const questions: readonly QuizQuestion[] = [
       "=TREND(known_y, new_x, known_x, [const])"
     ],
     "answerIndex": 0,
-    "explanation": "TREND takes the known y-values FIRST, then the known x-values, then the new x at which to predict — e.g. =TREND(E26:E35, C26:C35, C36). The optional const computes the intercept b when TRUE/omitted and forces b=0 when FALSE."
+    "explanation": "TREND takes the known y-values FIRST, then the known x-values, then the new x at which to predict: e.g. =TREND(E26:E35, C26:C35, C36). The optional const computes the intercept b when TRUE/omitted and forces b=0 when FALSE."
   },
   {
     "id": "w1q9",
@@ -129,7 +129,7 @@ export const questions: readonly QuizQuestion[] = [
       "Because it forces the intercept through zero"
     ],
     "answerIndex": 1,
-    "explanation": "A TREND prediction is by construction a point ON the least-squares line, so refitting with it included returns the identical line — extra complexity, same numbers. Changing slopes describes Method 3 (3 $ signs, rolling window), whose verdict is 'Depends'."
+    "explanation": "A TREND prediction is by construction a point ON the least-squares line, so refitting with it included returns the identical line: extra complexity, same numbers. Changing slopes describes Method 3 (3 $ signs, rolling window), whose verdict is 'Depends'."
   },
   {
     "id": "w1q11",
@@ -142,14 +142,14 @@ export const questions: readonly QuizQuestion[] = [
       "It fits an exponential growth curve to the selected points"
     ],
     "answerIndex": 2,
-    "explanation": "Auto-Fill extrapolates a least-squares straight line and deposits static VALUES — no formulas, so nothing recalculates later — and it assumes equal x-spacing. Option 1 describes the ordinary Fill function, which does copy formulas."
+    "explanation": "Auto-Fill extrapolates a least-squares straight line and deposits static VALUES (no formulas, so nothing recalculates later) and it assumes equal x-spacing. Option 1 describes the ordinary Fill function, which does copy formulas."
   },
   {
     "id": "w1q12",
     "topic": "W1",
     "question": "In Data Centre Assets, why is directly Auto-Filling the IT asset columns to project future holdings the wrong approach?",
     "options": [
-      "Asset requirements are driven by business volume through a performance ratio, not by a straight line in time — blind extrapolation risks expensive over-purchase or obsolescence now that growth has slowed",
+      "Asset requirements are driven by business volume through a performance ratio, not by a straight line in time: blind extrapolation risks expensive over-purchase or obsolescence now that growth has slowed",
       "Auto-Fill cannot operate on columns of more than 10 numbers",
       "The worksheet is protected, so Auto-Fill is disabled",
       "TREND overwrites Auto-Fill results automatically"
@@ -168,7 +168,7 @@ export const questions: readonly QuizQuestion[] = [
       "Performance measure"
     ],
     "answerIndex": 1,
-    "explanation": "Height is the input Sammy controls — the Decision. The Parameters are the required 30 cbm volume, the fixed 2 m width, and the $10/$5 unit costs; Tank Length, Base Area and Wall Area are Consequence variables; Cost of Tank is the Performance measure."
+    "explanation": "Height is the input Sammy controls: the Decision. The Parameters are the required 30 cbm volume, the fixed 2 m width, and the $10/$5 unit costs; Tank Length, Base Area and Wall Area are Consequence variables; Cost of Tank is the Performance measure."
   },
   {
     "id": "w1q14",
@@ -177,7 +177,7 @@ export const questions: readonly QuizQuestion[] = [
     "options": [
       "Every single cell used anywhere in the worksheet",
       "Only the final answer cells",
-      "All input and referenced cells, plus every unique formula cell — with cell referencing chosen so the formulas still work when copied — readable from the printed copy alone",
+      "All input and referenced cells, plus every unique formula cell (with cell referencing chosen so the formulas still work when copied) readable from the printed copy alone",
       "Only a list of the chart settings and colour choices"
     ],
     "answerIndex": 2,
@@ -230,7 +230,7 @@ export const questions: readonly QuizQuestion[] = [
       "It can maximize a target cell by changing several inputs",
       "It finds the input values for multiple cells simultaneously",
       "It requires constraints on the changing cell",
-      "It can only drive one cell to a specific target value by changing exactly one input cell — it cannot maximize or minimize"
+      "It can only drive one cell to a specific target value by changing exactly one input cell: it cannot maximize or minimize"
     ],
     "answerIndex": 3,
     "explanation": "Goal Seek 'calculates backward': you fix the result one formula must reach and Excel searches for the input that produces it. Its limits are one changing cell and a fixed target value only. Maximizing/minimizing or multiple variables and constraints require Solver."
@@ -298,7 +298,7 @@ export const questions: readonly QuizQuestion[] = [
       "Professional degree"
     ],
     "answerIndex": 1,
-    "explanation": "Upper primary (50 students) earns E[Margin] = 52,800 - 45,000 = $7,800, the largest dollar margin. Technical degree has the highest margin PERCENTAGE (23.15%) but only $2,847 in dollars because just 3 students are sponsored — dollar margin and margin % rank levels differently."
+    "explanation": "Upper primary (50 students) earns E[Margin] = 52,800 - 45,000 = $7,800, the largest dollar margin. Technical degree has the highest margin PERCENTAGE (23.15%) but only $2,847 in dollars because just 3 students are sponsored: dollar margin and margin % rank levels differently."
   },
   {
     "id": "w2q10",
@@ -311,7 +311,7 @@ export const questions: readonly QuizQuestion[] = [
       "0 units"
     ],
     "answerIndex": 3,
-    "explanation": "The threshold is 0.67 x 90 = $60.30. Since the cartridge price $70 exceeds $60.30, the IF condition is TRUE and demand is 0 — customers reject the bait & hook when cartridges are too dear. Only if the cartridge were $60.30 or less would demand be 10.6 - 0.06x90 = 5.2 thousand."
+    "explanation": "The threshold is 0.67 x 90 = $60.30. Since the cartridge price $70 exceeds $60.30, the IF condition is TRUE and demand is 0: customers reject the bait & hook when cartridges are too dear. Only if the cartridge were $60.30 or less would demand be 10.6 - 0.06x90 = 5.2 thousand."
   },
   {
     "id": "w2q11",
@@ -345,7 +345,7 @@ export const questions: readonly QuizQuestion[] = [
     "question": "When Solver maximizes profit in the ROUGH printer model (no price-demand relationship), what answer does it give for the optimal printer price?",
     "options": [
       "$95.98",
-      "Infinity — because demand does not depend on price",
+      "Infinity: because demand does not depend on price",
       "$165.00",
       "$26.96"
     ],
@@ -363,7 +363,7 @@ export const questions: readonly QuizQuestion[] = [
       "Set cell C27, To value 0, By changing C5 and C6"
     ],
     "answerIndex": 2,
-    "explanation": "Breakeven means Profit = 0, so the Set cell is the formula cell C27, the target value is 0, and the single changing cell is the input C5. Goal Seek has no MAX option and cannot change two cells — those would need Solver. (C27 is the slides' address for Profit, taken from the Proto sheet; on the final Model sheet Profit sits in C32.)"
+    "explanation": "Breakeven means Profit = 0, so the Set cell is the formula cell C27, the target value is 0, and the single changing cell is the input C5. Goal Seek has no MAX option and cannot change two cells: those would need Solver. (C27 is the slides' address for Profit, taken from the Proto sheet; on the final Model sheet Profit sits in C32.)"
   },
   {
     "id": "w2q15",
@@ -513,10 +513,10 @@ export const questions: readonly QuizQuestion[] = [
     "topic": "W3",
     "question": "What is the default match_mode of XLOOKUP?",
     "options": [
-      "0 — exact match",
-      "-1 — exact match or next smaller item",
-      "1 — exact match or next larger item",
-      "2 — wildcard match"
+      "0: exact match",
+      "-1: exact match or next smaller item",
+      "1: exact match or next larger item",
+      "2: wildcard match"
     ],
     "answerIndex": 0,
     "explanation": "Unlike VLOOKUP (which defaults to approximate match), XLOOKUP defaults to exact match (match_mode 0) and returns #N/A, or the if_not_found value, when the item is missing."
@@ -545,7 +545,7 @@ export const questions: readonly QuizQuestion[] = [
       "IFS automatically returns 0 when nothing matches"
     ],
     "answerIndex": 1,
-    "explanation": "IFS has no built-in else, so the idiom is a final pair TRUE, default_value — e.g. =IFS(A1<0,0,A1>100,100,TRUE,A1) returns A1 itself when it is already within 0-100."
+    "explanation": "IFS has no built-in else, so the idiom is a final pair TRUE, default_value: e.g. =IFS(A1<0,0,A1>100,100,TRUE,A1) returns A1 itself when it is already within 0-100."
   },
   {
     "id": "w3q14",
@@ -649,7 +649,7 @@ export const questions: readonly QuizQuestion[] = [
       "The guess argument is omitted"
     ],
     "answerIndex": 1,
-    "explanation": "RATE is solved iteratively from the guess (default 10%). If after 20 iterations the answers have not converged within 0.0000001, Excel gives up with #NUM!. Omitting the guess is fine — 10% is assumed."
+    "explanation": "RATE is solved iteratively from the guess (default 10%). If after 20 iterations the answers have not converged within 0.0000001, Excel gives up with #NUM!. Omitting the guess is fine: 10% is assumed."
   },
   {
     "id": "w4q8",
@@ -658,11 +658,11 @@ export const questions: readonly QuizQuestion[] = [
     "options": [
       "The investment doubles in 6.96 years",
       "Excel made a rounding error",
-      "The answer is mathematically returned but is nonsense — Excel accepts any signs, so the modeler must judge if the result makes sense",
+      "The answer is mathematically returned but is nonsense: Excel accepts any signs, so the modeler must judge if the result makes sense",
       "You must add 6.96 to nper to fix it"
     ],
     "answerIndex": 2,
-    "explanation": "With no fv target, depositing money forever has no meaningful 'number of periods'. Excel does not police sign combinations — it returns whatever the equation yields, and the modeler must recognize nonsense results. (The exact value is -6.957; the slide prints it as -6.95.)"
+    "explanation": "With no fv target, depositing money forever has no meaningful 'number of periods'. Excel does not police sign combinations: it returns whatever the equation yields, and the modeler must recognize nonsense results. (The exact value is -6.957; the slide prints it as -6.95.)"
   },
   {
     "id": "w4q9",
@@ -727,7 +727,7 @@ export const questions: readonly QuizQuestion[] = [
       "$6,500"
     ],
     "answerIndex": 2,
-    "explanation": "C = 0.1 × (1−0.25) × (71,500 − C) = 0.075 × (71,500 − C), so 1.075C = 5,362.50 and C ≈ $4,988.37. $5,363 is what you get if you forget the donation reduces its own base (0.075 × 71,500)."
+    "explanation": "C = 0.1 × (1-0.25) × (71,500 - C) = 0.075 × (71,500 - C), so 1.075C = 5,362.50 and C ≈ $4,988.37. $5,363 is what you get if you forget the donation reduces its own base (0.075 × 71,500)."
   },
   {
     "id": "w4q14",
@@ -760,13 +760,13 @@ export const questions: readonly QuizQuestion[] = [
     "topic": "W4",
     "question": "Which is the Black-Scholes CALL option price formula?",
     "options": [
-      "Call = S·N(d1) − X·exp(−rf·t)·N(d2)",
-      "Call = −S·N(−d1) + X·exp(−rf·t)·N(−d2)",
-      "Call = X·N(d1) − S·exp(−rf·t)·N(d2)",
-      "Call = S·exp(−rf·t) − X·N(d1)"
+      "Call = S*N(d1) - X*exp(-rf*t)*N(d2)",
+      "Call = -S*N(-d1) + X*exp(-rf*t)*N(-d2)",
+      "Call = X*N(d1) - S*exp(-rf*t)*N(d2)",
+      "Call = S*exp(-rf*t) - X*N(d1)"
     ],
     "answerIndex": 0,
-    "explanation": "The call is S·N(d1) − X·exp(−rf·t)·N(d2), implemented in BlackScholes.xlsm as D15 =D4*D13-D5*EXP(-D6*D8)*D14. Option B is the PUT formula."
+    "explanation": "The call is S*N(d1) - X*exp(-rf*t)*N(d2), implemented in BlackScholes.xlsm as D15 =D4*D13-D5*EXP(-D6*D8)*D14. Option B is the PUT formula."
   },
   {
     "id": "w5q1",
@@ -779,7 +779,7 @@ export const questions: readonly QuizQuestion[] = [
       "RAND() can return exactly 1.0, while RANDBETWEEN excludes the top value"
     ],
     "answerIndex": 0,
-    "explanation": "RAND() generates a continuous uniform value in [0, 1.0) — it can be 0 but never 1 — which is why it can stand in for a cumulative probability. RANDBETWEEN(bottom, top) generates a discrete uniform integer inclusive of both endpoints, useful as a random position (e.g. which data point to resample)."
+    "explanation": "RAND() generates a continuous uniform value in [0, 1.0) (it can be 0 but never 1) which is why it can stand in for a cumulative probability. RANDBETWEEN(bottom, top) generates a discrete uniform integer inclusive of both endpoints, useful as a random position (e.g. which data point to resample)."
   },
   {
     "id": "w5q2",
@@ -805,7 +805,7 @@ export const questions: readonly QuizQuestion[] = [
       "3"
     ],
     "answerIndex": 1,
-    "explanation": "LOOKUP finds the largest boundary less than or equal to 0.556, which is 0.381 — the row for value 1. In other words 0.556 falls in the interval [0.381, 0.667), so the simulated value is 1 child. This is why the CRF column is down-shifted one row relative to the values."
+    "explanation": "LOOKUP finds the largest boundary less than or equal to 0.556, which is 0.381: the row for value 1. In other words 0.556 falls in the interval [0.381, 0.667), so the simulated value is 1 child. This is why the CRF column is down-shifted one row relative to the values."
   },
   {
     "id": "w5q4",
@@ -844,20 +844,20 @@ export const questions: readonly QuizQuestion[] = [
       "5.0"
     ],
     "answerIndex": 2,
-    "explanation": "0.5 lies halfway between percentiles 1/3 and 2/3, so Excel interpolates linearly: (0.5 − 1/3)/(2/3 − 1/3) = (X' − 3.0)/(5.0 − 3.0), giving X' = 3.0 + 0.5 × 2.0 = 4.0. This interpolation is what makes M2b suitable for continuous data — it can generate values not present in the original sample."
+    "explanation": "0.5 lies halfway between percentiles 1/3 and 2/3, so Excel interpolates linearly: (0.5 - 1/3)/(2/3 - 1/3) = (X' - 3.0)/(5.0 - 3.0), giving X' = 3.0 + 0.5 × 2.0 = 4.0. This interpolation is what makes M2b suitable for continuous data: it can generate values not present in the original sample."
   },
   {
     "id": "w5q7",
     "topic": "W5",
-    "question": "The inversion of the Exponential CDF Y = 1 − e^(−λx) gives x = −(1/λ)ln(1−Y). Why is X' = −mean*LN(RAND()) also a valid simulation formula?",
+    "question": "The inversion of the Exponential CDF Y = 1 - e^(-λx) gives x = -(1/λ)ln(1-Y). Why is X' = -mean*LN(RAND()) also a valid simulation formula?",
     "options": [
-      "Because LN(RAND()) = LN(1−RAND()) for all inputs",
-      "Because 1−RAND() is itself a uniform random number on the same range, so replacing it with RAND() draws from the same distribution",
+      "Because LN(RAND()) = LN(1-RAND()) for all inputs",
+      "Because 1-RAND() is itself a uniform random number on the same range, so replacing it with RAND() draws from the same distribution",
       "Because the exponential distribution is symmetric about its mean",
       "Because Excel evaluates RAND() twice and averages the results"
     ],
     "answerIndex": 1,
-    "explanation": "If U is uniform on [0,1), then 1−U is uniform on (0,1]. Both feed every cumulative probability equally often into the inverse CDF, so −mean*LN(1−RAND()) and −mean*LN(RAND()) produce identically distributed exponential variates. Note mean = 1/λ replaces 1/λ in the derivation."
+    "explanation": "If U is uniform on [0,1), then 1-U is uniform on (0,1]. Both feed every cumulative probability equally often into the inverse CDF, so -mean*LN(1-RAND()) and -mean*LN(RAND()) produce identically distributed exponential variates. Note mean = 1/λ replaces 1/λ in the derivation."
   },
   {
     "id": "w5q8",
@@ -870,7 +870,7 @@ export const questions: readonly QuizQuestion[] = [
       "=25 + RAND() * 4"
     ],
     "answerIndex": 1,
-    "explanation": "NORMINV inverts the normal CDF: given a random cumulative probability from RAND(), it returns the x with that CDF value — exactly the inversion method M3a. NORMDIST goes the other direction (x to probability). Option 3 has mean and SD swapped (it should be *4 + 25), and option 4 gives a uniform, not normal, variate."
+    "explanation": "NORMINV inverts the normal CDF: given a random cumulative probability from RAND(), it returns the x with that CDF value: exactly the inversion method M3a. NORMDIST goes the other direction (x to probability). Option 3 has mean and SD swapped (it should be *4 + 25), and option 4 gives a uniform, not normal, variate."
   },
   {
     "id": "w5q9",
@@ -901,7 +901,7 @@ export const questions: readonly QuizQuestion[] = [
   {
     "id": "w5q11",
     "topic": "W5",
-    "question": "In MontyHall.xlsx, the contestant selected door 1 and the host revealed door 2. Using the shortcut Change door = 6 − (revealed + selected), which door does the contestant switch to?",
+    "question": "In MontyHall.xlsx, the contestant selected door 1 and the host revealed door 2. Using the shortcut Change door = 6 - (revealed + selected), which door does the contestant switch to?",
     "options": [
       "Door 1",
       "Door 2",
@@ -909,7 +909,7 @@ export const questions: readonly QuizQuestion[] = [
       "It cannot be determined without the prize door"
     ],
     "answerIndex": 2,
-    "explanation": "The three door numbers always sum to 1+2+3 = 6, so the remaining door is 6 − (2 + 1) = 3. The workbook implements this as =6-D10-E10 where D10 is the selected door and E10 the revealed door — no options matrix needed for the change decision."
+    "explanation": "The three door numbers always sum to 1+2+3 = 6, so the remaining door is 6 - (2 + 1) = 3. The workbook implements this as =6-D10-E10 where D10 is the selected door and E10 the revealed door: no options matrix needed for the change decision."
   },
   {
     "id": "w5q12",
@@ -948,7 +948,7 @@ export const questions: readonly QuizQuestion[] = [
       "To convert the result from litres to cubic metres"
     ],
     "answerIndex": 2,
-    "explanation": "The first term finds the largest positive gap between cumulative supply and cumulative demand across all 12 months (May in the example) — the storage needed. Subtracting the December surplus flushes leftover water at the annual boundary so the yearly cycle restarts cleanly; without it the tank would have to grow every year. The household tank uses the same logic over 24 hours."
+    "explanation": "The first term finds the largest positive gap between cumulative supply and cumulative demand across all 12 months (May in the example): the storage needed. Subtracting the December surplus flushes leftover water at the annual boundary so the yearly cycle restarts cleanly; without it the tank would have to grow every year. The household tank uses the same logic over 24 hours."
   },
   {
     "id": "w6q1",
@@ -974,7 +974,7 @@ export const questions: readonly QuizQuestion[] = [
       "39461:847"
     ],
     "answerIndex": 0,
-    "explanation": "Only the fraction .847 sets the clock time: 0.847 of a day = 73,181 seconds ≈ 20 h 19 min 41 s, so HOUR = 20 and MINUTE = 19 (SECOND = 41, i.e. 8:19:41 PM as on the slide). The & operator turns both numbers into text, giving \"20:19\". 8:19 is the 12-hour reading, but HOUR always returns 0–23; 20:20 rounds the minutes instead of taking the whole minute."
+    "explanation": "Only the fraction .847 sets the clock time: 0.847 of a day = 73,181 seconds ≈ 20 h 19 min 41 s, so HOUR = 20 and MINUTE = 19 (SECOND = 41, i.e. 8:19:41 PM as on the slide). The & operator turns both numbers into text, giving \"20:19\". 8:19 is the 12-hour reading, but HOUR always returns 0-23; 20:20 rounds the minutes instead of taking the whole minute."
   },
   {
     "id": "w6q3",
@@ -987,7 +987,7 @@ export const questions: readonly QuizQuestion[] = [
       "=MONTH(C2)-MONTH(B2)"
     ],
     "answerIndex": 1,
-    "explanation": "Dates are serial numbers, so subtracting the two cells gives the elapsed days: 28 days to the end of September + 14 = 42. DAY(C2)-DAY(B2) = 14 − 2 = 12 ignores the change of month, and the MONTH difference is 1. Typing bare dates inside a formula is the slides' 'WRONG' pattern: use cell references, quoted text or DATE()."
+    "explanation": "Dates are serial numbers, so subtracting the two cells gives the elapsed days: 28 days to the end of September + 14 = 42. DAY(C2)-DAY(B2) = 14 - 2 = 12 ignores the change of month, and the MONTH difference is 1. Typing bare dates inside a formula is the slides' 'WRONG' pattern: use cell references, quoted text or DATE()."
   },
   {
     "id": "w6q4",
@@ -1000,7 +1000,7 @@ export const questions: readonly QuizQuestion[] = [
       "[h]:mm"
     ],
     "answerIndex": 3,
-    "explanation": "1.3020833 is 1 whole day plus 0.3020833 (7 h 15 min). h and hh show only the hour within the day (0–23), so they display 7:15 and 07:15; mm:ss shows the minutes and seconds of the time part (15:00). [h] keeps counting past 23 ('Hours as 0, 1, …, 23, 24, 25, …' on the slide), so [h]:mm displays 31:15."
+    "explanation": "1.3020833 is 1 whole day plus 0.3020833 (7 h 15 min). h and hh show only the hour within the day (0-23), so they display 7:15 and 07:15; mm:ss shows the minutes and seconds of the time part (15:00). [h] keeps counting past 23 ('Hours as 0, 1, ..., 23, 24, 25, ...' on the slide), so [h]:mm displays 31:15."
   },
   {
     "id": "w6q5",
@@ -1013,7 +1013,7 @@ export const questions: readonly QuizQuestion[] = [
       "#####"
     ],
     "answerIndex": 0,
-    "explanation": "mm shows the minutes (0–59) of the time part only, so the whole hour disappears from view while the stored value stays the same. The saved c-Server sheet has this issue for its longest waits. 1:05:37 needs h:mm:ss or an [h] format, and ##### is what Excel shows for a negative time, not a long one."
+    "explanation": "mm shows the minutes (0-59) of the time part only, so the whole hour disappears from view while the stored value stays the same. The saved c-Server sheet has this issue for its longest waits. 1:05:37 needs h:mm:ss or an [h] format, and ##### is what Excel shows for a negative time, not a long one."
   },
   {
     "id": "w6q6",
@@ -1026,7 +1026,7 @@ export const questions: readonly QuizQuestion[] = [
       "2:46"
     ],
     "answerIndex": 3,
-    "explanation": "−4 × LN(0.5) = −4 × (−0.6931) = 2.77 minutes = 2 min 46 s. LN of a number between 0 and 1 is negative, which is why the formula starts with a minus sign. D4 is a time value, so the result is also a time (format it mm:ss). 2:00 is simply half the mean, and 1:12 is what LOG10 would give instead of LN."
+    "explanation": "-4 × LN(0.5) = -4 × (-0.6931) = 2.77 minutes = 2 min 46 s. LN of a number between 0 and 1 is negative, which is why the formula starts with a minus sign. D4 is a time value, so the result is also a time (format it mm:ss). 2:00 is simply half the mean, and 1:12 is what LOG10 would give instead of LN."
   },
   {
     "id": "w6q7",
@@ -1065,7 +1065,7 @@ export const questions: readonly QuizQuestion[] = [
       "10:11"
     ],
     "answerIndex": 2,
-    "explanation": "J21 = 3 is not below 3, so the formula takes the 3rd-largest earlier end time. Sorted descending: 10:22, 10:18, 10:15, … → 10:15. The three customers still in the system (one per server) finish at 10:15, 10:18 and 10:22, so the earliest server frees up at 10:15 and the customer waits 3 minutes. 10:12 would apply only if a server were idle, 10:22 is when the last server frees, and 10:11 is the 4th largest."
+    "explanation": "J21 = 3 is not below 3, so the formula takes the 3rd-largest earlier end time. Sorted descending: 10:22, 10:18, 10:15, ... → 10:15. The three customers still in the system (one per server) finish at 10:15, 10:18 and 10:22, so the earliest server frees up at 10:15 and the customer waits 3 minutes. 10:12 would apply only if a server were idle, 10:22 is when the last server frees, and 10:11 is the 4th largest."
   },
   {
     "id": "w6q10",
@@ -1104,7 +1104,7 @@ export const questions: readonly QuizQuestion[] = [
       "G = 30:00 and H = 11:10: the wait is capped at the renege limit"
     ],
     "answerIndex": 1,
-    "explanation": "L = 5 is not above 7, so the customer joins, and because L ≥ 2 servers, F = LARGE(...) = 11:14. G15 =IF(F15=\"\",\"\",F15-E15) = 11:14 − 10:40 = 34 minutes. H15 =IF(F15=\"\",\"\",IF(G15>$G$4,\"\",F15)): 34 > 30, so H is blank and the customer reneges without being served. Balking would need L > 7."
+    "explanation": "L = 5 is not above 7, so the customer joins, and because L ≥ 2 servers, F = LARGE(...) = 11:14. G15 =IF(F15=\"\",\"\",F15-E15) = 11:14 - 10:40 = 34 minutes. H15 =IF(F15=\"\",\"\",IF(G15>$G$4,\"\",F15)): 34 > 30, so H is blank and the customer reneges without being served. Balking would need L > 7."
   },
   {
     "id": "w6q13",
@@ -1117,7 +1117,7 @@ export const questions: readonly QuizQuestion[] = [
       "Balk 0.85, renege 0.75"
     ],
     "answerIndex": 2,
-    "explanation": "Balk = (COUNT(E) − COUNT(F))/COUNT(E) = (80 − 68)/80 = 0.15. Renege = (COUNT(F) − COUNT(H))/COUNT(F) = (68 − 51)/68 = 0.25. The renege denominator is the customers who JOINED, not all arrivals (17/80 = 0.21 is the trap). 0.18 = 12/68 uses the wrong base for balking, and 0.85 and 0.75 are the shares who joined and who were served."
+    "explanation": "Balk = (COUNT(E) - COUNT(F))/COUNT(E) = (80 - 68)/80 = 0.15. Renege = (COUNT(F) - COUNT(H))/COUNT(F) = (68 - 51)/68 = 0.25. The renege denominator is the customers who JOINED, not all arrivals (17/80 = 0.21 is the trap). 0.18 = 12/68 uses the wrong base for balking, and 0.85 and 0.75 are the shares who joined and who were served."
   },
   {
     "id": "w6q14",
@@ -1156,7 +1156,7 @@ export const questions: readonly QuizQuestion[] = [
       "16, so row 16"
     ],
     "answerIndex": 1,
-    "explanation": "MATCH with match type 0 finds ID 12 in position 4 of C12:C…, and adding 11 converts that position into the worksheet row: 4 + 11 = 15. deleteRecord reads rowNum = Range(\"B7\").Value = 15 and deletes Rows(15). 4 forgets the offset, and 12 confuses the ID with the row. If the ID were missing, IFERROR would return \"\" and the If rowNum <> \"\" guard would skip the delete."
+    "explanation": "MATCH with match type 0 finds ID 12 in position 4 of C12:C..., and adding 11 converts that position into the worksheet row: 4 + 11 = 15. deleteRecord reads rowNum = Range(\"B7\").Value = 15 and deletes Rows(15). 4 forgets the offset, and 12 confuses the ID with the row. If the ID were missing, IFERROR would return \"\" and the If rowNum <> \"\" guard would skip the delete."
   },
   {
     "id": "w6q17",

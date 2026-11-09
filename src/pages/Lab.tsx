@@ -52,7 +52,7 @@ function ExerciseCard({ ex, progress }: { ex: Exercise; progress?: Progress }) {
       className="group flex flex-col bg-surface border border-edge rounded-lg p-5 hover:border-glow/30 hover:bg-raised transition-all duration-200"
     >
       <div className="flex items-center gap-2 mb-2 text-[11px] font-mono text-ink-muted">
-        <span className="uppercase tracking-wider">L{ex.level} · {LEVELS[ex.level]}</span>
+        <span className="uppercase tracking-wider">L{ex.level}, {LEVELS[ex.level]}</span>
         <span className="flex items-center gap-1"><Clock size={11} /> {ex.minutes} min</span>
         {ex.extension && (
           <span className="flex items-center gap-1 text-s2 bg-raised border border-edge rounded px-1.5 py-px" title="Uses functions beyond this week's syllabus">
@@ -150,7 +150,7 @@ export function LabCatalogue({ list }: { list: readonly Exercise[] }) {
         </p>
         {taskTotal > 0 && (
           <p className="mt-3 text-xs font-mono text-ink-muted">
-            {list.length} exercises · <span className="text-correct">{solvedTotal}</span>/{taskTotal} tasks solved on this device
+            {list.length} exercises, <span className="text-correct">{solvedTotal}</span>/{taskTotal} tasks solved on this device
           </p>
         )}
       </div>
@@ -178,7 +178,7 @@ export function LabCatalogue({ list }: { list: readonly Exercise[] }) {
           <input
             value={q}
             onChange={e => update({ q: e.target.value }, true)}
-            placeholder="Search exercises, skills, functions…"
+            placeholder="Search exercises, skills, functions..."
             aria-label="Search exercises"
             className="w-full bg-surface border border-edge rounded-lg pl-10 pr-4 py-2.5 text-sm text-ink focus:outline-none focus:border-glow/40"
           />
@@ -193,7 +193,7 @@ export function LabCatalogue({ list }: { list: readonly Exercise[] }) {
           <button type="button" onClick={() => update({ level: 0 })} className={pill(!level)} aria-pressed={!level}>All levels</button>
           {[1, 2, 3].map(l => (
             <button key={l} type="button" onClick={() => update({ level: level === l ? 0 : l })} className={pill(level === l)} aria-pressed={level === l}>
-              {l} · {LEVELS[l]}
+              {l}, {LEVELS[l]}
             </button>
           ))}
           {techniques.length > 0 && (
@@ -243,7 +243,7 @@ export function LabCatalogue({ list }: { list: readonly Exercise[] }) {
               <section key={g.week} aria-labelledby={`wk-${g.week}`}>
                 <div className="flex items-baseline justify-between gap-3 mb-4">
                   <h2 id={`wk-${g.week}`} className={`text-xl font-bold ${weekText(g.week, 'text-s4')}`}>
-                    {g.week === 'EXAM' ? 'Exam practice' : g.week} <span className="text-ink-secondary font-semibold text-base">{g.week === 'EXAM' ? '' : `· ${weekTopic(g.week)}`}</span>
+                    {g.week === 'EXAM' ? 'Exam practice' : g.week} <span className="text-ink-secondary font-semibold text-base">{g.week === 'EXAM' ? '' : `: ${weekTopic(g.week)}`}</span>
                   </h2>
                   <span className="text-xs font-mono text-ink-muted flex-shrink-0">{solved}/{total} tasks</span>
                 </div>

@@ -167,7 +167,7 @@ export default function SortDialog({ sheet, selection, onClose, onDone }: ToolDi
                   <select aria-label="Order" value={l.order} onChange={e => update(i, { order: e.target.value as SortOrder })} className={input}>
                     <option value="asc">{up}</option>
                     <option value="desc">{down}</option>
-                    <option value="custom">Custom List…</option>
+                    <option value="custom">Custom List...</option>
                   </select>
                 </div>
                 {errors[`col${i}`] && <p className="text-[11px] text-wrong">{errors[`col${i}`]}</p>}
@@ -182,7 +182,7 @@ export default function SortDialog({ sheet, selection, onClose, onDone }: ToolDi
                         className={input}
                       >
                         <option value="">NEW LIST</option>
-                        {Object.entries(BUILTIN_LISTS).map(([name, v]) => <option key={name} value={name}>{v.slice(0, 3).join(', ')}, …</option>)}
+                        {Object.entries(BUILTIN_LISTS).map(([name, v]) => <option key={name} value={name}>{v.slice(0, 3).join(', ')}, ...</option>)}
                       </select>
                     </div>
                     <div>

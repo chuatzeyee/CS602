@@ -105,7 +105,7 @@ export default function VbaOutput({ last, idle, onGoToLine, onUndo }: VbaOutputP
     <div className="space-y-2">
       <p className={`flex flex-wrap items-center gap-x-2 gap-y-1 ${err ? 'text-wrong' : 'text-ink-secondary'}`}>
         {err ? <CircleAlert size={13} aria-hidden /> : <CircleCheck size={13} className="text-correct" aria-hidden />}
-        <span>{err ? `${macro} stopped` : `Ran ${macro}`} · {result.steps.toLocaleString('en')} steps</span>
+        <span>{err ? `${macro} stopped` : `Ran ${macro}`}, {result.steps.toLocaleString('en')} steps</span>
         {last.undoable && (
           <button type="button" className="inline-flex items-center gap-1 rounded px-1 text-ink-muted underline-offset-2 hover:text-ink hover:underline" onClick={onUndo}>
             <Undo2 size={12} aria-hidden /> Undo the run

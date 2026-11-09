@@ -74,7 +74,7 @@ export default function DataTableDialog({ sheet, selection, onClose, onDone }: T
         <div className="text-xs text-ink-muted leading-relaxed bg-raised border border-edge rounded-md px-3 py-2 space-y-1">
           <p><span className="text-ink-secondary">One variable:</span> inputs down the first column and formulas across the top row (top-left cell blank): use the <em>column</em> input cell. Inputs across the top row: use the row input cell.</p>
           <p><span className="text-ink-secondary">Two variables:</span> one formula in the top-left corner, row inputs across, column inputs down: fill both.</p>
-          <p><span className="text-ink-secondary">Monte Carlo trick:</span> number the runs 1, 2, 3… down the first column, put the output formulas in the top row, and point the column input cell at any blank cell: each row recalculates the model with fresh random draws.</p>
+          <p><span className="text-ink-secondary">Monte Carlo trick:</span> number the runs 1, 2, 3... down the first column, put the output formulas in the top row, and point the column input cell at any blank cell: each row recalculates the model with fresh random draws.</p>
           <p>Tables are recalculated when you press F9 (Calculate Now), not after every edit.</p>
         </div>
         {tables.length > 0 && (

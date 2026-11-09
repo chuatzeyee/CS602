@@ -130,7 +130,7 @@ function PlayerView() {
       <nav className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-3 text-xs">
         <a href={link('view=list')} className="text-ink-muted hover:text-ink">Fixtures</a>
         <span className="text-ink-faint">/</span>
-        <span className="font-mono text-ink-secondary">{ex.id} · {mode}</span>
+        <span className="font-mono text-ink-secondary">{ex.id}, {mode}</span>
       </nav>
       <Player key={`${ex.id}-${mode}`} exercise={ex} mode={mode} progressId={mode === 'practice' || mode === 'sandbox' ? ex.id : undefined} />
     </div>

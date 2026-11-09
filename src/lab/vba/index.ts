@@ -73,7 +73,7 @@ export interface VbaRunOutcome extends VbaRunResult {
 interface OutputLog { lines: VbaOutput[]; dropped: number }
 
 function log(out: OutputLog, line: VbaOutput): void {
-  out.lines.push(line.text.length > MAX_LINE ? { ...line, text: `${line.text.slice(0, MAX_LINE)}…` } : line)
+  out.lines.push(line.text.length > MAX_LINE ? { ...line, text: `${line.text.slice(0, MAX_LINE)}...` } : line)
   if (out.lines.length >= 2 * MAX_MESSAGES) out.dropped += out.lines.splice(0, out.lines.length - MAX_MESSAGES).length
 }
 

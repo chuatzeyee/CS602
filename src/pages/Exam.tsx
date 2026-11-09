@@ -186,7 +186,7 @@ function TimePlan() {
           >
             {b.focus && (
               <span className="whitespace-nowrap px-2">
-                <span className="hidden sm:inline">{b.label} · </span>
+                <span className="hidden sm:inline">{b.label}, </span>
                 {b.to - b.from} min
               </span>
             )}
@@ -205,7 +205,7 @@ function TimePlan() {
             <div className="flex-1 min-w-0">
               <div className="flex items-baseline justify-between gap-3">
                 <span className="text-sm font-medium text-ink">{b.label}</span>
-                <span className="font-mono text-xs text-ink-muted tabular-nums flex-shrink-0">{b.from}–{b.to} min</span>
+                <span className="font-mono text-xs text-ink-muted tabular-nums flex-shrink-0">{b.from}-{b.to} min</span>
               </div>
               <p className="text-sm text-ink-secondary leading-relaxed mt-0.5">{b.detail}</p>
             </div>
@@ -344,7 +344,7 @@ function QuestionBlock({ q }: { q: QuestionSummary }) {
     <div className="pt-5 mt-5 border-t border-edge first:pt-0 first:mt-0 first:border-t-0">
       <div className="flex flex-wrap items-center gap-2 mb-1.5">
         <span className={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border ${kind.cls}`}>{kind.label}</span>
-        <span className="font-mono text-xs text-ink-muted">{q.id.toUpperCase()} · {plural(q.marks, 'mark')}</span>
+        <span className="font-mono text-xs text-ink-muted">{q.id.toUpperCase()}, {plural(q.marks, 'mark')}</span>
       </div>
       <h4 className="font-semibold text-ink leading-snug">{q.title}</h4>
       <p className="text-sm text-ink-secondary leading-relaxed mt-1.5">{q.modelled}</p>
@@ -380,7 +380,7 @@ function QuestionBlock({ q }: { q: QuestionSummary }) {
 
 function PaperCard({ paper, defaultOpen }: { paper: PaperSummary; defaultOpen: boolean }) {
   const [open, setOpen] = useState(defaultOpen)
-  const split = paper.questions.map(q => `${q.id.toUpperCase()} ${q.marks}`).join(' · ')
+  const split = paper.questions.map(q => `${q.id.toUpperCase()} ${q.marks}`).join(', ')
   return (
     <div className="bg-surface border border-edge rounded-lg overflow-hidden">
       <h3>
@@ -391,7 +391,7 @@ function PaperCard({ paper, defaultOpen }: { paper: PaperSummary; defaultOpen: b
         >
           <span className="min-w-0">
             <span className={`block font-semibold ${open ? 'text-ink' : 'text-ink-secondary'}`}>{paper.title}</span>
-            <span className="block text-xs text-ink-muted mt-0.5">{paper.sitting} · {split}</span>
+            <span className="block text-xs text-ink-muted mt-0.5">{paper.sitting}, {split}</span>
           </span>
           <ChevronDown size={18} className={`text-ink-muted flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
         </button>

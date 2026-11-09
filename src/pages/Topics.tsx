@@ -146,7 +146,7 @@ export default function Topics() {
               value={query}
               onChange={e => setQuery(e.target.value)}
               onKeyDown={e => { if (e.key === 'Escape') setQuery('') }}
-              placeholder="Search terms and definitions…"
+              placeholder="Search terms and definitions..."
               className="w-full bg-surface border border-edge rounded-lg pl-10 pr-4 py-2.5 text-sm text-ink focus:outline-none focus:border-glow"
             />
           </div>
