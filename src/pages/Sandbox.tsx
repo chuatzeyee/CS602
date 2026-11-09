@@ -29,7 +29,7 @@ export default function Sandbox() {
         <span className="text-ink-faint text-xs">/</span>
         <h1 className="flex items-center gap-1.5 text-sm font-semibold text-ink"><FlaskConical size={15} className="text-glow" /> Sandbox</h1>
         <p className="text-xs text-ink-muted basis-full sm:basis-auto sm:ml-2">
-          A blank 100 × 26 sheet with every tool and the VBA editor. Nothing is checked; your work is saved on this device.
+          A blank 100 × 26 sheet with every tool. Nothing is checked; your work is saved on this device.
         </p>
       </div>
       <LabErrorBoundary backTo="/lab" backLabel="Back to the Excel Lab" onReset={() => clearExerciseProgress(SANDBOX.id)} resetLabel="Clear the sandbox and start again">

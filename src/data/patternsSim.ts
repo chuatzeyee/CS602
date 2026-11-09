@@ -1,4 +1,4 @@
-// Question 2 style patterns: random variables, replications, queues, flows, plus data tools and VBA.
+// Question 2 style patterns: random variables, replications, queues, flows, plus filters and PivotTables.
 // Cell addresses in the formulas are templates: the `where` line says what each cell holds.
 import type { QuestionPattern } from './patterns'
 
@@ -299,7 +299,7 @@ export const simPatterns: readonly QuestionPattern[] = [
   },
   {
     id: 'filters',
-    group: 'Data tools and VBA',
+    group: 'Data tools',
     title: 'Filtering and extracting records (AutoFilter, Advanced Filter, criteria)',
     spot: 'List or count the records that meet conditions, extract them to another place, or get unique values.',
     cues: ['filter', 'filters', 'autofilter', 'advanced filter', 'criteria', 'criteria range', 'extract', 'list the', 'records', 'show only', 'copy to another location', 'unique', 'unique records', 'meets', 'matching'],
@@ -327,7 +327,7 @@ export const simPatterns: readonly QuestionPattern[] = [
   },
   {
     id: 'pivot',
-    group: 'Data tools and VBA',
+    group: 'Data tools',
     title: 'Summaries by category (PivotTable, SUMIF, SUMPRODUCT)',
     spot: 'Totals, counts or averages broken down by region, month, channel or product; shares of a total.',
     cues: ['summarise', 'summarize', 'summary', 'by region', 'by region and', 'revenue by', 'total revenue by', 'by month', 'by channel', 'by product', 'by category', 'total by', 'count by', 'average by', 'pivot', 'pivottable', 'breakdown', 'share of total', 'percentage of total', 'per category'],
@@ -350,33 +350,5 @@ export const simPatterns: readonly QuestionPattern[] = [
     ],
     techniques: [],
     examples: ['w10-pivot-orders', 'w10-pivot-month-helper', 'w10-pivot-value-settings', 'w10-sumproduct-region-status', 'w10-room-bookings-report'],
-  },
-  {
-    id: 'vba',
-    group: 'Data tools and VBA',
-    title: 'Macros and VBA (record, loop, write to cells, user-defined function)',
-    spot: 'Automate a repeated action, loop over rows, or write a custom function.',
-    cues: ['macro', 'macros', 'vba', 'button', 'record a macro', 'automate', 'sub', 'loop', 'for each', 'user-defined function', 'function procedure', 'inputbox', 'msgbox', 'module'],
-    steps: [
-      'Developer > Record Macro for simple actions; tick Use Relative References if it must work from the active cell.',
-      'Alt+F11 > Insert > Module; write Sub Name() ... End Sub.',
-      'Loop rows with For i = 1 To n ... Next i, reading and writing Cells(row, col).Value.',
-      'Function Name(args) ... Name = result ... End Function makes a worksheet function.',
-      'Save as .xlsm.',
-    ],
-    formulas: [
-      { label: 'Loop down a column', f: 'For i = 1 To 50\n    Cells(i + 4, 3).Value = Cells(i + 4, 2).Value * 2\nNext i' },
-      { label: 'Write a result vs a formula', f: 'Range("C8").Value = WorksheetFunction.Sum(Range("C4:C7"))\nRange("C8").Formula = "=SUM(C4:C7)"' },
-      { label: 'User-defined function', f: 'Function Tables(guests)\n    Tables = WorksheetFunction.RoundUp(guests / 8, 0)\nEnd Function' },
-      { label: 'Next empty row', f: 'Range("C6").End(xlDown).Offset(1, 0).Select' },
-      { label: 'Decisions', f: 'If x > 10 Then\n    ...\nElseIf x > 5 Then\n    ...\nElse\n    ...\nEnd If' },
-    ],
-    pitfalls: [
-      'A recorded macro with absolute references always acts on the same cells.',
-      '.Value writes a fixed number; .Formula writes a live formula.',
-      'Saving as .xlsx deletes the macros.',
-    ],
-    techniques: [],
-    examples: ['w9-vba-for-next-bibs', 'w9-vba-function-tables', 'w9-vba-select-case-lockers', 'w9-vba-arrays-with', 'w9-vba-queue-timer', 'w9-vba-post-deliveries'],
   },
 ]

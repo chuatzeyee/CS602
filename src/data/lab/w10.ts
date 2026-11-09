@@ -912,9 +912,9 @@ const fleetAlerts: Exercise = {
     },
     {
       id: 'rerun', kind: 'explain', cells: '',
-      prompt: '(e) The manager changes B3 to 27 Jul 2026. B5:B7 and A10:B10 update at once, but the list under F12 does not. Explain why, and how the course\'s milestone tracker keeps its filtered view current. (If you try it, set B3 back to 20 Jul 2026 and run the filter again: part (d) is checked for the given inputs.)',
-      answer: 'Advanced Filter is a one-off command: it copies the matching rows as values and does not recalculate when its criteria change, so it must be run again (Data > Advanced) after every change. The tracker automates this: the filter is recorded as a macro, and the sheet\'s Worksheet_Change event calls the macro whenever a watched input such as the alert level changes (tested with Intersect), so the view refreshes by itself. B7 is a formula, so a mismatch between B7 and the list shows that the list is out of date.',
-      hints: ['Which of these cells hold formulas, and which hold values written by a command?', 'How could a macro be started automatically when B3 or B4 changes?'],
+      prompt: '(e) The manager changes B3 to 27 Jul 2026. B5:B7 and A10:B10 update at once, but the list under F12 does not. Explain why, and what you must do to bring the list up to date. (If you try it, set B3 back to 20 Jul 2026 and run the filter again: part (d) is checked for the given inputs.)',
+      answer: 'Advanced Filter is a one-off command: it copies the matching rows as values and does not recalculate when its criteria change, so it must be run again (Data > Advanced, with the same list range, criteria range A9:C10 and Copy to F12:H12) after every change. B7 is a formula, so a mismatch between B7 and the list shows that the list is out of date.',
+      hints: ['Which of these cells hold formulas, and which hold values written by a command?', 'Run Data > Advanced again with the same three ranges and compare the list with B7.'],
     },
   ],
   testCases: [

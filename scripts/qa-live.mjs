@@ -32,7 +32,7 @@ for (const [path, want] of [['/topics', 'Week 10'], ['/quiz', 'Quiz'], ['/functi
   })
 }
 // solve one formula exercise and one VBA exercise through Reveal + Check
-for (const id of ['w1-absolute-ringgit-price-list', 'w9-vba-for-next-bibs']) {
+for (const id of ['w1-absolute-ringgit-price-list', 'w6-duration-conversions']) {
   await check(`reveal+check ${id}`, async () => {
     page.removeAllListeners('dialog')
     page.on('dialog', d => d.accept())

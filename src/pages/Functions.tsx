@@ -25,7 +25,7 @@ export default function Functions() {
       <div className="mb-8 animate-fade-in">
         <h1 className="text-3xl font-bold text-ink mb-2">Function Bank</h1>
         <p className="text-ink-secondary">
-          Every Excel function, formula pattern and VBA snippet taught in {coverage},
+          Every Excel function and formula pattern taught in {coverage},
           with the real syntax used in the session workbooks and the gotchas that cost marks.
         </p>
       </div>

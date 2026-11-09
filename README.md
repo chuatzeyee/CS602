@@ -8,10 +8,10 @@ progress is kept in the browser's local storage.
 
 - **Topics**: revision notes for every session, plus a searchable glossary.
 - **Quiz**: a multiple-choice bank with worked explanations.
-- **Functions**: the Excel functions, formula patterns and VBA snippets taught in the course, with syntax and gotchas.
+- **Functions**: the Excel functions and formula patterns taught in the course, with syntax and gotchas.
 - **Models**: the signature session workbooks rebuilt step by step.
 - **Excel Lab**: exercises for every taught week in an in-browser spreadsheet (formulas and fill, Goal Seek, Data
-  Tables, Solver, Sort, AutoFilter, Advanced Filter, PivotTables and VBA) with Check, hints and Reveal, plus a sandbox.
+  Tables, Solver, Sort, AutoFilter, Advanced Filter, PivotTables) with Check, hints and Reveal, plus a sandbox.
 - **Exam Prep**: format, marking, a time plan and strategy for the final, the techniques past papers test, and timed
   mock exams marked cell by cell.
 - **Group Project**: deadlines, deliverables, the rubric, modelling conventions, drills and lessons from past projects,

@@ -42,7 +42,6 @@ const SAMPLES: [string, string][] = [
   ['Customers pay whichever is cheaper: the hourly charge or blocks of 3 hours at $20 per block.', 'capacity'],
   ['Flag customers whose birthday is this month and who have at least 500 points.', 'dates'],
   ['Summarise total revenue by region and channel.', 'pivot'],
-  ['Write a macro that loops through the list and posts each delivery.', 'vba'],
   ['Compute the expected revenue per customer from the duration distribution.', 'sumproduct'],
   ['Look up the fare from the fare matrix using the origin and destination.', 'exact-lookup'],
 ]

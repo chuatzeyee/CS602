@@ -69,7 +69,7 @@ export default function Quiz() {
         <p className="text-ink-secondary">
           MCQ bank with explanations covering {coverage}: modelling foundations,
           logical functions and what-if analysis, lookups and Solver, time value
-          of money, simulation, queuing with dates and times, macros and VBA, and
+          of money, simulation, queuing with dates and times, and
           filters and PivotTables. Calculation questions show full worked
           solutions, so keep a calculator handy.
         </p>

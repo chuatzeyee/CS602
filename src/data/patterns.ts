@@ -5,7 +5,7 @@ import type { ExamTechnique } from './lab/techniques'
 import { modelPatterns } from './patternsModel'
 import { simPatterns } from './patternsSim'
 
-export type PatternGroup = 'Model and optimise' | 'Simulation' | 'Queues' | 'Finance' | 'Data tools and VBA'
+export type PatternGroup = 'Model and optimise' | 'Simulation' | 'Queues' | 'Finance' | 'Data tools'
 
 export interface PatternFormula {
   label: string
@@ -28,7 +28,7 @@ export interface QuestionPattern {
   examples?: readonly string[]          // extra worked-question ids (lab exercises) when no technique fits
 }
 
-export const PATTERN_GROUPS: readonly PatternGroup[] = ['Model and optimise', 'Finance', 'Simulation', 'Queues', 'Data tools and VBA']
+export const PATTERN_GROUPS: readonly PatternGroup[] = ['Model and optimise', 'Finance', 'Simulation', 'Queues', 'Data tools']
 
 export const patterns: readonly QuestionPattern[] = [...modelPatterns, ...simPatterns]
 

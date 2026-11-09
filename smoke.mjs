@@ -5,8 +5,8 @@ import { mkdirSync, readFileSync } from 'node:fs'
 const PORT = process.env.PORT ?? '4602'
 const BASE = `http://localhost:${PORT}/CS602/#`
 const SHOTS = process.env.SHOTS ?? '/tmp/cs602_content'
-const WEEKS = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W9', 'W10']
-const NEW_WEEKS = ['W6', 'W9', 'W10']
+const WEEKS = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W10']
+const NEW_WEEKS = ['W6', 'W10']
 const CONTENT_CARDS = ['Topics & Glossary', 'Practice Quiz', 'Function Bank', 'Model Walkthroughs', 'Course Map']
 mkdirSync(SHOTS, { recursive: true })
 
@@ -91,33 +91,33 @@ await check('home renders title, content cards and real coverage', async () => {
   const missing = CONTENT_CARDS.filter(c => !cards.includes(c))
   expect(missing.length === 0, `missing cards ${missing}`)
   const body = (await page.textContent('body')).replaceAll('\u2060', '')
-  expect(body.includes('Weeks 1–6, 9 and 10'), 'coverage copy')
+  expect(body.replace(/\u2060/g, '').includes('Weeks 1-6 and 10'), 'coverage copy')
   expect(!/Weeks 1[–-]5/.test(body), 'stale "Weeks 1–5" copy')
 })
 await shot('home-desktop')
 
 // topics
 await go('/topics')
-await check('topics lists the 8 taught weeks with their colours', async () => {
+await check('topics lists the 7 taught weeks with their colours', async () => {
   const heads = await page.$$eval('section h2', els => els.map(e => [e.textContent, getComputedStyle(e).color]))
   const weeks = heads.map(([t]) => (t.match(/^Week (\d+)/) ?? [])[1]).map(n => `W${n}`)
   expect(JSON.stringify(weeks) === JSON.stringify(WEEKS), `sessions ${weeks}`)
   heads.forEach(([t, c], i) => expect(c === tone[WEEKS[i]], `${t.slice(0, 7)} colour ${c} != ${tone[WEEKS[i]]}`))
 })
-await check('topics week filter isolates W9 and cards expand', async () => {
-  await clickChip('main', 'W9')
+await check('topics week filter isolates W10 and cards expand', async () => {
+  await clickChip('main', 'W10')
   const heads = await page.$$eval('section h2', els => els.map(e => e.textContent))
-  expect(heads.length === 1 && heads[0].startsWith('Week 9'), `W9 filter shows ${heads}`)
+  expect(heads.length === 1 && heads[0].startsWith('Week 10'), `W10 filter shows ${heads}`)
   await page.click('section button')
   await page.waitForTimeout(200)
   expect((await page.$$('section ul li')).length > 0, 'topic card expands with points')
 })
-await shot('topics-w9-desktop')
+await shot('topics-w10-desktop')
 await check('topics W6 and W10 filters', async () => {
   for (const w of ['W6', 'W10']) {
     await clickChip('main', w)
     const heads = await page.$$eval('section h2', els => els.map(e => e.textContent))
-    expect(heads.length === 1 && heads[0].startsWith(`Week ${w.slice(1)} `), `${w} filter shows ${heads}`)
+    expect(heads.length === 1 && new RegExp(`^Week ${w.slice(1)}\\b`).test(heads[0]), `${w} filter shows ${heads}`)
     expect((await colourOf('section h2')) === tone[w], `${w} heading colour`)
   }
 })
@@ -140,19 +140,19 @@ await check('glossary filters by new weeks and searches', async () => {
 
 // quiz
 await go('/quiz')
-await check('quiz filters to W9 and explains answers', async () => {
+await check('quiz filters to W10 and explains answers', async () => {
   const chips = await page.$$eval('main button', els => els.map(e => e.textContent.trim()))
   expect(NEW_WEEKS.every(w => chips.includes(w)), `quiz chips ${chips}`)
-  await clickChip('main', 'W9')
+  await clickChip('main', 'W10')
   const counter = await page.textContent('main span.font-mono')
-  const n = questions.filter(q => q.topic === 'W9').length
-  expect(counter.includes(`of ${n}`) && counter.includes('W9'), `W9 counter "${counter}", want ${n} questions`)
+  const n = questions.filter(q => q.topic === 'W10').length
+  expect(counter.includes(`of ${n}`) && counter.includes('W10'), `W10 counter "${counter}", want ${n} questions`)
   await page.click('.space-y-2\\.5 button')
   await page.waitForTimeout(200)
   const body = await page.textContent('body')
   expect(body.includes('Why:') && body.includes('Next question'), 'explanation and next button')
 })
-await shot('quiz-w9-desktop')
+await shot('quiz-w10-desktop')
 
 // functions
 await go('/functions')
@@ -180,17 +180,17 @@ await check('models: week selector, unique tabs, code blocks', async () => {
     expect(tabs.length > 0 && new Set(tabs).size === tabs.length, `${w} tabs ${tabs}`)
     total += tabs.length
     const label = await page.textContent('main p.font-mono')
-    expect(label.startsWith(w + ' '), `${w} label "${label}"`)
+    expect(label.startsWith(w + ','), `${w} label "${label}"`)
     expect((await colourOf('main p.font-mono')) === tone[w], `${w} label colour`)
   }
   expect(total === walkthroughs.length, `${walkthroughs.length} walkthroughs, got ${total}`)
-  await clickChip('[aria-label="Week"]', 'W9')
+  await clickChip('[aria-label="Week"]', 'W10')
   await page.locator('[aria-label="Walkthrough"] button').nth(1).click()
   await page.waitForTimeout(200)
-  expect((await page.textContent('h1')).startsWith('IntroVBA'), 'second W9 tab opens IntroVBA')
+  expect((await page.textContent('h1')).startsWith('OffshoreDevelopment'), 'second W10 tab opens OffshoreDevelopment')
   expect((await page.$$('pre')).length > 0, 'walkthrough shows code blocks')
 })
-await shot('models-w9-desktop')
+await shot('models-w10-desktop')
 
 // course
 await go('/course')
@@ -221,7 +221,7 @@ const phone = [
   // [route, screenshot, week chip to pick, element that carries the week colour]
   ['/', 'home-390', null, null],
   ['/topics', 'topics-w6-390', 'W6', 'section h2'],
-  ['/topics?view=glossary', 'glossary-w9-390', 'W9', badge],
+  ['/topics?view=glossary', 'glossary-w10-390', 'W10', badge],
   ['/quiz', 'quiz-w10-390', 'W10', 'main span.font-mono > span'],
   ['/functions', 'functions-w6-390', 'W6', badge],
   ['/models', 'models-w10-390', 'W10', 'main p.font-mono'],

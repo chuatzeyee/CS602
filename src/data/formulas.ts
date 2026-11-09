@@ -439,34 +439,10 @@ export const formulas: readonly Formula[] = [
     "week": "W6"
   },
   {
-    "name": "Worksheet row of a record",
-    "formula": "=IFERROR(MATCH(C7,C12:C1048576,0)+11,\"\")",
-    "note": "Macro-Recording-2.xlsm Model!B7. Exact-match MATCH gives the position in the table starting at row 12, and +11 converts it to the sheet row read by deleteRecord. Macro-Recording.xlsm uses +ROW(C11) instead. IFERROR returns \"\" for an unknown ID.",
-    "week": "W6"
-  },
-  {
     "name": "Fetch a whole record",
     "formula": "=IF(C7=\"\",\"\",INDEX(D12:G1048576,MATCH(C7,C12:C1048576,0),0))",
     "note": "Model!D7:G7, entered as one array formula across the four cells. column_num 0 makes INDEX return the whole matching row (Name, Gender, Address, DOB); a missing ID returns #N/A.",
     "week": "W6"
-  },
-  {
-    "name": "VBA: advance the Last ID after adding",
-    "formula": "Range(\"B4\").Value = Range(\"B4\").Value + 1",
-    "note": "The line added by hand at the end of the recorded addRecord macro. B4 stores the last ID used, so C4 =B4+1 offers the next ID. In deleteRecord the hand-added lines read rowNum = Range(\"B7\").Value, then If rowNum <> \"\" Then Rows(rowNum).Select / Selection.Delete, so a blank B7 (unknown ID) deletes nothing.",
-    "week": "W6"
-  },
-  {
-    "name": "Live clock",
-    "formula": "=NOW()",
-    "note": "TimerClicker Timer!D3 (and Clicker!D3), format h:mm:ss. NOW is volatile but only refreshes on recalculation, so the recording steps start with F9 and the tidied macros start with the VBA Calculate statement.",
-    "week": "W9"
-  },
-  {
-    "name": "Time-now copy row",
-    "formula": "=$D$3",
-    "note": "Timer!C7, D7 and E7. Each Record macro copies its column's row-7 cell and pastes it as a value, freezing the time stamp. Because row 7 is never empty, End(xlDown) from the header always finds a filled cell.",
-    "week": "W9"
   },
   {
     "name": "Inter-arrival time (guarded)",
@@ -496,60 +472,6 @@ export const formulas: readonly Formula[] = [
     "name": "Cumulative arrivals up to a time bin",
     "formula": "=FREQUENCY(C$8:C$999,$F7)",
     "note": "TimerClicker Clicker!G7, filled across to I and down the bins by CompleteCumFreqTable. With a single bin value FREQUENCY counts the stamps at or before that time, which gives a cumulative count; C$8 keeps the data rows fixed while $F7 keeps the bin column fixed.",
-    "week": "W9"
-  },
-  {
-    "name": "Stamp a value in the next empty row (VBA)",
-    "formula": "Calculate\nRange(\"C7\").Copy\nRange(\"C6\").End(xlDown).Offset(1, 0).Select\nSelection.PasteSpecial Paste:=xlPasteValuesAndNumberFormats\nApplication.CutCopyMode = False",
-    "note": "TimerClicker Module1 RecordArrive (RecordStart and RecordEnd swap in D7/D6 and E7/E6). This is the tidied form of the recorded keystrokes F9, copy, Ctrl+Down, Down Arrow (relative), Paste Special Values and Number Formats, then Esc.",
-    "week": "W9"
-  },
-  {
-    "name": "Relative move as recorded (VBA)",
-    "formula": "ActiveCell.Offset(-2,0).Range(\"A1\").Select",
-    "note": "Slide 3 (Absolute vs Relative Reference). Recorded with Use Relative References ON, it means 'two rows up from the current cell'; .Range(\"A1\") is the offset cell itself.",
-    "week": "W9"
-  },
-  {
-    "name": "Call a worksheet function from VBA",
-    "formula": "Dim myRange As Range\nSet myRange = Worksheets(\"Sheet1\").Range(\"A1:A10\")\nAnswer = Application.WorksheetFunction.Min(myRange)",
-    "note": "Slide 19 (UseFunction). Object variables need Set; most worksheet functions are reached through Application.WorksheetFunction.<name>. UsefulMacros' UseXLFunction does the same with WorksheetFunction.Sum(Range(\"C4:C7\")).",
-    "week": "W9"
-  },
-  {
-    "name": "Write a result vs write a formula (VBA)",
-    "formula": "Total = WorksheetFunction.Sum(Range(\"C4:C7\"))\nRange(\"C8\") = Total\n\nRange(\"C8\").Formula = \"=SUM(C4:C7)\"",
-    "note": "UsefulMacros M2_Function: UseXLFunction leaves a fixed 30000 in Worksheet!C8, while EnterFormula leaves a live =SUM(C4:C7) that updates when C4:C7 change.",
-    "week": "W9"
-  },
-  {
-    "name": "User-defined function",
-    "formula": "Function CubeRoot(number)\n    CubeRoot = number ^ (1/3)\nEnd Function",
-    "note": "Slide 11. The value is returned by assigning to the function's name. Written in a Module, it can be used in a cell (=CubeRoot(27) gives 3) or called from a Sub (Ans = CubeRoot(123) is about 4.973).",
-    "week": "W9"
-  },
-  {
-    "name": "Workbook and sheet name UDFs in cells",
-    "formula": "=WorkbookName()   =WorksheetName()",
-    "note": "UsefulMacros Worksheet!C13:C14, backed by M2_Function. Both declare Application.Volatile True so they recalculate. WorksheetName uses Application.Caller.Parent.Name, the sheet holding the calling cell.",
-    "week": "W9"
-  },
-  {
-    "name": "Clickable file list",
-    "formula": "=IF(C11=\"\",\"\",HYPERLINK($C$8&\"\\\"&C11,C11))",
-    "note": "UsefulMacros Workbook!D11, filled down to D52. C8 holds the folder path written by GetFilePath, and C11 down hold the file names written by ListFiles; the IF keeps empty rows blank.",
-    "week": "W9"
-  },
-  {
-    "name": "Colour a column of cells in a loop (VBA)",
-    "formula": "For i = 1 To Num - 1\n    Range(\"A1\").Offset(i, 0).Interior.ColorIndex = i + 1\nNext i",
-    "note": "IntroVBA-V2 Module1 Ex6_ColorMeBad, which runs only after If Num >= 1 And Num <= 56 passes. A1 is set to ColorIndex 1 (black) first, so an input of 5 colours A1:A5 with indexes 1 to 5.",
-    "week": "W9"
-  },
-  {
-    "name": "Watch selected cells in a Change event (VBA)",
-    "formula": "If Intersect(Target, Range(\"C4:C5,F4:F5\")) Is Nothing Then\n    Exit Sub\nElse\n    Range(\"C10\") = \"??\"\n    Range(\"C10\").Select\nEnd If",
-    "note": "UsefulMacros M7_OtherEvents Worksheet_Change2. Intersect returns Nothing when the edited cells (Target) do not overlap the watched inputs, so the handler exits; otherwise it flags C10 with \"??\" and selects it.",
     "week": "W9"
   },
   {
@@ -616,30 +538,6 @@ export const formulas: readonly Formula[] = [
     "name": "Advanced Filter criteria typed as text",
     "formula": "C4: >=30     (Example 2: H4 >=30, H5 <30)",
     "note": "Demo-Advanced-Filter Sheet1. A comparison operator followed by a value, entered under the Age header; F and M under Gender select the gender.",
-    "week": "W10"
-  },
-  {
-    "name": "Recorded Advanced Filter call (VBA)",
-    "formula": "Range(\"B19:I65536\").AdvancedFilter Action:=xlFilterInPlace, CriteriaRange:=Range(\"D14:I15\"), Unique:=False",
-    "note": "Filter_Alert in the Model sheet's code module. When E4 = \"All\" the same call uses CriteriaRange:=Range(\"D14:E15\"), dropping the status criteria.",
-    "week": "W10"
-  },
-  {
-    "name": "Re-filter when a watched cell changes (VBA)",
-    "formula": "If Intersect(Target, Range(\"E4\", \"F15:I15\")) Is Nothing Then Exit Sub Else Call Filter_Alert",
-    "note": "Worksheet_Change event of the Model sheet (modified workbook). Two-argument Range spans the rectangle E4:I15; the textbook version watches only Range(\"E4\").",
-    "week": "W10"
-  },
-  {
-    "name": "Reset the as-at date (VBA)",
-    "formula": "Range(\"B4\").Formula = \"=TODAY()\"",
-    "note": "Sub SetToday in the Model sheet's module: writes the =TODAY() formula back into B4, for example after a fixed test date was typed there.",
-    "week": "W10"
-  },
-  {
-    "name": "Show a cell's formula as documentation (UDF)",
-    "formula": "ShowFormula = \" \" & R.Formula",
-    "note": "Module1 user-defined function (Application.Volatile). Returns a cell's formula text with a leading space - the style used in Model's documentation column N.",
     "week": "W10"
   },
   {

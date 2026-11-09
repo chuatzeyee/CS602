@@ -74,21 +74,21 @@ const cards: readonly Card[] = [
     to: '/functions',
     icon: Sigma,
     title: 'Function Bank',
-    description: 'Every Excel function, formula pattern and VBA snippet taught, with real syntax from the session workbooks and gotchas to watch for',
+    description: 'Every Excel function and formula pattern taught, with real syntax from the session workbooks and gotchas to watch for',
     stats: [`${formulas.length} functions`],
   },
   {
     to: '/models',
     icon: FlaskConical,
     title: 'Model Walkthroughs',
-    description: 'The signature session workbooks (water tank, breakeven, Solver, time value of money, simulation, call-centre queues, VBA macros, filters and PivotTables) rebuilt step by step with the real formulas and code',
+    description: 'The signature session workbooks (water tank, breakeven, Solver, time value of money, simulation, call-centre queues, filters and PivotTables) rebuilt step by step with the real formulas and code',
     stats: [`${walkthroughs.length} models`],
   },
   {
     to: '/lab',
     icon: Table2,
     title: 'Excel Lab',
-    description: 'Hands-on exercises for every week in a spreadsheet that runs in your browser (formulas, Goal Seek, Data Tables, Solver, filters, PivotTables and VBA) checked against hidden test inputs, plus a free sandbox',
+    description: 'Hands-on exercises for every week in a spreadsheet that runs in your browser (formulas, Goal Seek, Data Tables, Solver, filters and PivotTables) checked against hidden test inputs, plus a free sandbox',
     stats: 'lab',
   },
   {
@@ -135,7 +135,7 @@ export default function Home() {
         </p>
         <p className="text-ink-secondary max-w-2xl mx-auto leading-relaxed">
           Study companion for SMU CS602/IS602, {coverage}: revision notes, a quiz bank, a function bank and the
-          session workbooks rebuilt step by step, from modelling foundations and Solver to simulation, queuing, VBA
+          session workbooks rebuilt step by step, from modelling foundations and Solver to simulation, queuing, filters
           and PivotTables. Practise in an interactive Excel lab that checks your work in the browser, prepare for the
           final with exam technique and timed mock exams, and plan the group project with deliverable checklists and
           drills.

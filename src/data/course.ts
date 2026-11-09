@@ -64,7 +64,7 @@ export const course: CourseInfo = {
     },
     {
       "week": "W6",
-      "topic": "Queuing Model & VBA",
+      "topic": "Queuing Model",
       "note": "Date and time handling, discrete time-based simulation, basic VBA for managing records. Exercises: Call Center, Record Management (VBA)."
     },
     {
@@ -79,7 +79,7 @@ export const course: CourseInfo = {
     },
     {
       "week": "W9",
-      "topic": "Macros & VBA",
+      "topic": "Macros & VBA (not tested in the final)",
       "note": "Macro recording, VBA programming, date and time. Exercises: Timer/Clicker and Intro to VBA. Assignment 2 and Online Quiz 4 are due this week."
     },
     {

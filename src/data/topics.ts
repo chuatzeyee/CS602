@@ -1011,7 +1011,7 @@ export const sessions: readonly Session[] = [
   },
   {
     "id": "w6",
-    "title": "Week 6: Queuing Model, Date & Time, and Macro Recording (VBA)",
+    "title": "Week 6: Queuing Model, Date & Time",
     "subtitle": "IS602-AY2026-27-S6.pdf",
     "topics": [
       {
@@ -1279,353 +1279,6 @@ export const sessions: readonly Session[] = [
             ]
           }
         ]
-      },
-      {
-        "id": "macro-record-management",
-        "title": "Macro Recording: Record Management",
-        "sections": [
-          {
-            "heading": "Preparing the workbook",
-            "points": [
-              "Entry row: B4 holds the Last ID used, and C4 =B4+1 makes the next Member ID increment automatically. D4:G4 take Name, Gender (a Data Validation list with source Male, Female), Address and DOB (dd/mm/yyyy).",
-              "Lookup row: B7 =IFERROR(MATCH(C7,C12:C1048576,0)+11,\"\") turns the ID typed in C7 into the worksheet row number of that record. Records start in row 12, so MATCH position 1 + 11 = row 12.",
-              "D7:G7 {=IF(C7=\"\",\"\",INDEX(D12:G1048576,MATCH(C7,C12:C1048576,0),0))} is an array formula. A column_num of 0 makes INDEX return the whole matching row, and an ID that is not in the table returns #N/A.",
-              "Macro-Recording.xlsm writes the offset as +ROW(C11) instead of the hard-coded +11, so the formula still works if the table is moved."
-            ]
-          },
-          {
-            "heading": "Recording addRecord",
-            "points": [
-              "Developer > Record Macro, name it addRecord. Copy C4:G4, select C10 and press Ctrl+Down Arrow to jump to the last record.",
-              "Turn Use Relative Reference ON, press Down Arrow to reach the empty row, Paste Special > Values and number formats, then turn Use Relative Reference OFF. Press Esc, clear D4:G4 and click Stop Recording.",
-              "The recorder writes Selection.End(xlDown).Select for Ctrl+Down and ActiveCell.Offset(1, 0).Range(\"A1\").Select for the relative Down Arrow. Without relative mode it would hard-code one fixed row.",
-              "Then edit the code in the Visual Basic Editor and add Range(\"B4\").Value = Range(\"B4\").Value + 1, so the Last ID (and therefore C4) moves on after every add."
-            ]
-          },
-          {
-            "heading": "Recording deleteRecord and wiring the buttons",
-            "points": [
-              "Record deleteRecord by selecting C7 and choosing Clear Contents. Then add five lines in the editor: rowNum = Range(\"B7\").Value / If rowNum <> \"\" Then / Rows(rowNum).Select / Selection.Delete / End If.",
-              "The If guard skips the delete when B7 is blank (no matching ID). Otherwise the record's row is removed and the rows below move up.",
-              "Developer > Insert > Form Controls > Button: assign addRecord and deleteRecord to two buttons and relabel them Add and Delete.",
-              "Macro-Recording-2.xlsm adds Edit (editRecord copies C7:G7 as values into C8:G8) and Update (updateRecord pastes C8:G8 back to Range(\"C\" & CStr(rowNum)), then clears C8:G8 and C7)."
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "w9",
-    "title": "Week 9: Macros & VBA",
-    "subtitle": "IS602-AY2026-S7-S9.pdf",
-    "topics": [
-      {
-        "id": "why-macros-and-vba",
-        "title": "Macros & VBA: What and Why",
-        "sections": [
-          {
-            "heading": "Usefulness of VBA",
-            "points": [
-              "VBA (Visual Basic for Applications) is object-oriented programming inside Excel; the session's stated payoff is to reduce the time and effort of repetitive tasks and to simplify coding effort.",
-              "A macro automates a series of actions in a spreadsheet. Macros are stored as units of VBA code and can be written directly in the VB Editor or recorded in Excel.",
-              "The session runs three exercises: Timer-Clicker (recorded macros for queue data), IntroVBA (nine coding exercises, Ex1 to Ex9) and Useful Macros (a code library covering Range, Worksheet, Chart, Workbook, Dialog and Event)."
-            ]
-          },
-          {
-            "heading": "Three ways to program VBA",
-            "points": [
-              "Record a macro: recorded macros are coded as Sub procedures under a Module.",
-              "Code automatic procedures and events: the procedure headers are created automatically and you write the code inside them.",
-              "Code from scratch: write your own Sub and Function procedures."
-            ]
-          },
-          {
-            "heading": "Recording macros: strengths and limits",
-            "points": [
-              "The recorder converts actions into a Sub automatically, but it often adds extraneous 'garbage' code and some desired actions cannot be converted into code, so simple editing is often needed.",
-              "Recording is the quick way to get code for interactive actions (copy, Paste Special, Ctrl+arrow navigation) without having to work out how to code them.",
-              "Use buttons or shapes as the user interface and assign the macro to them: IntroVBA-V2 has ten form-control buttons on Sheet1, while TimerClicker and UsefulMacros attach macros to rectangle shapes drawn over header and label cells.",
-              "A workbook that carries macros must be saved in a macro-enabled format such as .xlsm (not .xlsx); the Workbook_Open slide says to save as .xlsm and reopen to see the event fire."
-            ]
-          }
-        ]
-      },
-      {
-        "id": "absolute-vs-relative-recording",
-        "title": "Absolute vs Relative Reference When Recording",
-        "sections": [
-          {
-            "heading": "Absolute reference (default)",
-            "points": [
-              "Cell addresses are fixed in the code once recorded, so the macro refers to that same cell every time it runs, e.g. Range(\"C7\").Copy.",
-              "Absolute recording suits fixed locations: the Time Now cell D3, the copy row C7:E7 and the header cell where a downward search starts."
-            ]
-          },
-          {
-            "heading": "Relative reference (Use Relative References ON)",
-            "points": [
-              "With the Relative Reference button switched on, VBA uses Offset to record the number of rows or columns moved from the active cell, so the target changes on every run.",
-              "Slide example: ActiveCell.Offset(-2,0).Range(\"A1\").Select moves 2 steps up from the current cell; Offset(rows, columns) uses negative numbers for up or left.",
-              "The trailing .Range(\"A1\") is the recorder's way of saying 'the offset cell itself' (A1 relative to that cell).",
-              "Recipe from the slides: switch relative ON just before the Down Arrow that must move with the data, and switch it OFF again before the remaining fixed steps."
-            ]
-          },
-          {
-            "heading": "Finding the next empty row",
-            "points": [
-              "Ctrl+Down Arrow from a header jumps to the last filled cell of a contiguous column; in code this is .End(xlDown).",
-              "One more Down Arrow (relative ON) reaches the first empty row. The tidied TimerClicker code writes the whole move as Range(\"C6\").End(xlDown).Offset(1, 0).Select.",
-              "Start the Ctrl+Down from the header C6, directly above the data: slide Step 4 picks C6 and rules out C7, which is the last filled cell before any time has been stamped.",
-              "Paste Special > 'Values and Number Formats' is recorded as PasteSpecial Paste:=xlPasteValuesAndNumberFormats, and pressing Esc to release the copy is recorded as Application.CutCopyMode = False."
-            ]
-          }
-        ]
-      },
-      {
-        "id": "timer-clicker-queue-data",
-        "title": "Timer-Clicker: Stamping Queue Times with Macros",
-        "sections": [
-          {
-            "heading": "What the Timer measures",
-            "points": [
-              "Each customer has three time points (Arrival, Service Start, Service End) and four derived durations: inter-arrival time (between successive arrivals), wait time (Start minus Arrive), service time (End minus Start) and system time (End minus Arrive).",
-              "Three macros are recorded and assigned to three separate buttons to stamp arrival, service-start and service-end times; the durations are then computed by formulas.",
-              "The Timer sheet notes it is set up for First-come First-served (FCFS), single-server queues and asks how you would collect data for non-FCFS and multi-server systems."
-            ]
-          },
-          {
-            "heading": "Worksheet design",
-            "points": [
-              "D3 holds =NOW() formatted h:mm:ss. Press F9 (or run the VBA Calculate statement) to refresh it to the current time.",
-              "Row 7 holds =$D$3 in C7, D7 and E7: a live 'time now' row that the macros copy and paste as values into the next empty row of each column.",
-              "Duration formulas in F7:I7 (format m:ss): F7 =IF(C6>C7,\"\",C7-C6) for inter-arrival, G7 =E7-D7 for service, H7 =D7-C7 for wait and I7 =E7-C7 for system time.",
-              "Transparent rectangles over the headers C6 (Arrive), D6 (Start) and E6 (End) run RecordArrive, RecordStart and RecordEndPlus; cell B5 tells the user 'Click header to record time point.'"
-            ]
-          },
-          {
-            "heading": "Recording and wiring the macros",
-            "points": [
-              "RecordArrive: Calculate, Range(\"C7\").Copy, Range(\"C6\").End(xlDown).Offset(1, 0).Select, Selection.PasteSpecial Paste:=xlPasteValuesAndNumberFormats, centre the cell, then Application.CutCopyMode = False.",
-              "RecordStart and RecordEnd are the same macro using D7/D6 and E7/E6: the sheet's notes suggest either re-recording with steps 2 and 3 changed to the new column, or copying the Arrive code in the VBE and editing it.",
-              "RecordEndPlus runs Call RecordEnd and then Call CopyFormulas, a Private Sub that copies F7 to the end of the row (End(xlToRight)) and pastes formulas and number formats into the next empty row of column F.",
-              "The Proto sheet is a blank template: Exercise 1 asks you to build Timer by recording macros and assigning buttons, and Exercise 2 to build Clicker by modifying a copy of Timer."
-            ]
-          },
-          {
-            "heading": "Clicker and time arithmetic",
-            "points": [
-              "Clicker counts arrivals of up to three customer types (Count A, B, C in columns C to E) against time bins listed from F8 down (every 30 minutes from 8:00 in the sample).",
-              "G7 =FREQUENCY(C$8:C$999,$F7) is the template (F7 itself holds no bin); copied into a bin row, it returns the cumulative count of type-A stamps at or before that bin, and the CompleteCumFreqTable macro pastes it across G:I for every bin row.",
-              "The Learn sheet explains that Excel stores dates as numbers (1 Jan 1900 is day 1) and time as a fraction of a day: 0.25 is 6 am, 0.5 is 12 noon, 0.75 is 6 pm.",
-              "Format durations with [h]:mm (or [m], [s]) when they can reach 24 hours (or 60 minutes or seconds), so the total keeps counting instead of rolling over into the next unit."
-            ]
-          }
-        ]
-      },
-      {
-        "id": "vbe-and-object-model",
-        "title": "The VB Editor and Excel's Object Model",
-        "sections": [
-          {
-            "heading": "Visual Basic Editor (VBE) windows",
-            "points": [
-              "Project Explorer: a tree of all projects; each project can hold Excel Objects (the Workbook and its worksheets), Add-ins, UserForms, Modules and Class Modules.",
-              "Code Window: every object, UserForm and Module has its own code window, and it is good practice to put code with the object it belongs to.",
-              "Properties Window: sets the properties of the selected object, for example the name of a sheet or the caption of a UserForm."
-            ]
-          },
-          {
-            "heading": "Hierarchy of objects",
-            "points": [
-              "Application is at the top and holds WorksheetFunction, Add-ins and Workbooks; each Workbook holds Charts and Worksheets; each Worksheet holds Range and Cells.",
-              "Each object comes with properties, methods and events. You can set properties in the Properties Window or in code; methods are actions the object performs, such as Add, Activate and Calculate; events fire when the user does something, such as Click, Change, Activate or Keypress.",
-              "Range(\"A1\").Value, Range(\"A1\").Font.Bold and Range(\"A1\").Interior.ColorIndex (Ex1 and Ex2) are properties; .Copy, .ClearContents and .Select are methods."
-            ]
-          },
-          {
-            "heading": "Referring to sheets and workbooks",
-            "points": [
-              "Worksheets(1) uses an index number based on the tab position (counting from the left) among sheets of the same type, and the numbering can change if you move, add or delete sheets.",
-              "Sheets(4) counts all sheet types (worksheets, charts, modules and dialog sheets); referring by name, e.g. Sheets(\"Chart1\").Activate, is more robust.",
-              "ActiveWorkbook is the workbook that has been activated, while ThisWorkbook is the workbook that contains the macro code. The UsefulMacros comments warn that the two are not necessarily the same."
-            ]
-          }
-        ]
-      },
-      {
-        "id": "sub-and-function-procedures",
-        "title": "Sub and Function Procedures",
-        "sections": [
-          {
-            "heading": "Subs versus Functions",
-            "points": [
-              "A Sub runs without returning a value. Run it from the VB Editor, from the Macro dialog box, or by assigning it to a button in the worksheet (via the Macro dialog box).",
-              "A Function returns a single value by assigning to its own name, e.g. CubeRoot = number ^ (1/3). It can be called inside a Sub (Ans = CubeRoot(123)) or used in a worksheet formula.",
-              "For a function to work in a workbook its code MUST be in a Module: in the VBE select the workbook, Insert Module, code the function, then use it in the worksheet like any Excel function."
-            ]
-          },
-          {
-            "heading": "Private procedures and calling other Subs",
-            "points": [
-              "A Private Sub can only be called by other subs in the same module (TimerClicker Module2 comment); a plain Sub is public and can be run from Excel.",
-              "RecordEndPlus uses Call RecordEnd and Call CopyFormulas, where CopyFormulas is a Private helper the user never needs to run directly.",
-              "Code kept in a worksheet object cannot be reached directly from other sheets: state the sheet's code name, a dot, then the Sub name. The Workbook sheet's labels run Sheet5.GetFileName, Sheet5.GetFilePath and Sheet5.ListFiles."
-            ]
-          },
-          {
-            "heading": "Calling worksheet functions from VBA",
-            "points": [
-              "Call most worksheet functions through Application.WorksheetFunction.<function name>; the slide example sets myRange to Worksheets(\"Sheet1\").Range(\"A1:A10\"), stores Application.WorksheetFunction.Min(myRange) in Answer and shows it with MsgBox.",
-              "UseXLFunction stores Total = WorksheetFunction.Sum(Range(\"C4:C7\")) in C8 as a fixed number, while EnterFormula writes Range(\"C8\").Formula = \"=SUM(C4:C7)\", a live formula that recalculates."
-            ]
-          },
-          {
-            "heading": "User-defined functions in the workbooks",
-            "points": [
-              "WorkbookName() and WorksheetName() (Worksheet!C13:C14) return the file and sheet names. Application.Volatile True makes them recalculate, and Application.Caller.Parent.Name is more stable than ActiveSheet.Name when moving between sheets.",
-              "CellFormula(ID) and ShowFormula(R) in TimerClicker Module3 return \" \" & Range.Formula, so a cell can document another cell's formula automatically.",
-              "IntRU(x) rounds a real number up to an integer, because the standard Int() rounds down: IntRU = Int(x): If x > IntRU Then IntRU = IntRU + 1."
-            ]
-          }
-        ]
-      },
-      {
-        "id": "declarations-data-types-arrays",
-        "title": "Declarations, Data Types and Arrays",
-        "sections": [
-          {
-            "heading": "Data types and memory",
-            "points": [
-              "Declare a type for each variable to save memory, and always choose the type that uses the smallest number of bytes that can handle the program.",
-              "Bytes per type: Byte 1 (0 to 255), Boolean 2, Integer 2 (-32,768 to 32,767), Long 4 (about plus or minus 2.1 billion), Single 4, Double 8, Currency 8, Date 8, String 1 byte per character, Variant 16.",
-              "Type-declaration characters: Integer %, Long &, Currency @, Single !, Double #, String $.",
-              "Date stores date and time as one real number: the whole part is the date and the decimal part is the time. Any variable that is not explicitly declared becomes a Variant."
-            ]
-          },
-          {
-            "heading": "Declaration scope",
-            "points": [
-              "Put Option Explicit as the first statement to force yourself to declare every variable.",
-              "Dim inside a procedure gives a local variable; Dim before the first procedure makes it usable by every procedure in that module; Public before the first procedure makes it usable by all modules.",
-              "Static k As Integer keeps its value after the procedure ends, which is handy for counting how many times a program has run. Const declares a fixed value at any level, e.g. Public Const gravity As Single = 9.8.",
-              "Pitfall: Dim p, q, r As Integer declares only r as Integer; p and q become Variants and waste memory."
-            ]
-          },
-          {
-            "heading": "Arrays",
-            "points": [
-              "An array is a group of variables with a common name: Dim CD_ID(1 To 200) As Integer holds 200 CD IDs, and Dim CD_ID(1 To 100, 1 To 100) As Integer is a 2-D array of 10,000 by row and column.",
-              "A dynamic array has no preset size: declare Dim MyArray() As Integer, read the size from cell A1 (ASize = Range(\"A1\").Value) and then ReDim MyArray(ASize)."
-            ]
-          }
-        ]
-      },
-      {
-        "id": "program-flow",
-        "title": "Program Flow: Decisions, Loops and Error Traps",
-        "sections": [
-          {
-            "heading": "Testing a condition",
-            "points": [
-              "GoTo jumps to a line label: Ex3_Goto runs If UCase(FavCourse) <> \"IS602\" Then GoTo WrongAns, with Exit Sub placed before the WrongAns: label so a correct answer never falls into it. The slides note that serious programmers dislike GoTo because it makes programs unstructured and hard to follow.",
-              "If <condition> Then ... Else ... End If runs one of two branches. Ex4_TakeIQTest nests an If inside another and tests MsgBox's return value (1 means OK was clicked on a vbOKCancel box).",
-              "Select Case <variable> with Case <value> lines chooses one branch from many. In Ex5_Evaluation, ratings 1, 2 and 3 each get a message and any other number does nothing, because there is no Case Else."
-            ]
-          },
-          {
-            "heading": "Counted loops",
-            "points": [
-              "For <counter> = <start> To <end> [Step <stepsize>] ... Next <counter> repeats a fixed number of times.",
-              "Ex6_ColorMeBad first validates the input (If Num >= 1 And Num <= 56), colours A1 black, and then loops For i = 1 To Num - 1, setting Range(\"A1\").Offset(i, 0).Interior.ColorIndex = i + 1.",
-              "For Each <object> In <collection> loops over objects instead of numbers, e.g. For Each sht In ActiveWorkbook.Sheets or For Each Wkbk In Workbooks (UsefulMacros)."
-            ]
-          },
-          {
-            "heading": "Conditional loops",
-            "points": [
-              "Do While <condition> ... Loop (Type 1) tests first, so it never runs if the condition starts FALSE. Do ... Loop While <condition> (Type 2) tests at the end, so it always runs at least once.",
-              "Do Until keeps looping while the condition is FALSE and stops once it becomes TRUE. Type 1 (Do Until ... Loop) can run zero times, while Type 2 (Do ... Loop Until) runs at least once.",
-              "The loop variable must move toward the exit: Ex7 adds 20 to spending on each pass (Do While spending <= 100) and Ex8 takes 0.5 off Money (Loop Until Money < 2.1)."
-            ]
-          },
-          {
-            "heading": "Handling run-time errors",
-            "points": [
-              "When a program needs a positive number (e.g. a square root), check that the value is positive and numeric, and also add a general error trap to catch anything else.",
-              "Ex9_SquareRoot: On Error GoTo BadEntry, then Num = InputBox(...), If Num = \" \" Then Exit Sub, ActiveCell.Value = Sqr(Num), Exit Sub, and finally BadEntry: MsgBox (\"Enter a positive numeric value\")."
-            ]
-          }
-        ]
-      },
-      {
-        "id": "events-and-automatic-procedures",
-        "title": "Events and Automatic Procedures",
-        "sections": [
-          {
-            "heading": "Event-handler procedures",
-            "points": [
-              "Event-handler procedures are programs activated by interactive actions, and every object can respond to events: workbook, worksheet, UserForm and button events.",
-              "Steps: in the VBE select the object in Project Explorer, click View Code, then pick the object and the operation from the code window's drop-downs. The Sub header is created for you; write the code inside and use arguments such as Target to refer to the input cells.",
-              "Private Sub Workbook_Open() in ThisWorkbook runs every time the file opens: the slide shows MsgBox (\"Welcome\"), and TimerClicker uses it to activate the Home sheet and select A1."
-            ]
-          },
-          {
-            "heading": "Worksheet events in UsefulMacros",
-            "points": [
-              "Worksheet_SelectionChange(ByVal Target As Range) on the Event sheet clears every row's colour, shades Target.EntireColumn and Target.EntireRow grey (ColorIndex 16) and colours the selected cells (Target) red.",
-              "Worksheet_Change(ByVal Target As Range) runs when cells are edited; the sample turns changed cells blue with Target.Font.ColorIndex = 5.",
-              "To watch only some cells, exit early when the edit misses them: Worksheet_Change2 tests If Intersect(Target, Range(\"C4:C5,F4:F5\")) Is Nothing Then Exit Sub, and otherwise flags C10 with \"??\"."
-            ]
-          },
-          {
-            "heading": "Workbook events",
-            "points": [
-              "Workbook_Open can hide every sheet except Home (sht.Visible = False inside a For Each loop) and maximise the Excel window with Application.WindowState = xlMaximized.",
-              "Workbook_BeforeSave asks 'Do you really want to save the workbook?' and sets Cancel = True when the answer is vbNo; Workbook_BeforeClose saves automatically when Me.Saved = False.",
-              "ThisWorkbook's Workbook_SheetActivate selects A1 whenever a worksheet is activated. The event procedures kept in the standard modules M7_OtherEvents and M8_ThisWkbk_Events are reference templates ('see also the ThisWorkbook Excel object') that do not fire there, because event code must sit in the object's own code module."
-            ]
-          }
-        ]
-      },
-      {
-        "id": "useful-macros-library",
-        "title": "Useful Macros Library and Final-Exam Notes",
-        "sections": [
-          {
-            "heading": "Range macros",
-            "points": [
-              "SerialNum writes 1 to 8 into B4:B11: For i = 1 To 8: Range(\"B3\").Offset(i, 0) = i: Next i.",
-              "CheckThis uses With ActiveCell ... End With to colour a value red (1,000 or less), black (over 1,000), blue (over 4,999) or green (over 9,999). CheckAllBelow starts at C4 and calls CheckThis Do While ActiveCell <> \"\".",
-              "CopyRange copies C4:C11 and pastes values into B4 with Range(\"B4\").PasteSpecial xlPasteValues; ClearRange runs Range(\"B4:B11\").ClearContents."
-            ]
-          },
-          {
-            "heading": "Sheets, workbooks and the application",
-            "points": [
-              "Sheet visibility codes: Visible = -1 (xlSheetVisible), 0 (xlSheetHidden) or 2 (xlSheetVeryHidden).",
-              "AddSheet loops Do While Sheets.Count < 12 with ThisWorkbook.Sheets.Add After:=Sheets(Sheets.Count), adding sheets at the end until there are 12.",
-              "Application.ScreenUpdating = False ... True hides intermediate steps and speeds a macro up; ActiveSheet.Unprotect / ActiveSheet.Protect (optionally with Password:=) lets a macro edit a protected sheet; Application.Wait (Now + TimeValue(\"00:00:01\")) slows a loop.",
-              "Workbook code covers Workbooks.Open, ActiveWorkbook.SaveAs (FileFormat:=xlCSV for CSV), Workbooks(\"...\").Close and Workbooks.Add, and lists a folder's files with Dir inside Do While foundFile <> \"\"."
-            ]
-          },
-          {
-            "heading": "Dialog boxes",
-            "points": [
-              "MsgBox(prompt[, buttons][, title][, helpfile, context]) and InputBox(prompt[, title][, default][, xpos][, ypos][, helpfile, context]) are the two dialog functions demonstrated on the Dialog sheet; vbCrLf starts a new line in a message.",
-              "Add button constants (vbQuestion + vbYesNo) and test the reply (If Ans = vbYes Then ...) to turn MsgBox into a decision point, as MsgWithOptions does.",
-              "SimpleInput substitutes 0 when the InputBox is left blank (If Yr = \"\" Then Yr = 0), a simple form of input validation."
-            ]
-          },
-          {
-            "heading": "Examena dry run and final exam",
-            "points": [
-              "Set up your Examena account and download the Examena Final Instructions file before the dry run, which is held the week after this session.",
-              "The final exam is open book with NO internet access, so store all the materials you need on your computer or bring printed copies.",
-              "Examena records your screen during the final exam: do not access local LLMs or any other external assistance."
-            ]
-          }
-        ]
       }
     ]
   },
@@ -1643,8 +1296,7 @@ export const sessions: readonly Session[] = [
             "points": [
               "Locate AutoFilter in Excel and use it to sort and filter a list by pre-defined rules and by rules you specify yourself.",
               "Tell date and time format codes apart (d vs ddd, m vs mmm, h vs [h]).",
-              "Explain how Advanced Filter works, then apply it together with date formats in the Offshore Development exercise.",
-              "Make advanced filtering dynamic by recording a macro and re-running it whenever the criteria change."
+              "Explain how Advanced Filter works, then apply it together with date formats in the Offshore Development exercise."
             ]
           },
           {
@@ -1652,7 +1304,6 @@ export const sessions: readonly Session[] = [
             "points": [
               "The Session 10 deck covers AutoFilter, custom sorting and date/time format codes, then the Offshore Development exercise, then the Advanced Filter dialog and criteria rules, and closes with project admin.",
               "Demo-Advanced-Filter.xlsx is a four-record list with two ready-made criteria ranges: an AND example and an OR-of-ANDs example.",
-              "OffshoreDevelopment-modified.xlsm is the class version of the textbook's Chapter 8 exercise: its due dates roll forward with TODAY() and its filter macro also reacts to the status criteria cells.",
               "The course outline lists PivotTables for Week 10, with Grand Grocery as a class exercise and in the recorded revision videos, although the Session 10 deck has no PivotTable slides; GrandGrocery.xlsx contains the finished PivotTable and PivotChart."
             ]
           },
@@ -1791,8 +1442,7 @@ export const sessions: readonly Session[] = [
           {
             "heading": "When to reach for Advanced Filter",
             "points": [
-              "Data > Advanced filters a list on several criteria at once, written in a separate criteria range on the sheet.",
-              "Because the conditions sit in cells, formulas can rewrite them, and a recorded macro can re-apply the filter with the new values - the deck's 'dynamic criteria value'."
+              "Data > Advanced filters a list on several criteria at once, written in a separate criteria range on the sheet."
             ]
           },
           {
@@ -1801,13 +1451,6 @@ export const sessions: readonly Session[] = [
               "Action: 'Filter the list, in-place' hides the rows that fail the criteria; 'Copy to another location' writes the matching records to the range given in Copy to.",
               "List range is the data list including its header row; Criteria range is the criteria headers plus the rows of criteria values.",
               "Unique records only drops duplicate records from the result."
-            ]
-          },
-          {
-            "heading": "Re-running the filter",
-            "points": [
-              "Applying an advanced filter is a one-off action, so the Offshore workbook calls its recorded macro Filter_Alert from a Worksheet_Change event whenever the alert level or the status criteria change.",
-              "The macro's list range B19:I65536 runs down to row 65,536 (the bottom of the old .xls grid) so newly added milestone rows are always included."
             ]
           }
         ]
@@ -1873,8 +1516,7 @@ export const sessions: readonly Session[] = [
             "points": [
               "1) Define the alert-level table (Model!E7:I12) holding the day offsets and the matching date limits.",
               "2) Add a drop-down in E4 (data validation list =$E$8:$E$12) so the user picks All, 0, 1, 2 or 3; F4:I4 VLOOKUP the chosen row.",
-              "3) Convert the chosen dates into criteria strings in D15 (>=from) and E15 (<=to), each under its own Due Date header.",
-              "4) Record a macro that runs Advanced Filter on the milestone list starting at B19 with criteria D14:I15."
+              "3) Convert the chosen dates into criteria strings in D15 (>=from) and E15 (<=to), each under its own Due Date header."
             ]
           },
           {

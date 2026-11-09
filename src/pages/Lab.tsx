@@ -10,7 +10,7 @@ import type { Exercise, Week } from '../lab/types'
 
 // catalogue only: no engine, sheet or checker imports (keeps the formula engine out of this chunk)
 
-const WEEKS: Week[] = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W9', 'W10']
+const WEEKS: Week[] = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W10']   // W9 (VBA) is not in the lab: not tested
 const LEVELS: Record<number, string> = { 1: 'Drill', 2: 'Applied', 3: 'Exam-style' }
 const weekTopic = (w: string) => course.schedule.find(s => s.week === w)?.topic ?? (w === 'EXAM' ? 'Exam practice' : '')
 
@@ -145,7 +145,7 @@ export function LabCatalogue({ list }: { list: readonly Exercise[] }) {
         </div>
         <p className="text-ink-secondary max-w-3xl leading-relaxed">
           Practise every Excel skill of the course in a real spreadsheet: type formulas, fill them down, run Goal Seek,
-          Data Tables, Solver, filters and PivotTables, write small VBA macros, then press <span className="text-ink font-medium">Check</span>.
+          Data Tables, Solver, filters and PivotTables, then press <span className="text-ink font-medium">Check</span>.
           Answers are re-tested on hidden inputs, so hard-coded numbers and missing <span className="font-mono text-ink">$</span> signs are caught.
         </p>
         {taskTotal > 0 && (
@@ -160,7 +160,7 @@ export function LabCatalogue({ list }: { list: readonly Exercise[] }) {
           <div className="p-2.5 bg-glow-dim rounded-lg text-glow"><FlaskConical size={22} /></div>
           <div className="flex-1 min-w-0">
             <h2 className="font-semibold text-ink flex items-center gap-2">Sandbox <ArrowRight size={15} className="text-ink-faint group-hover:text-glow group-hover:translate-x-0.5 transition-all" /></h2>
-            <p className="text-sm text-ink-secondary">A blank 100 × 26 sheet with every tool and the VBA editor. Saved on this device.</p>
+            <p className="text-sm text-ink-secondary">A blank 100 × 26 sheet with every tool. Saved on this device.</p>
           </div>
         </Link>
         <Link to="/exam" className="group flex items-start gap-4 bg-surface border border-edge rounded-lg p-5 hover:border-glow/30 hover:bg-raised transition-all">

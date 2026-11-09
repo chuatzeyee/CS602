@@ -24,6 +24,7 @@ import { restoreAfterRun } from '../src/lab/components/toolUndo.ts'
 import LabErrorBoundary, { isChunkError } from '../src/lab/components/LabErrorBoundary.tsx'
 import { cleanState, getExerciseProgress, saveExerciseProgress } from '../src/lab/progress.ts'
 import { exerciseById } from '../src/data/lab/index.ts'
+import { exercises as w09 } from '../src/data/lab/w09.ts'
 
 const blank = (rows = 30, cols = 26): SheetSpec => ({ name: 'Sheet1', rows, cols, cells: {} })
 const mod = (...lines: string[]) => lines.join('\n') + '\n'
@@ -62,7 +63,7 @@ test('Function calls of one Check share one time budget: a budget that started e
 })
 
 test('Check stops a Function that never returns after one budget for all its calls (6 calls, not 6 x 5 s)', () => {
-  const ex = exerciseById('w9-vba-function-tables')
+  const ex = w09.find(e => e.id === 'w9-vba-function-tables')
   assert.ok(ex)
   const task = ex.tasks.find(t => t.kind === 'vba')
   assert.ok(task)

@@ -260,9 +260,9 @@ export const exam: ExamData = {
     },
     {
       id: "weeks-9-10",
-      title: "Know where Weeks 9-10 fit",
+      title: "Know where Week 10 fits",
       detail:
-        "Macros, VBA, PivotTables and filters never appeared in these three papers, but the CS602 outline lists them in the course scope and does not exclude them from the exam. Be ready to summarise with COUNTIF, SUMPRODUCT or a quick PivotTable and to apply an AutoFilter or Advanced Filter. A macro is harder to mark through answer cells, but do not rule one out.",
+        "VBA and macros are not tested. PivotTables and filters never appeared in these three papers but are in the course scope: be ready to summarise with COUNTIF, SUMPRODUCT or a quick PivotTable and to apply an AutoFilter or Advanced Filter.",
     },
   ],
   sourceNote:
