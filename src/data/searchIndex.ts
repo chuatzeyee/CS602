@@ -7,10 +7,11 @@ import { questions } from './quiz'
 import { exam } from './exam'
 import { worked, answerLines, cleanPrompt } from './worked'
 import { patterns } from './patterns'
+import { pastPapers } from './pastPapers'
 import { studyPlan } from './studyPlan'
 
-export type DocKind = 'Pattern' | 'Question' | 'Notes' | 'Glossary' | 'Function' | 'Model' | 'Quiz' | 'Exam' | 'Recall'
-export const DOC_KINDS: readonly DocKind[] = ['Pattern', 'Question', 'Function', 'Notes', 'Glossary', 'Model', 'Exam', 'Quiz', 'Recall']
+export type DocKind = 'Pattern' | 'Past paper' | 'Question' | 'Notes' | 'Glossary' | 'Function' | 'Model' | 'Quiz' | 'Exam' | 'Recall'
+export const DOC_KINDS: readonly DocKind[] = ['Pattern', 'Past paper', 'Question', 'Function', 'Notes', 'Glossary', 'Model', 'Exam', 'Quiz', 'Recall']
 
 export interface SearchDoc {
   kind: DocKind
@@ -43,6 +44,13 @@ function build(): SearchDoc[] {
       kind: 'Pattern', week: '', title: p.title, to: `/bank?p=${p.id}`,
       code: p.formulas.map(f => `${f.label}: ${f.f}`).join('\n') || undefined,
       body: [p.spot, `Cue words: ${p.cues.join(', ')}`, 'Steps:', ...p.steps.map((x, i) => `${i + 1}. ${x}`), ...(p.tool ? ['Dialog:', ...p.tool] : []), 'Pitfalls:', ...p.pitfalls].join('\n'),
+    })
+  for (const p of pastPapers) for (const q of p.questions) for (const pt of q.parts)
+    docs.push({
+      kind: 'Past paper', week: '', to: `/formulas?q=${encodeURIComponent(pt.task)}`,
+      title: `${p.title} ${q.id.toUpperCase()}(${pt.label}), ${pt.marks} mark${pt.marks === 1 ? '' : 's'}: ${pt.task}`,
+      code: pt.formulas.map(f => (f.cell ? `${f.cell}: ${f.formula}` : f.formula)).join('\n') || undefined,
+      body: [...pt.steps, pt.answer ? `Answer: ${pt.answer}` : '', ...pt.pitfalls.map(x => `Pitfall: ${x}`), `Question: ${q.title}. ${q.scenario}`].filter(Boolean).join('\n'),
     })
   for (const w of worked) for (const t of w.ex.tasks) {
     const ans = answerLines(t)

@@ -3,6 +3,6 @@
 export const OFFLINE: boolean = import.meta.env.VITE_OFFLINE === '1'
 
 // routes that exist in the offline copy; links elsewhere are hidden there
-export const OFFLINE_ROUTES = ['/search', '/bank', '/topics', '/functions', '/models', '/exam'] as const
+export const OFFLINE_ROUTES = ['/search', '/bank', '/formulas', '/topics', '/functions', '/models', '/exam'] as const
 export const routeAvailable = (to: string): boolean =>
   !OFFLINE || OFFLINE_ROUTES.some(r => to === r || to.startsWith(`${r}?`) || to.startsWith(`${r}/`))

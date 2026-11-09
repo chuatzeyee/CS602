@@ -13,6 +13,7 @@ import {
   CalendarDays,
   ListTodo,
   FileQuestion,
+  Braces,
   Search,
 } from 'lucide-react'
 
@@ -26,6 +27,7 @@ const navItems = [
   { to: '/study', label: 'Plan', title: 'Exam Study Plan', icon: ListTodo },
   { to: '/search', label: 'Search', title: 'Search', icon: Search },
   { to: '/bank', label: 'Q Bank', title: 'Question Bank', icon: FileQuestion },
+  { to: '/formulas', label: 'Formulas', title: 'Formula Bank', icon: Braces },
   { to: '/topics', label: 'Topics', title: 'Topics & Glossary', icon: BookOpen },
   { to: '/quiz', label: 'Quiz', title: 'Practice Quiz', icon: ClipboardCheck },
   { to: '/functions', label: 'Functions', title: 'Function Bank', icon: Sigma },

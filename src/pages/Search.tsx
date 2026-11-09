@@ -5,17 +5,10 @@ import { DOC_KINDS, search, searchDocs, terms } from '../data/searchIndex'
 import { spot } from '../data/patterns'
 import type { DocKind, SearchDoc } from '../data/searchIndex'
 import { weekText } from '../data/weeks'
+import Marked from '../components/Marked'
 import { OFFLINE, routeAvailable } from '../offline'
 
 const PAGE = 40
-const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-
-function Marked({ text, ts }: { text: string; ts: string[] }) {
-  if (ts.length === 0) return <>{text}</>
-  const re = new RegExp(`(${ts.map(escapeRe).join('|')})`, 'gi')
-  return <>{text.split(re).map((part, i) => (i % 2 ? <span key={i} className="highlight-match">{part}</span> : part))}</>
-}
-
 function Result({ d, ts }: { d: SearchDoc; ts: string[] }) {
   return (
     <li className="bg-surface border border-edge rounded-lg">
